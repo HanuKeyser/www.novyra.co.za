@@ -53,7 +53,7 @@ html{
 }
 
 /* =======================================================
-   NAVBAR
+   NAVBAR (UPDATED FOR MOBILE PADDING)
 ======================================================= */
 
 header{
@@ -66,6 +66,7 @@ header{
 .nav{
   max-width:1120px;
   margin:20px auto;
+
   padding:12px 18px;
 
   display:flex;
@@ -160,7 +161,7 @@ nav a:hover{
 }
 
 /* =======================================================
-   MOBILE MENU (FIXED GLOBAL PADDING)
+   MOBILE MENU
 ======================================================= */
 
 .mobile{
@@ -174,7 +175,6 @@ nav a:hover{
 
   gap:22px;
 
-  /* ✅ GLOBAL PADDING FOR ALL DEVICES */
   padding:0 28px;
 
   background:rgba(255,255,255,0.12);
@@ -202,7 +202,6 @@ nav a:hover{
   transform:scale(1);
 }
 
-/* links */
 .mobile a{
   text-decoration:none;
   font-size:22px;
@@ -214,13 +213,6 @@ nav a:hover{
 .mobile a:hover{
   transform:scale(1.05);
   opacity:1;
-}
-
-/* optional: slightly more padding on very large screens */
-@media(min-width:1200px){
-  .mobile{
-    padding:0 40px;
-  }
 }
 
 /* =======================================================
@@ -263,9 +255,17 @@ footer{
 ======================================================= */
 
 @media(max-width:768px){
+
   nav ul{ display:none; }
   .menu-toggle{ display:flex; }
   h1{ font-size:38px; }
+
+  /* ✅ MOBILE NAVBAR PADDING FIX */
+  .nav{
+    padding:12px 16px;
+    width:calc(100% - 20px);
+    margin:14px auto;
+  }
 }
 
 </style>
