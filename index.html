@@ -18,7 +18,7 @@
 
   --radius-lg: 18px;
 
-  --text: #0f172a;
+  --text: #000;
 
   --space-1: 8px;
   --space-2: 12px;
@@ -76,7 +76,7 @@ html{
 }
 
 /* =========================
-   SECTIONS
+   SECTIONS (UPDATED COLORS)
 ========================= */
 
 section{
@@ -88,11 +88,26 @@ section{
   text-align:center;
 }
 
-#s1{ background:radial-gradient(circle at top,#eef3ff,#ffffff); }
-#s2{ background:linear-gradient(180deg,#f7f9ff,#eef3ff); }
-#s3{ background:radial-gradient(circle at bottom,#f2f6ff,#ffffff); }
-#s4{ background:linear-gradient(180deg,#ffffff,#f3f6ff); }
-#s5{ background:radial-gradient(circle at top,#eef3ff,#f9fbff); }
+/* soft tinted backgrounds (not flat) */
+#s1{
+  background:radial-gradient(circle at top,#ffe6ec,#ffffff);
+}
+
+#s2{
+  background:radial-gradient(circle at bottom,#e6f0ff,#ffffff);
+}
+
+#s3{
+  background:radial-gradient(circle at top,#e9fff3,#ffffff);
+}
+
+#s4{
+  background:radial-gradient(circle at bottom,#fff7e6,#ffffff);
+}
+
+#s5{
+  background:radial-gradient(circle at top,#f3e8ff,#ffffff);
+}
 
 /* =========================
    TYPOGRAPHY
@@ -101,6 +116,7 @@ section{
 h1{
   font-size: clamp(42px, 6vw, 64px);
   letter-spacing:-0.6px;
+  color:#000;
 }
 
 /* =========================
@@ -151,10 +167,11 @@ header{
 .logo{
   font-size:14px;
   font-weight:600;
+  color:#000;
 }
 
 /* =========================
-   NAV LINKS (UNIFIED SYSTEM)
+   NAV LINKS
 ========================= */
 
 nav ul{
@@ -166,7 +183,7 @@ nav ul{
 nav a,
 .mobile a{
   text-decoration:none;
-  color:var(--text);
+  color:#000;
   font-size:14px;
   padding:7px 10px;
   border-radius:10px;
@@ -206,14 +223,12 @@ nav a:hover,
   position:relative;
 }
 
-/* ICONS */
-
 .theme-toggle svg{
   position:absolute;
   width:26px;
   height:26px;
 
-  stroke:#0f172a;
+  stroke:#000;
   fill:none;
   stroke-width:1.8;
 
@@ -241,7 +256,7 @@ nav a:hover,
 }
 
 /* =========================
-   HAMBURGER (UNCHANGED LOOK)
+   HAMBURGER
 ========================= */
 
 .menu-toggle{
@@ -264,7 +279,7 @@ nav a:hover,
   position:absolute;
   width:18px;
   height:2px;
-  background:#0f172a;
+  background:#000;
   border-radius:20px;
   transition:0.3s ease;
 }
@@ -273,17 +288,9 @@ nav a:hover,
 .menu-toggle span:nth-child(2){ transform:translateY(0); }
 .menu-toggle span:nth-child(3){ transform:translateY(6px); }
 
-.menu-open .menu-toggle span:nth-child(1){
-  transform:rotate(45deg);
-}
-
-.menu-open .menu-toggle span:nth-child(2){
-  opacity:0;
-}
-
-.menu-open .menu-toggle span:nth-child(3){
-  transform:rotate(-45deg);
-}
+.menu-open .menu-toggle span:nth-child(1){ transform:rotate(45deg); }
+.menu-open .menu-toggle span:nth-child(2){ opacity:0; }
+.menu-open .menu-toggle span:nth-child(3){ transform:rotate(-45deg); }
 
 /* =========================
    MOBILE MENU
@@ -322,7 +329,6 @@ nav a:hover,
   transform:translateX(-50%) scale(1);
 }
 
-/* slightly larger mobile tap targets */
 .mobile a{
   font-size:16px;
   padding:12px 12px;
@@ -347,6 +353,7 @@ footer{
 footer p{
   font-size:13px;
   opacity:0.65;
+  color:#000;
 }
 
 /* =========================
@@ -392,11 +399,7 @@ footer p{
       </svg>
 
       <svg class="moon" viewBox="0 0 24 24">
-        <path fill="currentColor" d="
-          M21 13.5
-          A8 8 0 1 1 10.5 3
-          A6.5 6.5 0 1 0 21 13.5
-          Z"/>
+        <path fill="currentColor" d="M21 13.5 A8 8 0 1 1 10.5 3 A6.5 6.5 0 1 0 21 13.5 Z"/>
       </svg>
 
     </div>
