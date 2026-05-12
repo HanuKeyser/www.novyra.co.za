@@ -37,23 +37,41 @@ html{
 }
 
 /* =======================================================
-   SCROLLBAR
+   SCROLLBAR (VISIBLE + GLASS MATCH)
 ======================================================= */
 
-::-webkit-scrollbar{ width:10px; }
-
-::-webkit-scrollbar-track{
-  background:rgba(255,255,255,0.3);
+::-webkit-scrollbar{
+  width:10px;
 }
 
-::-webkit-scrollbar-thumb{
-  background:linear-gradient(to bottom,#c7d8ff,#9fb8ff);
+/* TRACK */
+::-webkit-scrollbar-track{
+  background:rgba(15,23,42,0.05);
   border-radius:20px;
-  border:2px solid rgba(255,255,255,0.6);
+}
+
+/* THUMB */
+::-webkit-scrollbar-thumb{
+  background:rgba(15,23,42,0.28);
+  border-radius:20px;
+
+  border:2px solid rgba(255,255,255,0.65);
+
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+
+  box-shadow:
+    inset 0 0 10px rgba(255,255,255,0.25),
+    0 6px 14px rgba(0,0,0,0.10);
+}
+
+/* HOVER */
+::-webkit-scrollbar-thumb:hover{
+  background:rgba(15,23,42,0.38);
 }
 
 /* =======================================================
-   NAVBAR (UPDATED FOR MOBILE PADDING)
+   NAVBAR
 ======================================================= */
 
 header{
@@ -255,17 +273,9 @@ footer{
 ======================================================= */
 
 @media(max-width:768px){
-
   nav ul{ display:none; }
   .menu-toggle{ display:flex; }
   h1{ font-size:38px; }
-
-  /* ✅ MOBILE NAVBAR PADDING FIX */
-  .nav{
-    padding:12px 16px;
-    width:calc(100% - 20px);
-    margin:14px auto;
-  }
 }
 
 </style>
