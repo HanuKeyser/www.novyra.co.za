@@ -58,27 +58,28 @@ section{
   align-items:center;
   padding:80px 20px;
   text-align:center;
+  margin:0;
 }
 
-/* soft tinted backgrounds (not flat) */
+/* soft light blue backgrounds */
 #s1{
-  background:radial-gradient(circle at top,#ffe6ec,#ffffff);
+  background:#f0f6ff;
 }
 
 #s2{
-  background:radial-gradient(circle at bottom,#e6f0ff,#ffffff);
+  background:#f0f6ff;
 }
 
 #s3{
-  background:radial-gradient(circle at top,#e9fff3,#ffffff);
+  background:#f0f6ff;
 }
 
 #s4{
-  background:radial-gradient(circle at bottom,#fff7e6,#ffffff);
+  background:#f0f6ff;
 }
 
 #s5{
-  background:radial-gradient(circle at top,#f3e8ff,#ffffff);
+  background:#f0f6ff;
 }
 
 /* =========================
@@ -313,11 +314,7 @@ nav a:hover,
 footer{
   padding:16px 14px;
 
-  background:var(--glass-bg);
-  backdrop-filter:blur(50px);
-  -webkit-backdrop-filter:blur(50px);
-
-  border-top:1px solid var(--glass-border);
+  background:#f0f6ff;
 
   text-align:center;
 }
@@ -335,6 +332,10 @@ footer p{
 @media(max-width:768px){
   nav ul{ display:none; }
   .menu-toggle{ display:flex; }
+  
+  #s5 > div > div {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 </style>
@@ -347,28 +348,33 @@ footer p{
  <body>
   <header>
    <div class="top-bar">
-    <div class="nav"><img src="Novyra-Logo.png" alt="Novyra Logo" class="logo">
+    <div class="nav">
+     <img src="Novyra-Logo.png" alt="Novyra Logo" class="logo">
      <nav>
       <ul>
        <li><a href="#s1">Home</a></li>
        <li><a href="#s2">About Novyra</a></li>
        <li><a href="#s3">Transformed Visions</a></li>
        <li><a href="#s4">Creative Services</a></li>
-       <li><a href="#s5">Contact Us</a></li>
+       <li><a href="https://www.novyra.co.za/contact-us/" target="_blank" rel="noopener noreferrer">Contact Us</a></li>
       </ul>
      </nav>
-     <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span>
+     <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
      </div>
     </div>
     <div class="theme-toggle" id="themeBtn" onclick="toggleTheme()">
-     <svg class="sun" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle> <path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M19 5l-1.5 1.5M5 19l1.5-1.5M19 19l-1.5-1.5" />
+     <svg class="sun" viewbox="0 0 24 24">
+      <circle cx="12" cy="12" r="4"></circle> <path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M19 5l-1.5 1.5M5 19l1.5-1.5M19 19l-1.5-1.5" />
      </svg>
-     <svg class="moon" viewbox="0 0 24 24"><path fill="currentColor" d="M21 13.5 A8 8 0 1 1 10.5 3 A6.5 6.5 0 1 0 21 13.5 Z" />
+     <svg class="moon" viewbox="0 0 24 24">
+      <path fill="currentColor" d="M21 13.5 A8 8 0 1 1 10.5 3 A6.5 6.5 0 1 0 21 13.5 Z" />
      </svg>
     </div>
    </div>
   </header>
-  <div class="mobile" id="mobile"><a href="#s1" onclick="toggleMenu()">Home</a> <a href="#s2" onclick="toggleMenu()">About Novyra</a> <a href="#s3" onclick="toggleMenu()">Transformed Visions</a> <a href="#s4" onclick="toggleMenu()">Creative Services</a> <a href="#s5" onclick="toggleMenu()">Contact Us</a>
+  <div class="mobile" id="mobile">
+   <a href="#s1" onclick="toggleMenu()">Home</a> <a href="#s2" onclick="toggleMenu()">About Novyra</a> <a href="#s3" onclick="toggleMenu()">Transformed Visions</a> <a href="#s4" onclick="toggleMenu()">Creative Services</a> <a href="https://www.novyra.co.za/contact-us/" target="_blank" rel="noopener noreferrer" onclick="toggleMenu()">Contact Us</a>
   </div>
   <section id="s1">
   </section>
@@ -377,8 +383,6 @@ footer p{
   <section id="s3">
   </section>
   <section id="s4">
-  </section>
-  <section id="s5">
   </section>
   <footer>
    <p>© 2026 Novyra - New Era of Creation - All Rights Reserved</p>
@@ -394,6 +398,39 @@ function toggleTheme(){
   document.getElementById("themeBtn").classList.toggle("active");
 }
 
+// Contact form handling
+document.getElementById("contactForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  
+  const form = this;
+  const messageDiv = document.getElementById("formMessage");
+  const name = form.name.value.trim();
+  const email = form.email.value.trim();
+  const message = form.message.value.trim();
+  
+  if(!name || !email || !message){
+    messageDiv.textContent = "Please fill in all fields.";
+    messageDiv.style.color = "#e74c3c";
+    messageDiv.style.display = "block";
+    return;
+  }
+  
+  // Simulate successful submission
+  messageDiv.textContent = "✓ Message sent successfully! We'll get back to you soon.";
+  messageDiv.style.color = "#27ae60";
+  messageDiv.style.display = "block";
+  
+  form.reset();
+  
+  // Clear message after 5 seconds
+  setTimeout(function(){
+    messageDiv.style.display = "none";
+  }, 5000);
+}
+
+// Initialize Lucide icons
+lucide.createIcons();
+
 </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9fa91bc731191560',t:'MTc3ODU4NTYwNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9fa96a52e12b0d06',t:'MTc3ODU4ODgyMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
