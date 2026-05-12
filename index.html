@@ -65,7 +65,7 @@ body{
 }
 
 /* =========================
-   SECTIONS (SOFT SYSTEM VARIATION)
+   SECTIONS
 ========================= */
 
 section{
@@ -186,28 +186,38 @@ nav a:hover{
   position:relative;
 }
 
+/* =========================
+   ICONS (UPDATED SIZE + CENTER FIX)
+========================= */
+
 .theme-toggle svg{
   position:absolute;
-  width:22px;
-  height:22px;
+
+  width:26px;
+  height:26px; /* 🔥 BIGGER ICONS */
 
   stroke:#0f172a;
   fill:none;
   stroke-width:1.8;
 
   transition:0.4s ease;
+
+  transform-origin:center; /* 🔧 OPTIONAL FIX APPLIED */
 }
 
+/* SUN */
 .theme-toggle .sun{
   opacity:1;
   transform:rotate(0) scale(1);
 }
 
+/* MOON */
 .theme-toggle .moon{
   opacity:0;
   transform:rotate(-90deg) scale(0.6);
 }
 
+/* ACTIVE STATE */
 .theme-toggle.active .sun{
   opacity:0;
   transform:rotate(90deg) scale(0.6);
