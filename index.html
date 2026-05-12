@@ -5,74 +5,90 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Novyra</title>
 
-<link rel="icon" type="image/svg+xml"
-href="data:image/svg+xml,
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
-<rect width='100' height='100' rx='24' fill='%23dbe7ff'/>
-<circle cx='50' cy='50' r='18' fill='white' opacity='0.9'/>
-</svg>">
-
 <style>
 
-/* =======================================================
+/* =========================
    BASE
-======================================================= */
+========================= */
 
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  scroll-behavior:smooth;
   font-family:system-ui,-apple-system,sans-serif;
 }
 
 body{
-  background:radial-gradient(circle at top,#eaf1ff,#ffffff);
-  color:#0f172a;
   overflow-x:hidden;
+  color:#0f172a;
 }
 
-html{
-  scrollbar-gutter: stable;
-}
-
-/* =======================================================
-   SCROLLBAR (VISIBLE + GLASS MATCH)
-======================================================= */
+/* =========================
+   SCROLLBAR (ACCENT + GLASS)
+========================= */
 
 ::-webkit-scrollbar{
   width:10px;
 }
 
-/* TRACK */
 ::-webkit-scrollbar-track{
-  background:rgba(15,23,42,0.05);
-  border-radius:20px;
+  background:rgba(255,255,255,0.12);
+  backdrop-filter:blur(30px);
+  -webkit-backdrop-filter:blur(30px);
+  border-left:1px solid rgba(255,255,255,0.35);
 }
 
-/* THUMB */
 ::-webkit-scrollbar-thumb{
-  background:rgba(15,23,42,0.28);
+  background:linear-gradient(
+    180deg,
+    rgba(99, 102, 241, 0.55),
+    rgba(59, 130, 246, 0.45)
+  );
+
+  border:1px solid rgba(255,255,255,0.25);
   border-radius:20px;
 
-  border:2px solid rgba(255,255,255,0.65);
-
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(40px);
+  -webkit-backdrop-filter:blur(40px);
 
   box-shadow:
-    inset 0 0 10px rgba(255,255,255,0.25),
-    0 6px 14px rgba(0,0,0,0.10);
+    inset 0 1px 0 rgba(255,255,255,0.4),
+    0 6px 14px rgba(0,0,0,0.12);
 }
 
-/* HOVER */
 ::-webkit-scrollbar-thumb:hover{
-  background:rgba(15,23,42,0.38);
+  background:linear-gradient(
+    180deg,
+    rgba(99, 102, 241, 0.75),
+    rgba(59, 130, 246, 0.65)
+  );
 }
 
-/* =======================================================
-   NAVBAR
-======================================================= */
+/* =========================
+   SECTIONS (SOFT SYSTEM VARIATION)
+========================= */
+
+section{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+#s1{ background:radial-gradient(circle at top,#eef3ff,#ffffff); }
+#s2{ background:linear-gradient(180deg,#f7f9ff,#eef3ff); }
+#s3{ background:radial-gradient(circle at bottom,#f2f6ff,#ffffff); }
+#s4{ background:linear-gradient(180deg,#ffffff,#f3f6ff); }
+#s5{ background:radial-gradient(circle at top,#eef3ff,#f9fbff); }
+
+h1{
+  font-size:54px;
+  letter-spacing:-0.6px;
+}
+
+/* =========================
+   HEADER
+========================= */
 
 header{
   position:fixed;
@@ -81,73 +97,142 @@ header{
   z-index:1000;
 }
 
-.nav{
+.top-bar{
   max-width:1120px;
-  margin:20px auto;
-
-  padding:12px 18px;
+  margin:18px auto;
+  padding:0 14px;
 
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  gap:12px;
+}
 
-  background:rgba(255,255,255,0.22);
-  backdrop-filter:blur(40px) saturate(180%);
-  -webkit-backdrop-filter:blur(40px) saturate(180%);
+/* =========================
+   NAV BAR
+========================= */
 
-  border:1px solid rgba(255,255,255,0.55);
+.nav{
+  flex:1;
+  height:64px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 14px;
+
+  background:rgba(255,255,255,0.28);
+  backdrop-filter:blur(50px);
+  -webkit-backdrop-filter:blur(50px);
+
+  border:1px solid rgba(255,255,255,0.6);
   border-radius:18px;
 
-  box-shadow:
-    0 20px 45px rgba(0,0,0,0.08),
-    inset 0 1px 0 rgba(255,255,255,0.75);
+  box-shadow:0 18px 45px rgba(0,0,0,0.08);
 }
 
 .logo{
-  font-size:15px;
+  font-size:14px;
   font-weight:600;
 }
 
-/* LINKS */
+/* =========================
+   NAV LINKS
+========================= */
+
 nav ul{
   display:flex;
-  gap:8px;
+  gap:6px;
   list-style:none;
 }
 
 nav a{
   text-decoration:none;
   color:#0f172a;
-  font-size:15px;
-  font-weight:500;
-  padding:8px 12px;
+  font-size:14px;
+  padding:7px 10px;
   border-radius:10px;
-  transition:0.25s ease;
+  transition:0.2s ease;
 }
 
 nav a:hover{
   background:rgba(255,255,255,0.6);
 }
 
-/* =======================================================
+/* =========================
+   THEME BUTTON
+========================= */
+
+.theme-toggle{
+  width:64px;
+  height:64px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:18px;
+
+  background:rgba(255,255,255,0.28);
+  backdrop-filter:blur(50px);
+  -webkit-backdrop-filter:blur(50px);
+
+  border:1px solid rgba(255,255,255,0.6);
+
+  cursor:pointer;
+
+  box-shadow:0 18px 45px rgba(0,0,0,0.08);
+
+  position:relative;
+}
+
+.theme-toggle svg{
+  position:absolute;
+  width:22px;
+  height:22px;
+
+  stroke:#0f172a;
+  fill:none;
+  stroke-width:1.8;
+
+  transition:0.4s ease;
+}
+
+.theme-toggle .sun{
+  opacity:1;
+  transform:rotate(0) scale(1);
+}
+
+.theme-toggle .moon{
+  opacity:0;
+  transform:rotate(-90deg) scale(0.6);
+}
+
+.theme-toggle.active .sun{
+  opacity:0;
+  transform:rotate(90deg) scale(0.6);
+}
+
+.theme-toggle.active .moon{
+  opacity:1;
+  transform:rotate(0) scale(1);
+}
+
+/* =========================
    HAMBURGER
-======================================================= */
+========================= */
 
 .menu-toggle{
-  width:40px;
-  height:40px;
+  width:42px;
+  height:42px;
 
   display:none;
   align-items:center;
   justify-content:center;
 
   border-radius:12px;
-
-  background:rgba(255,255,255,0.25);
-  backdrop-filter:blur(25px);
-  -webkit-backdrop-filter:blur(25px);
-
-  border:1px solid rgba(255,255,255,0.55);
+  background:rgba(255,255,255,0.28);
+  border:1px solid rgba(255,255,255,0.6);
 
   cursor:pointer;
   position:relative;
@@ -159,7 +244,7 @@ nav a:hover{
   height:2px;
   background:#0f172a;
   border-radius:20px;
-  transition:0.25s ease;
+  transition:0.3s ease;
 }
 
 .menu-toggle span:nth-child(1){ transform:translateY(-6px); }
@@ -178,104 +263,83 @@ nav a:hover{
   transform:rotate(-45deg);
 }
 
-/* =======================================================
+/* =========================
    MOBILE MENU
-======================================================= */
+========================= */
 
 .mobile{
   position:fixed;
-  inset:0;
+  top:92px;
+  left:50%;
+  transform:translateX(-50%) scale(1.04);
+
+  width:92%;
+  max-width:420px;
 
   display:flex;
   flex-direction:column;
-  justify-content:center;
-  align-items:center;
+  gap:12px;
 
-  gap:22px;
+  padding:22px;
 
-  padding:0 28px;
-
-  background:rgba(255,255,255,0.12);
-  backdrop-filter:blur(60px) saturate(200%);
-  -webkit-backdrop-filter:blur(60px) saturate(200%);
-
-  z-index:999;
+  background:rgba(255,255,255,0.28);
+  backdrop-filter:blur(60px);
+  border:1px solid rgba(255,255,255,0.6);
+  border-radius:22px;
 
   opacity:0;
   pointer-events:none;
-  transform:scale(1.02);
   transition:0.35s ease;
-}
 
-.mobile::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle at top,rgba(255,255,255,0.35),transparent 60%);
+  box-shadow:0 18px 45px rgba(0,0,0,0.08);
 }
 
 .mobile.active{
   opacity:1;
   pointer-events:auto;
-  transform:scale(1);
+  transform:translateX(-50%) scale(1);
 }
 
 .mobile a{
   text-decoration:none;
-  font-size:22px;
   color:#0f172a;
-  opacity:0.85;
-  transition:0.3s ease;
+  font-size:17px;
+  padding:10px;
+  border-radius:12px;
 }
 
 .mobile a:hover{
-  transform:scale(1.05);
-  opacity:1;
+  background:rgba(255,255,255,0.6);
 }
 
-/* =======================================================
-   SECTIONS
-======================================================= */
-
-section{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:80px 20px;
-}
-
-h1{
-  font-size:52px;
-  font-weight:500;
-}
-
-#s1{background:radial-gradient(circle at top left,#dbe7ff,transparent 60%);}
-#s2{background:radial-gradient(circle at top right,#ffe7f3,transparent 60%);}
-#s3{background:radial-gradient(circle at bottom left,#e7fff2,transparent 60%);}
-#s4{background:radial-gradient(circle at bottom right,#fff6e7,transparent 60%);}
-#s5{background:radial-gradient(circle at center,#ecebff,transparent 60%);}
-
-/* =======================================================
+/* =========================
    FOOTER
-======================================================= */
+========================= */
 
 footer{
+  padding:16px 14px;
+
+  background:rgba(255,255,255,0.28);
+  backdrop-filter:blur(50px);
+  -webkit-backdrop-filter:blur(50px);
+
+  border-top:1px solid rgba(255,255,255,0.6);
+
   text-align:center;
-  padding:14px;
-  font-size:12px;
-  color:rgba(15,23,42,0.55);
 }
 
-/* =======================================================
+footer p{
+  font-size:13px;
+  opacity:0.65;
+}
+
+/* =========================
    RESPONSIVE
-======================================================= */
+========================= */
 
 @media(max-width:768px){
   nav ul{ display:none; }
   .menu-toggle{ display:flex; }
-  h1{ font-size:38px; }
 }
 
 </style>
@@ -284,24 +348,40 @@ footer{
 <body>
 
 <header>
-  <div class="nav">
+  <div class="top-bar">
 
-    <div class="logo">Novyra</div>
+    <div class="nav">
 
-    <nav>
-      <ul>
-        <li><a href="#s1">One</a></li>
-        <li><a href="#s2">Two</a></li>
-        <li><a href="#s3">Three</a></li>
-        <li><a href="#s4">Four</a></li>
-        <li><a href="#s5">Five</a></li>
-      </ul>
-    </nav>
+      <div class="logo">Novyra</div>
 
-    <div class="menu-toggle" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
+      <nav>
+        <ul>
+          <li><a href="#s1">One</a></li>
+          <li><a href="#s2">Two</a></li>
+          <li><a href="#s3">Three</a></li>
+          <li><a href="#s4">Four</a></li>
+          <li><a href="#s5">Five</a></li>
+        </ul>
+      </nav>
+
+      <div class="menu-toggle" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+
+    </div>
+
+    <div class="theme-toggle" id="themeBtn" onclick="toggleTheme()">
+
+      <svg class="sun" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="4"></circle>
+        <path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M19 5l-1.5 1.5M5 19l1.5-1.5M19 19l-1.5-1.5"/>
+      </svg>
+
+      <svg class="moon" viewBox="0 0 24 24">
+        <path d="M21 13.5A7.5 7.5 0 0 1 10.5 3
+                 7.5 7.5 0 1 0 21 13.5z"/>
+      </svg>
+
     </div>
 
   </div>
@@ -321,25 +401,19 @@ footer{
 <section id="s4"><h1>Flow</h1></section>
 <section id="s5"><h1>Future</h1></section>
 
-<footer>© 2026 Novyra</footer>
+<footer>
+  <p>© 2026 Novyra</p>
+</footer>
 
 <script>
 
 function toggleMenu(){
-  const mobile = document.getElementById("mobile");
-  const body = document.body;
+  document.body.classList.toggle("menu-open");
+  document.getElementById("mobile").classList.toggle("active");
+}
 
-  const isOpen = mobile.classList.contains("active");
-
-  if(isOpen){
-    mobile.classList.remove("active");
-    body.classList.remove("menu-open");
-    body.style.overflow = "";
-  } else {
-    mobile.classList.add("active");
-    body.classList.add("menu-open");
-    body.style.overflow = "hidden";
-  }
+function toggleTheme(){
+  document.getElementById("themeBtn").classList.toggle("active");
 }
 
 </script>
