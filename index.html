@@ -1,9 +1,344 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Website</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Novyra</title>
+
+<link rel="icon" type="image/svg+xml"
+href="data:image/svg+xml,
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+<rect width='100' height='100' rx='24' fill='%23dbe7ff'/>
+<circle cx='50' cy='50' r='18' fill='white' opacity='0.9'/>
+</svg>">
+
+<style>
+
+/* =======================================================
+   BASE
+======================================================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+  font-family:system-ui,-apple-system,sans-serif;
+}
+
+body{
+  background:radial-gradient(circle at top,#eaf1ff,#ffffff);
+  color:#0f172a;
+  overflow-x:hidden;
+}
+
+html{
+  scrollbar-gutter: stable;
+}
+
+/* =======================================================
+   SCROLLBAR
+======================================================= */
+
+::-webkit-scrollbar{ width:10px; }
+
+::-webkit-scrollbar-track{
+  background:rgba(255,255,255,0.3);
+}
+
+::-webkit-scrollbar-thumb{
+  background:linear-gradient(to bottom,#c7d8ff,#9fb8ff);
+  border-radius:20px;
+  border:2px solid rgba(255,255,255,0.6);
+}
+
+/* =======================================================
+   NAVBAR (GLASS)
+======================================================= */
+
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:1000;
+}
+
+.nav{
+  max-width:1120px;
+  margin:20px auto;
+  padding:12px 18px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  background:rgba(255,255,255,0.22);
+  backdrop-filter:blur(40px) saturate(180%);
+  -webkit-backdrop-filter:blur(40px) saturate(180%);
+
+  border:1px solid rgba(255,255,255,0.55);
+  border-radius:18px;
+
+  box-shadow:
+    0 20px 45px rgba(0,0,0,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.75);
+}
+
+.logo{
+  font-size:15px;
+  font-weight:600;
+}
+
+/* LINKS */
+nav ul{
+  display:flex;
+  gap:8px;
+  list-style:none;
+}
+
+nav a{
+  text-decoration:none;
+  color:#0f172a;
+  font-size:15px;
+  font-weight:500;
+  padding:8px 12px;
+  border-radius:10px;
+  transition:0.25s ease;
+}
+
+nav a:hover{
+  background:rgba(255,255,255,0.6);
+}
+
+/* =======================================================
+   HAMBURGER (MORPH)
+======================================================= */
+
+.menu-toggle{
+  width:40px;
+  height:40px;
+
+  display:none;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:12px;
+
+  background:rgba(255,255,255,0.25);
+  backdrop-filter:blur(25px);
+  -webkit-backdrop-filter:blur(25px);
+
+  border:1px solid rgba(255,255,255,0.55);
+
+  cursor:pointer;
+  position:relative;
+}
+
+.menu-toggle span{
+  position:absolute;
+  width:18px;
+  height:2px;
+  background:#0f172a;
+  border-radius:20px;
+  transition:0.25s ease;
+}
+
+.menu-toggle span:nth-child(1){ transform:translateY(-6px); }
+.menu-toggle span:nth-child(2){ transform:translateY(0); }
+.menu-toggle span:nth-child(3){ transform:translateY(6px); }
+
+.menu-open .menu-toggle span:nth-child(1){
+  transform:rotate(45deg);
+}
+
+.menu-open .menu-toggle span:nth-child(2){
+  opacity:0;
+}
+
+.menu-open .menu-toggle span:nth-child(3){
+  transform:rotate(-45deg);
+}
+
+/* =======================================================
+   MOBILE MENU
+======================================================= */
+
+.mobile{
+  position:fixed;
+  inset:0;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  gap:22px;
+
+  background:rgba(255,255,255,0.12);
+  backdrop-filter:blur(60px) saturate(200%);
+  -webkit-backdrop-filter:blur(60px) saturate(200%);
+
+  z-index:999;
+
+  opacity:0;
+  pointer-events:none;
+  transform:scale(1.02);
+  transition:0.35s ease;
+}
+
+.mobile::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at top,rgba(255,255,255,0.35),transparent 60%);
+}
+
+.mobile.active{
+  opacity:1;
+  pointer-events:auto;
+  transform:scale(1);
+}
+
+.mobile a{
+  text-decoration:none;
+  font-size:22px;
+  color:#0f172a;
+  opacity:0.85;
+  transition:0.3s ease;
+}
+
+.mobile a:hover{
+  transform:scale(1.05);
+  opacity:1;
+}
+
+/* =======================================================
+   SECTIONS
+======================================================= */
+
+section{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:80px 20px;
+}
+
+h1{
+  font-size:52px;
+  font-weight:500;
+}
+
+/* backgrounds */
+#s1{background:radial-gradient(circle at top left,#dbe7ff,transparent 60%);}
+#s2{background:radial-gradient(circle at top right,#ffe7f3,transparent 60%);}
+#s3{background:radial-gradient(circle at bottom left,#e7fff2,transparent 60%);}
+#s4{background:radial-gradient(circle at bottom right,#fff6e7,transparent 60%);}
+#s5{background:radial-gradient(circle at center,#ecebff,transparent 60%);}
+
+/* =======================================================
+   FOOTER
+======================================================= */
+
+footer{
+  text-align:center;
+  padding:14px;
+  font-size:12px;
+  color:rgba(15,23,42,0.55);
+}
+
+/* =======================================================
+   RESPONSIVE
+======================================================= */
+
+@media(max-width:768px){
+  nav ul{ display:none; }
+  .menu-toggle{ display:flex; }
+  h1{ font-size:38px; }
+}
+
+</style>
 </head>
+
 <body>
-  <h1>Hello, my site is live!</h1>
+
+<header>
+  <div class="nav">
+
+    <div class="logo">Novyra</div>
+
+    <nav>
+      <ul>
+        <li><a href="#s1">One</a></li>
+        <li><a href="#s2">Two</a></li>
+        <li><a href="#s3">Three</a></li>
+        <li><a href="#s4">Four</a></li>
+        <li><a href="#s5">Five</a></li>
+      </ul>
+    </nav>
+
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+  </div>
+</header>
+
+<!-- MOBILE -->
+<div class="mobile" id="mobile">
+  <a href="#s1" onclick="toggleMenu()">One</a>
+  <a href="#s2" onclick="toggleMenu()">Two</a>
+  <a href="#s3" onclick="toggleMenu()">Three</a>
+  <a href="#s4" onclick="toggleMenu()">Four</a>
+  <a href="#s5" onclick="toggleMenu()">Five</a>
+</div>
+
+<!-- UPDATED SECTIONS (NO BUTTON) -->
+<section id="s1">
+  <h1>Novyra</h1>
+</section>
+
+<section id="s2">
+  <h1>Design</h1>
+</section>
+
+<section id="s3">
+  <h1>System</h1>
+</section>
+
+<section id="s4">
+  <h1>Flow</h1>
+</section>
+
+<section id="s5">
+  <h1>Future</h1>
+</section>
+
+<footer>© 2026 Novyra</footer>
+
+<script>
+
+function toggleMenu(){
+  const mobile = document.getElementById("mobile");
+  const body = document.body;
+
+  const isOpen = mobile.classList.contains("active");
+
+  if(isOpen){
+    mobile.classList.remove("active");
+    body.classList.remove("menu-open");
+    body.style.overflow = "";
+  } else {
+    mobile.classList.add("active");
+    body.classList.add("menu-open");
+    body.style.overflow = "hidden";
+  }
+}
+
+</script>
+
 </body>
 </html>
