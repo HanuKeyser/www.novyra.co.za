@@ -3,17 +3,435 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Novyra - Contact</title>
 
-<title>Novyra - New Light | Contact Us</title>
-<meta name="description" content="We’re currently upgrading our Contact Us experience at Novyra. A faster, more seamless communication system is coming soon.">
+<link rel="icon" type="image/png" href="Novyra-Logo.png">
 
-Contact Us Coming Soon</h1>
-    <p>
-      We’re currently upgrading the way you connect with Novyra.<br>
-      A faster, more seamless communication system is coming soon.
-    </p>
+<style>
+
+/* =========================
+   DESIGN SYSTEM
+========================= */
+
+:root{
+  --glass-bg: rgba(255,255,255,0.28);
+  --glass-border: rgba(255,255,255,0.6);
+  --blur: blur(50px);
+  --page-bg: #f3f4f6;
+}
+
+/* BASE */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:system-ui,-apple-system,sans-serif;
+}
+
+body{
+  background:var(--page-bg);
+  overflow-x:hidden;
+}
+
+/* =========================
+   CONTAINER SYSTEM
+========================= */
+
+.container{
+  max-width:1120px;
+  margin:0 auto;
+  padding:0 14px;
+  width:100%;
+}
+
+/* =========================
+   NAV
+========================= */
+
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:1000;
+}
+
+.top-bar{
+  margin:18px auto;
+}
+
+.nav{
+  height:64px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 14px;
+
+  background:var(--glass-bg);
+  backdrop-filter:var(--blur);
+  border:1px solid var(--glass-border);
+  border-radius:18px;
+}
+
+.logo{ height:32px; }
+
+nav ul{
+  display:flex;
+  gap:10px;
+  list-style:none;
+}
+
+nav a{
+  text-decoration:none;
+  color:#000;
+  font-size:14px;
+  padding:7px 10px;
+  border-radius:10px;
+}
+
+/* =========================
+   HAMBURGER
+========================= */
+
+.menu-toggle{
+  width:42px;
+  height:42px;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  border-radius:12px;
+  background:var(--glass-bg);
+  border:1px solid var(--glass-border);
+  cursor:pointer;
+  position:relative;
+  z-index:1002;
+}
+
+.menu-toggle span{
+  position:absolute;
+  width:18px;
+  height:2px;
+  background:#000;
+  transition:0.3s ease;
+}
+
+.menu-toggle span:nth-child(1){ transform:translateY(-6px); }
+.menu-toggle span:nth-child(2){ transform:translateY(0); }
+.menu-toggle span:nth-child(3){ transform:translateY(6px); }
+
+.menu-open .menu-toggle span:nth-child(1){ transform:rotate(45deg); }
+.menu-open .menu-toggle span:nth-child(2){ opacity:0; }
+.menu-open .menu-toggle span:nth-child(3){ transform:rotate(-45deg); }
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.mobile{
+  position:fixed;
+  top:90px;
+  left:50%;
+  transform:translateX(-50%) scale(1.04);
+
+  width:92%;
+  max-width:420px;
+
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  padding:22px;
+
+  background:var(--glass-bg);
+  backdrop-filter:var(--blur);
+  border:1px solid var(--glass-border);
+  border-radius:22px;
+
+  opacity:0;
+  pointer-events:none;
+  transition:0.35s ease;
+
+  z-index:1001;
+}
+
+.mobile.active{
+  opacity:1;
+  pointer-events:auto;
+  transform:translateX(-50%) scale(1);
+}
+
+.mobile a{
+  text-decoration:none;
+  color:#000;
+  padding:12px;
+  border-radius:10px;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.content{
+  padding:140px 20px 60px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.contact-intro{
+  max-width:1120px;
+  width:100%;
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.contact-intro h1{
+  font-size:30px;
+  margin-bottom:8px;
+}
+
+.contact-intro p{
+  font-size:14px;
+  opacity:0.7;
+  line-height:1.6;
+}
+
+/* WRAPPER */
+
+.contact-wrapper{
+  width:100%;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+/* CARD */
+
+.card{
+  padding:28px;
+  border-radius:26px;
+
+  background:var(--glass-bg);
+  backdrop-filter:var(--blur);
+  border:1px solid var(--glass-border);
+
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+/* DEPARTMENTS */
+
+.dept{
+  padding:14px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.35);
+  border:1px solid rgba(255,255,255,0.5);
+}
+
+.dept h3{
+  font-size:15px;
+  margin-bottom:6px;
+}
+
+.dept p{
+  font-size:13px;
+  opacity:0.75;
+}
+
+/* =========================
+   SOCIAL BUTTONS (UPDATED)
+========================= */
+
+.socials{
+  margin-top:8px;
+  display:flex;
+  gap:10px;
+}
+
+.socials a{
+  flex:1;
+  text-align:center;
+  text-decoration:none;
+  font-size:13px;
+  padding:10px;
+  border-radius:999px;
+  color:#fff;
+  font-weight:500;
+  transition:0.2s ease;
+}
+
+/* Instagram */
+.socials a.instagram{
+  background:linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+}
+
+/* LinkedIn */
+.socials a.linkedin{
+  background:#0A66C2;
+}
+
+.socials a:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.05);
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.form input,
+.form textarea{
+  width:100%;
+  padding:12px 14px;
+
+  border-radius:14px;
+  border:1px solid rgba(0,0,0,0.08);
+
+  background:rgba(255,255,255,0.65);
+  font-size:14px;
+
+  outline:none;
+}
+
+.form textarea{
+  min-height:140px;
+  resize:none;
+}
+
+.form button{
+  padding:12px;
+  border:none;
+  border-radius:14px;
+  background:#000;
+  color:#fff;
+  cursor:pointer;
+  transition:0.2s ease;
+}
+
+.form button:hover{
+  transform:translateY(-2px);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+  nav ul{ display:none; }
+  .menu-toggle{ display:flex; }
+
+  .contact-wrapper{
+    grid-template-columns:1fr;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="top-bar container">
+    <div class="nav">
+
+      <img src="Novyra-Logo.png" class="logo">
+
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="menu-toggle" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+
+    </div>
   </div>
+</header>
+
+<!-- MOBILE -->
+<div class="mobile" id="mobile">
+  <a href="#">Home</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Contact</a>
+</div>
+
+<main class="content">
+
+<div class="contact-intro">
+  <h1>Get In Touch</h1>
+  <p>Contact the correct department below so we can assist you faster, or send us an email if you’re unsure where your query belongs.</p>
+</div>
+
+<div class="contact-wrapper container">
+
+  <!-- LEFT -->
+  <div class="card">
+
+    <h2>Contact Departments</h2>
+
+    <div class="dept">
+      <h3>General Enquiries | info@novyra.co.za</h3>
+      <p>General questions and company information.</p>
+    </div>
+
+    <div class="dept">
+      <h3>Sales | sales@novyra.co.za</h3>
+      <p>Quotes, pricing and new business opportunities.</p>
+    </div>
+
+    <div class="dept">
+      <h3>Finance | finance@novyra.co.za</h3>
+      <p>Invoices, billing and payments.</p>
+    </div>
+
+    <div class="socials">
+      <a class="instagram" href="https://www.instagram.com/novyra.co.za/" target="_blank">
+        Instagram
+      </a>
+
+      <a class="linkedin" href="https://www.linkedin.com/company/novyramarketing/" target="_blank">
+        LinkedIn
+      </a>
+    </div>
+
+  </div>
+
+  <!-- RIGHT -->
+  <div class="card">
+
+    <h2>Send Message</h2>
+
+    <form class="form">
+      <input type="text" placeholder="Name" required>
+      <input type="email" placeholder="Email" required>
+      <textarea placeholder="Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+
+  </div>
+
+</div>
+
 </main>
+
+<script>
+
+function toggleMenu(){
+  document.body.classList.toggle("menu-open");
+  document.getElementById("mobile").classList.toggle("active");
+}
+
+</script>
 
 </body>
 </html>
