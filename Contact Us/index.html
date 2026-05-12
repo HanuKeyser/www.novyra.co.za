@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Novyra - Contact Us (Coming Soon)</title>
+
+<style>
+
+/* =========================
+   DESIGN SYSTEM
+========================= */
+
+:root{
+  --glass-bg: rgba(255,255,255,0.28);
+  --glass-border: rgba(255,255,255,0.6);
+  --blur: blur(50px);
+
+  --radius-lg: 18px;
+  --text: #000;
+}
+
+/* =========================
+   BASE
+========================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:system-ui,-apple-system,sans-serif;
+}
+
+body{
+  overflow-x:hidden;
+  color:var(--text);
+  background: radial-gradient(circle at top,#f7f7ff,#ffffff);
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:1000;
+}
+
+.top-bar{
+  max-width:1120px;
+  margin:18px auto;
+  padding:0 14px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+/* NAV BAR */
+.nav{
+  flex:1;
+  height:64px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 14px;
+
+  background:var(--glass-bg);
+  backdrop-filter:var(--blur);
+  -webkit-backdrop-filter:var(--blur);
+
+  border:1px solid var(--glass-border);
+  border-radius:var(--radius-lg);
+
+  box-shadow:0 18px 45px rgba(0,0,0,0.08);
+}
+
+.logo{
+  height:32px;
+}
+
+/* NAV LINKS */
+
+nav ul{
+  display:flex;
+  gap:6px;
+  list-style:none;
+}
+
+nav a,
+.mobile a{
+  text-decoration:none;
+  color:#000;
+  font-size:14px;
+  padding:7px 10px;
+  border-radius:10px;
+  transition:0.2s ease;
+}
+
+nav a:hover,
+.mobile a:hover{
+  background:rgba(255,255,255,0.6);
+}
+
+/* =========================
+   THEME TOGGLE
+========================= */
+
+.theme-toggle{
+  width:64px;
+  height:64px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:var(--radius-lg);
+  background:var(--glass-bg);
+  backdrop-filter:var(--blur);
+  border:1px solid var(--glass-border);
+  cursor:pointer;
+  position:relative;
+}
+
+.theme-toggle svg{
+  position:absolute;
+  width:26px;
+  height:26px;
+  stroke:#000;
+  fill:none;
+  stroke-width:1.8;
+  transition:0.4s ease;
+}
+
+.theme-toggle .sun{ opacity:1; }
+.theme-toggle .moon{ opacity:0; transform:rotate(-90deg) scale(0.6); }
+
+.theme-toggle.active .sun{ opacity:0; transform:rotate(90deg) scale(0.6); }
+.theme-toggle.active .moon{ opacity:1; transform:rotate(0) scale(1); }
+
+/* =========================
+   HAMBURGER
+========================= */
+
+.menu-toggle{
+  width:42px;
+  height:42px;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  border-radius:12px;
+  background:rgba(255,255,255,0.28);
+  border:1px solid rgba(255,255,255,0.6);
+  cursor:pointer;
+  position:relative;
+}
+
+.menu-toggle span{
+  position:absolute;
+  width:18px;
+  height:2px;
+  background:#000;
+  border-radius:20px;
+}
+
+.menu-toggle span:nth-child(1){ transform:translateY(-6px); }
+.menu-toggle span:nth-child(2){ transform:translateY(0); }
+.menu-toggle span:nth-child(3){ transform:translateY(6px); }
+
+.menu-open .menu-toggle span:nth-child(1){ transform:rotate(45deg); }
+.menu-open .menu-toggle span:nth-child(2){ opacity:0; }
+.menu-open .menu-toggle span:nth-child(3){ transform:rotate(-45deg); }
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.mobile{
+  position:fixed;
+  top:100px;
+  left:50%;
+  transform:translateX(-50%);
+  width:92%;
+  max-width:420px;
+
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+
+  padding:22px;
+
+  background:var(--glass-bg);
+  backdrop-filter:blur(60px);
+  border:1px solid var(--glass-border);
+  border-radius:22px;
+
+  opacity:0;
+  pointer-events:none;
+  transition:0.35s ease;
+}
+
+.mobile.active{
+  opacity:1;
+  pointer-events:auto;
+}
+
+/* =========================
+   COMING SOON
+========================= */
+
+main{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:120px 20px 40px;
+}
+
+.coming-soon{
+  max-width:700px;
+}
+
+.coming-soon h1{
+  font-size:clamp(42px,6vw,64px);
+  margin-bottom:12px;
+}
+
+.coming-soon p{
+  font-size:16px;
+  opacity:0.7;
+  line-height:1.6;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+  nav ul{ display:none; }
+  .menu-toggle{ display:flex; }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+   HEADER
+========================= -->
+
+<header>
+  <div class="top-bar">
+
+    <div class="nav">
+      <img src="Novyra-Logo.png" class="logo" alt="Novyra Logo">
+
+      <nav>
+        <ul>
+          <li><a href="https://www.novyra.co.za/">Home</a></li>
+          <li><a href="https://www.novyra.co.za/#about">About Novyra</a></li>
+          <li><a href="https://www.novyra.co.za/#visions">Transformed Visions</a></li>
+          <li><a href="https://www.novyra.co.za/#services">Creative Services</a></li>
+          <li><a href="https://www.novyra.co.za/contact-us/">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="menu-toggle" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <!-- THEME TOGGLE -->
+    <div class="theme-toggle" id="themeBtn" onclick="toggleTheme()">
+      <svg class="sun" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="4"></circle>
+      </svg>
+      <svg class="moon" viewBox="0 0 24 24">
+        <path d="M21 13.5A8 8 0 1 1 10.5 3A6.5 6.5 0 1 0 21 13.5Z"/>
+      </svg>
+    </div>
+
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile" id="mobile">
+  <a href="https://www.novyra.co.za/">Home</a>
+  <a href="https://www.novyra.co.za/#about">About Novyra</a>
+  <a href="https://www.novyra.co.za/#visions">Transformed Visions</a>
+  <a href="https://www.novyra.co.za/#services">Creative Services</a>
+  <a href="https://www.novyra.co.za/contact-us/">Contact Us</a>
+</div>
+
+<!-- =========================
+   MAIN CONTENT
+========================= -->
+
+<main>
+  <div class="coming-soon">
+    <h1>Contact Us Coming Soon</h1>
+    <p>
+      We’re currently building something exceptional.<br>
+      Our contact system is being upgraded for a smoother experience.<br><br>
+      In the meantime, feel free to explore the rest of Novyra.
+    </p>
+  </div>
+</main>
+
+<script>
+
+function toggleMenu(){
+  document.body.classList.toggle("menu-open");
+  document.getElementById("mobile").classList.toggle("active");
+}
+
+function toggleTheme(){
+  document.getElementById("themeBtn").classList.toggle("active");
+}
+
+</script>
+
+</body>
+</html>
