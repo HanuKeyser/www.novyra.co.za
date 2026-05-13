@@ -9,6 +9,9 @@
 <link rel="icon" type="image/png" href="Novyra-Logo.png">
 <link rel="apple-touch-icon" href="Novyra-Logo.png">
 
+<!-- ✅ FONTS: Fraunces + Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
 
 /* =========================
@@ -19,10 +22,6 @@
   --bg-1: #F6F1EA;
   --bg-2: #EEF3EE;
   --bg-3: #FAF7F2;
-
-  --accent-primary: #2E7D6B;
-  --accent-secondary: #3B82F6;
-  --accent-warm: #C77D4E;
 }
 
 /* =========================
@@ -33,15 +32,31 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:system-ui,-apple-system,sans-serif;
 }
-
-html{ scroll-behavior:smooth; }
 
 body{
   overflow-x:hidden;
   color:#1C1C1C;
   background: linear-gradient(135deg, var(--bg-1), var(--bg-2), var(--bg-3));
+
+  /* ✅ BODY FONT */
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+html{ scroll-behavior:smooth; }
+
+/* =========================
+   TYPOGRAPHY SYSTEM
+========================= */
+
+h1, h2, h3, h4, h5, h6{
+  font-family: 'Fraunces', serif;
+  font-weight:600;
+  letter-spacing:0.2px;
+}
+
+p, a, li, span{
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
 /* =========================
@@ -59,7 +74,7 @@ section{
 }
 
 /* =========================
-   GLASS SYSTEM (ORGANIC)
+   GLASS SYSTEM
 ========================= */
 
 .glass-card {
@@ -68,7 +83,6 @@ section{
   -webkit-backdrop-filter: blur(24px);
 
   border-radius: 22px;
-
   border: 1px solid rgba(255, 255, 255, 0.45);
 
   box-shadow:
@@ -81,7 +95,6 @@ section{
   overflow: hidden;
 }
 
-/* soft light refraction */
 .glass-card::before {
   content: '';
   position: absolute;
@@ -114,7 +127,6 @@ header{
   gap:12px;
 }
 
-/* NAV */
 .nav{
   flex:1;
   height:64px;
@@ -267,10 +279,10 @@ footer{
 </div>
 
 <!-- SECTIONS -->
-<section id="home"></section>
-<section id="about-novyra"></section>
-<section id="transformed-visions"></section>
-<section id="creative-services"></section>
+<section id="home"><h1>Home</h1></section>
+<section id="about-novyra"><h1>About Novyra</h1></section>
+<section id="transformed-visions"><h1>Transformed Visions</h1></section>
+<section id="creative-services"><h1>Creative Services</h1></section>
 
 <footer>
   <p>© 2026 Novyra - New Era of Creation - All Rights Reserved</p>
