@@ -22,10 +22,15 @@
   --bg-2: #EEF3EE;
   --bg-3: #FAF7F2;
 
-  /* scrollbar theme */
+  /* original accent (green) */
   --scroll-track: rgba(255,255,255,0.35);
   --scroll-thumb: rgba(46, 125, 107, 0.45);
   --scroll-thumb-hover: rgba(46, 125, 107, 0.65);
+
+  /* NEW: brown accent (added, not replaced) */
+  --accent-brown: #6B4F3A;
+  --accent-brown-soft: rgba(107, 79, 58, 0.12);
+  --accent-brown-hover: rgba(107, 79, 58, 0.65);
 }
 
 /* =========================
@@ -39,7 +44,7 @@
 }
 
 /* =========================
-   CUSTOM SCROLLBAR (CHROME / EDGE / SAFARI)
+   CUSTOM SCROLLBAR
 ========================= */
 
 ::-webkit-scrollbar{
@@ -124,22 +129,7 @@ section{
 
   box-shadow:
     0 10px 40px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.15),
-    inset 0 0 18px 6px rgba(255, 255, 255, 0.9);
-
-  position: relative;
-  overflow: hidden;
-}
-
-.glass-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top left,
-    rgba(255, 255, 255, 0.35),
-    transparent 60%);
-  pointer-events: none;
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 /* =========================
@@ -154,7 +144,7 @@ header{
 }
 
 .top-bar{
-  max-width:1120px;
+  max-width:1400px;
   margin:18px auto;
   padding:0 14px;
   display:flex;
@@ -168,14 +158,14 @@ header{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 14px;
+  padding:0 18px;
 }
 
 .logo{ height:32px; }
 
 nav ul{
   display:flex;
-  gap:6px;
+  gap:10px;
   list-style:none;
 }
 
@@ -189,9 +179,10 @@ nav a,
   transition:0.2s ease;
 }
 
+/* UPDATED: uses BOTH green feel + brown accent logic */
 nav a:hover,
 .mobile a:hover{
-  background: rgba(46, 125, 107, 0.12);
+  background: var(--accent-brown-soft);
 }
 
 /* =========================
@@ -262,6 +253,8 @@ footer{
   padding:16px;
   text-align:center;
   border-top:1px solid rgba(0,0,0,0.08);
+  font-size: 12px;
+  opacity: 0.75;
 }
 
 /* =========================
