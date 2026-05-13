@@ -14,7 +14,7 @@
 <style>
 
 /* =========================
-   DESIGN SYSTEM (ORGANIC)
+   DESIGN SYSTEM
 ========================= */
 
 :root{
@@ -22,15 +22,14 @@
   --bg-2: #EEF3EE;
   --bg-3: #FAF7F2;
 
-  /* original accent (green) */
   --scroll-track: rgba(255,255,255,0.35);
   --scroll-thumb: rgba(46, 125, 107, 0.45);
   --scroll-thumb-hover: rgba(46, 125, 107, 0.65);
 
-  /* NEW: brown accent (added, not replaced) */
-  --accent-brown: #6B4F3A;
   --accent-brown-soft: rgba(107, 79, 58, 0.12);
   --accent-brown-hover: rgba(107, 79, 58, 0.65);
+
+  --container-width: 1400px;
 }
 
 /* =========================
@@ -43,44 +42,6 @@
   box-sizing:border-box;
 }
 
-/* =========================
-   CUSTOM SCROLLBAR
-========================= */
-
-::-webkit-scrollbar{
-  width: 10px;
-}
-
-::-webkit-scrollbar-track{
-  background: var(--scroll-track);
-  backdrop-filter: blur(10px);
-}
-
-::-webkit-scrollbar-thumb{
-  background: var(--scroll-thumb);
-  border-radius: 20px;
-  border: 2px solid rgba(255,255,255,0.4);
-  transition: 0.3s ease;
-}
-
-::-webkit-scrollbar-thumb:hover{
-  background: var(--scroll-thumb-hover);
-}
-
-/* =========================
-   FIREFOX SCROLLBAR
-========================= */
-
-html{
-  scrollbar-width: thin;
-  scrollbar-color: var(--scroll-thumb) var(--scroll-track);
-  scroll-behavior:smooth;
-}
-
-/* =========================
-   BODY
-========================= */
-
 body{
   overflow-x:hidden;
   color:#1C1C1C;
@@ -89,47 +50,54 @@ body{
 }
 
 /* =========================
+   CONTAINER
+========================= */
+
+.container{
+  width:100%;
+  max-width: var(--container-width);
+  margin:0 auto;
+  padding:0 20px;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{ width:10px; }
+
+::-webkit-scrollbar-track{
+  background: var(--scroll-track);
+  backdrop-filter: blur(10px);
+}
+
+::-webkit-scrollbar-thumb{
+  background: var(--scroll-thumb);
+  border-radius:20px;
+  border:2px solid rgba(255,255,255,0.4);
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background: var(--scroll-thumb-hover);
+}
+
+html{
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-thumb) var(--scroll-track);
+  scroll-behavior:smooth;
+}
+
+/* =========================
    TYPOGRAPHY
 ========================= */
 
-h1, h2, h3, h4, h5, h6{
-  font-family: 'Fraunces', serif;
+h1,h2,h3,h4,h5,h6{
+  font-family:'Fraunces', serif;
   font-weight:600;
-  letter-spacing:0.2px;
 }
 
-p, a, li, span{
-  font-family: 'Inter', system-ui, sans-serif;
-}
-
-/* =========================
-   SECTIONS
-========================= */
-
-section{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:80px 20px;
-  text-align:center;
-}
-
-/* =========================
-   GLASS SYSTEM
-========================= */
-
-.glass-card {
-  background: rgba(255, 255, 255, 0.22);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-
-  border-radius: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-
-  box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+p,a,li,span{
+  font-family:'Inter', sans-serif;
 }
 
 /* =========================
@@ -144,21 +112,29 @@ header{
 }
 
 .top-bar{
-  max-width:1400px;
-  margin:18px auto;
-  padding:0 14px;
+  height:80px;
   display:flex;
   align-items:center;
-  gap:12px;
 }
 
 .nav{
-  flex:1;
+  width:100%;
   height:64px;
   display:flex;
   align-items:center;
   justify-content:space-between;
   padding:0 18px;
+
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .logo{ height:32px; }
@@ -176,17 +152,15 @@ nav a,
   font-size:14px;
   padding:7px 10px;
   border-radius:10px;
-  transition:0.2s ease;
 }
 
-/* UPDATED: uses BOTH green feel + brown accent logic */
 nav a:hover,
 .mobile a:hover{
   background: var(--accent-brown-soft);
 }
 
 /* =========================
-   HAMBURGER
+   HAMBURGER FIXED
 ========================= */
 
 .menu-toggle{
@@ -204,6 +178,7 @@ nav a:hover,
   width:18px;
   height:2px;
   background:#1C1C1C;
+  border-radius:2px;
   transition:0.3s ease;
 }
 
@@ -221,7 +196,7 @@ nav a:hover,
 
 .mobile{
   position:fixed;
-  top:100px;
+  top:90px;
   left:50%;
   transform:translateX(-50%) scale(0.98);
 
@@ -234,15 +209,92 @@ nav a:hover,
 
   padding:22px;
 
+  background: rgba(255,255,255,0.22);
+  backdrop-filter: blur(24px);
+
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,0.45);
+
+  box-shadow:0 10px 40px rgba(0,0,0,0.08);
+
   opacity:0;
   pointer-events:none;
   transition:0.25s ease;
+  z-index:9999;
 }
 
 .mobile.active{
   opacity:1;
   pointer-events:auto;
   transform:translateX(-50%) scale(1);
+}
+
+/* =========================
+   ABOUT SECTION
+========================= */
+
+.about-grid{
+  width:100%;
+  max-width: var(--container-width);
+  margin:0 auto;
+  padding:110px 20px;
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:26px;
+}
+
+.about-card{
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.about-title{
+  font-size:52px;
+  margin-bottom:18px;
+}
+
+.about-subtext{
+  max-width:820px;
+  margin:0 auto;
+  font-size:17px;
+  line-height:1.85;
+  opacity:0.85;
+}
+
+.cta{
+  display:inline-block;
+  padding:12px 20px;
+  border-radius:14px;
+  text-decoration:none;
+  font-size:14px;
+  background: var(--accent-brown-soft);
+  border:1px solid rgba(107, 79, 58, 0.25);
+  color:#1C1C1C;
+}
+
+.cta:hover{
+  background: var(--accent-brown-hover);
+  color:#fff;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+section{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
 }
 
 /* =========================
@@ -253,8 +305,8 @@ footer{
   padding:16px;
   text-align:center;
   border-top:1px solid rgba(0,0,0,0.08);
-  font-size: 12px;
-  opacity: 0.75;
+  font-size:12px;
+  opacity:0.75;
 }
 
 /* =========================
@@ -262,8 +314,19 @@ footer{
 ========================= */
 
 @media(max-width:768px){
+
   nav ul{ display:none; }
   .menu-toggle{ display:flex; }
+
+  .about-grid{
+    display:flex;
+    flex-direction:column;
+    padding:90px 20px;
+  }
+
+  .about-title{
+    font-size:34px;
+  }
 }
 
 </style>
@@ -272,31 +335,34 @@ footer{
 <body>
 
 <header>
-  <div class="top-bar">
+  <div class="container">
+    <div class="top-bar">
 
-    <div class="nav glass-card">
-      <img src="Novyra-Logo.png" class="logo">
+      <div class="nav">
 
-      <nav>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about-novyra">About Novyra</a></li>
-          <li><a href="#transformed-visions">Transformed Visions</a></li>
-          <li><a href="#creative-services">Creative Services</a></li>
-          <li><a href="https://www.novyra.co.za/contact-us/">Contact Us</a></li>
-        </ul>
-      </nav>
+        <img src="Novyra-Logo.png" class="logo">
 
-      <div class="menu-toggle glass-card" id="menuBtn">
-        <span></span><span></span><span></span>
+        <nav>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about-novyra">About Novyra</a></li>
+            <li><a href="#transformed-visions">Transformed Visions</a></li>
+            <li><a href="#creative-services">Creative Services</a></li>
+            <li><a href="https://www.novyra.co.za/contact-us/">Contact Us</a></li>
+          </ul>
+        </nav>
+
+        <div class="menu-toggle" id="menuBtn">
+          <span></span><span></span><span></span>
+        </div>
+
       </div>
 
     </div>
-
   </div>
 </header>
 
-<div class="mobile glass-card" id="mobile">
+<div class="mobile" id="mobile">
   <a href="#home">Home</a>
   <a href="#about-novyra">About Novyra</a>
   <a href="#transformed-visions">Transformed Visions</a>
@@ -305,12 +371,67 @@ footer{
 </div>
 
 <section id="home"><h1>Home</h1></section>
-<section id="about-novyra"><h1>About Novyra</h1></section>
+
+<!-- =========================
+     ABOUT SECTION (MARKETING VERSION)
+========================= -->
+
+<section id="about-novyra">
+
+  <div class="about-grid">
+
+    <div class="about-card" style="grid-column:span 12; padding:45px 70px;">
+      <h2 class="about-title">Designing Modern Marketing Systems</h2>
+
+      <p class="about-subtext">
+        Novyra is a marketing agency that helps brands build, structure, and scale their marketing across digital platforms with clarity and purpose.
+      </p>
+    </div>
+
+    <div class="about-card" style="grid-column:span 4; padding:44px;">
+      <h3>Who We Are</h3>
+      <p style="opacity:0.85; line-height:1.75; font-size:15px;">
+        A modern marketing agency focused on strategy, creative direction, and digital execution across all platforms.
+      </p>
+    </div>
+
+    <div class="about-card" style="grid-column:span 4; padding:44px;">
+      <h3>What We Do</h3>
+      <p style="opacity:0.85; line-height:1.75; font-size:15px;">
+        We build marketing systems including branding, campaigns, websites, and content strategies that drive growth.
+      </p>
+    </div>
+
+    <div class="about-card" style="grid-column:span 4; padding:44px;">
+      <h3>Our Approach</h3>
+      <p style="opacity:0.85; line-height:1.75; font-size:15px;">
+        We combine strategy, data, and design to create scalable marketing systems built for long-term performance.
+      </p>
+    </div>
+
+    <div class="about-card" style="grid-column:span 12; padding:45px 70px;">
+      <h3 style="font-size:32px; margin-bottom:12px;">
+        Want to understand Novyra in full?
+      </h3>
+
+      <p style="opacity:0.75; margin-bottom:24px;">
+        Explore our marketing philosophy, systems, and approach to brand growth.
+      </p>
+
+      <a class="cta" href="https://www.novyra.co.za/about-us/">
+        Explore Full About Page
+      </a>
+    </div>
+
+  </div>
+
+</section>
+
 <section id="transformed-visions"><h1>Transformed Visions</h1></section>
 <section id="creative-services"><h1>Creative Services</h1></section>
 
 <footer>
-  <p>© 2026 Novyra - New Era of Creation - All Rights Reserved</p>
+  <p>© 2026 Novyra - New Era of Creation</p>
 </footer>
 
 <script>
