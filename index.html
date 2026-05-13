@@ -50,6 +50,20 @@ body{
 }
 
 /* =========================
+   ❌ HIDE SCROLLBAR (ALL BROWSERS)
+========================= */
+
+html, body {
+  scrollbar-width: none;      /* Firefox */
+  -ms-overflow-style: none;   /* IE/Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;              /* Chrome/Safari */
+}
+
+/* =========================
    CONTAINER
 ========================= */
 
@@ -58,33 +72,6 @@ body{
   max-width: var(--container-width);
   margin:0 auto;
   padding:0 20px;
-}
-
-/* =========================
-   SCROLLBAR
-========================= */
-
-::-webkit-scrollbar{ width:10px; }
-
-::-webkit-scrollbar-track{
-  background: var(--scroll-track);
-  backdrop-filter: blur(10px);
-}
-
-::-webkit-scrollbar-thumb{
-  background: var(--scroll-thumb);
-  border-radius:20px;
-  border:2px solid rgba(255,255,255,0.4);
-}
-
-::-webkit-scrollbar-thumb:hover{
-  background: var(--scroll-thumb-hover);
-}
-
-html{
-  scrollbar-width: thin;
-  scrollbar-color: var(--scroll-thumb) var(--scroll-track);
-  scroll-behavior:smooth;
 }
 
 /* =========================
@@ -160,7 +147,7 @@ nav a:hover,
 }
 
 /* =========================
-   HAMBURGER FIXED
+   HAMBURGER
 ========================= */
 
 .menu-toggle{
@@ -254,7 +241,20 @@ nav a:hover,
   box-shadow:
     0 10px 40px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+  opacity:0;
+  transform:translateY(30px);
+  transition:0.8s ease;
 }
+
+.about-card.reveal{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* =========================
+   TEXT
+========================= */
 
 .about-title{
   font-size:52px;
@@ -310,7 +310,7 @@ footer{
 }
 
 /* =========================
-   RESPONSIVE
+   📱 MOBILE SWIPE CARDS
 ========================= */
 
 @media(max-width:768px){
@@ -327,6 +327,28 @@ footer{
   .about-title{
     font-size:34px;
   }
+
+  #about-novyra .about-grid > .about-card:nth-child(2),
+  #about-novyra .about-grid > .about-card:nth-child(3),
+  #about-novyra .about-grid > .about-card:nth-child(4){
+    min-width:85%;
+    flex:0 0 auto;
+    scroll-snap-align:start;
+  }
+
+  #about-novyra .about-grid{
+    flex-direction:row;
+    overflow-x:auto;
+    gap:16px;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    padding-bottom:30px;
+  }
+}
+
+/* remove scrollbar visuals even inside swipe area */
+#about-novyra .about-grid::-webkit-scrollbar{
+  display:none;
 }
 
 </style>
@@ -339,7 +361,6 @@ footer{
     <div class="top-bar">
 
       <div class="nav">
-
         <img src="Novyra-Logo.png" class="logo">
 
         <nav>
@@ -355,7 +376,6 @@ footer{
         <div class="menu-toggle" id="menuBtn">
           <span></span><span></span><span></span>
         </div>
-
       </div>
 
     </div>
@@ -372,17 +392,12 @@ footer{
 
 <section id="home"><h1>Home</h1></section>
 
-<!-- =========================
-     ABOUT SECTION (MARKETING VERSION)
-========================= -->
-
 <section id="about-novyra">
 
   <div class="about-grid">
 
     <div class="about-card" style="grid-column:span 12; padding:45px 70px;">
       <h2 class="about-title">Designing Modern Marketing Systems</h2>
-
       <p class="about-subtext">
         Novyra is a marketing agency that helps brands build, structure, and scale their marketing across digital platforms with clarity and purpose.
       </p>
@@ -391,21 +406,21 @@ footer{
     <div class="about-card" style="grid-column:span 4; padding:44px;">
       <h3>Who We Are</h3>
       <p style="opacity:0.85; line-height:1.75; font-size:15px;">
-        A modern marketing agency focused on strategy, creative direction, and digital execution across all platforms.
+        A modern marketing agency focused on strategy, creative direction, and digital execution.
       </p>
     </div>
 
     <div class="about-card" style="grid-column:span 4; padding:44px;">
       <h3>What We Do</h3>
       <p style="opacity:0.85; line-height:1.75; font-size:15px;">
-        We build marketing systems including branding, campaigns, websites, and content strategies that drive growth.
+        We build marketing systems including branding, campaigns, websites, and content strategies.
       </p>
     </div>
 
     <div class="about-card" style="grid-column:span 4; padding:44px;">
       <h3>Our Approach</h3>
       <p style="opacity:0.85; line-height:1.75; font-size:15px;">
-        We combine strategy, data, and design to create scalable marketing systems built for long-term performance.
+        We combine strategy, data, and design to create scalable marketing systems.
       </p>
     </div>
 
@@ -415,7 +430,7 @@ footer{
       </h3>
 
       <p style="opacity:0.75; margin-bottom:24px;">
-        Explore our marketing philosophy, systems, and approach to brand growth.
+        Explore our marketing philosophy and approach to brand growth.
       </p>
 
       <a class="cta" href="https://www.novyra.co.za/about-us/">
@@ -444,12 +459,18 @@ menuBtn.addEventListener("click", () => {
   mobile.classList.toggle("active");
 });
 
-document.querySelectorAll(".mobile a").forEach(a => {
-  a.addEventListener("click", () => {
-    document.body.classList.remove("menu-open");
-    mobile.classList.remove("active");
+/* scroll reveal */
+const cards = document.querySelectorAll(".about-card");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("reveal");
+    }
   });
-});
+},{ threshold: 0.15 });
+
+cards.forEach(card => observer.observe(card));
 
 </script>
 
