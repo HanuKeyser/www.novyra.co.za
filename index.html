@@ -61,46 +61,6 @@ body{
 }
 
 /* =========================
-   SCROLLBAR
-========================= */
-
-::-webkit-scrollbar{ width:10px; }
-
-::-webkit-scrollbar-track{
-  background: var(--scroll-track);
-  backdrop-filter: blur(10px);
-}
-
-::-webkit-scrollbar-thumb{
-  background: var(--scroll-thumb);
-  border-radius:20px;
-  border:2px solid rgba(255,255,255,0.4);
-}
-
-::-webkit-scrollbar-thumb:hover{
-  background: var(--scroll-thumb-hover);
-}
-
-html{
-  scrollbar-width: thin;
-  scrollbar-color: var(--scroll-thumb) var(--scroll-track);
-  scroll-behavior:smooth;
-}
-
-/* =========================
-   TYPOGRAPHY
-========================= */
-
-h1,h2,h3,h4,h5,h6{
-  font-family:'Fraunces', serif;
-  font-weight:600;
-}
-
-p,a,li,span{
-  font-family:'Inter', sans-serif;
-}
-
-/* =========================
    HEADER
 ========================= */
 
@@ -127,14 +87,9 @@ header{
 
   background: rgba(255, 255, 255, 0.22);
   backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-
   border-radius: 22px;
   border: 1px solid rgba(255, 255, 255, 0.45);
-
-  box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
 }
 
 .logo{ height:32px; }
@@ -178,7 +133,6 @@ nav a:hover,
   width:18px;
   height:2px;
   background:#1C1C1C;
-  border-radius:2px;
   transition:0.3s ease;
 }
 
@@ -199,7 +153,6 @@ nav a:hover,
   top:90px;
   left:50%;
   transform:translateX(-50%) scale(0.98);
-
   width:92%;
   max-width:420px;
 
@@ -211,16 +164,12 @@ nav a:hover,
 
   background: rgba(255,255,255,0.22);
   backdrop-filter: blur(24px);
-
   border-radius:22px;
   border:1px solid rgba(255,255,255,0.45);
-
-  box-shadow:0 10px 40px rgba(0,0,0,0.08);
 
   opacity:0;
   pointer-events:none;
   transition:0.25s ease;
-  z-index:9999;
 }
 
 .mobile.active{
@@ -243,28 +192,17 @@ nav a:hover,
   gap:26px;
 }
 
+/* CARD BASE */
 .about-card{
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(255,255,255,0.22);
   backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,0.45);
+  box-shadow:0 10px 40px rgba(0,0,0,0.08);
 
-  border-radius: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-
-  box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
-}
-
-/* =========================
-   ✨ SCROLL REVEAL
-========================= */
-
-.about-card{
   opacity:0;
   transform:translateY(30px);
-  transition: all 0.8s ease;
-  will-change: transform, opacity;
+  transition:all 0.8s ease;
 }
 
 .about-card.reveal{
@@ -272,10 +210,7 @@ nav a:hover,
   transform:translateY(0);
 }
 
-/* =========================
-   TEXT STYLES
-========================= */
-
+/* TEXT */
 .about-title{
   font-size:52px;
   margin-bottom:18px;
@@ -296,13 +231,7 @@ nav a:hover,
   text-decoration:none;
   font-size:14px;
   background: var(--accent-brown-soft);
-  border:1px solid rgba(107, 79, 58, 0.25);
   color:#1C1C1C;
-}
-
-.cta:hover{
-  background: var(--accent-brown-hover);
-  color:#fff;
 }
 
 /* =========================
@@ -330,7 +259,7 @@ footer{
 }
 
 /* =========================
-   RESPONSIVE
+   RESPONSIVE SWIPE SYSTEM
 ========================= */
 
 @media(max-width:768px){
@@ -338,10 +267,34 @@ footer{
   nav ul{ display:none; }
   .menu-toggle{ display:flex; }
 
-  .about-grid{
+  /* SWIPE ONLY FOR MIDDLE CARDS */
+  .about-swipe{
+    grid-column:span 12;
     display:flex;
-    flex-direction:column;
-    padding:90px 20px;
+    gap:16px;
+
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+
+    padding:10px 0;
+
+    scrollbar-width:none;
+  }
+
+  .about-swipe::-webkit-scrollbar{
+    display:none;
+  }
+
+  .swipe-card{
+    flex:0 0 85%;
+    scroll-snap-align:center;
+  }
+
+  /* FORCE NON-SWIPE CARDS FULL WIDTH */
+  .intro-card,
+  .cta-card{
+    grid-column:span 12 !important;
   }
 
   .about-title{
@@ -357,7 +310,6 @@ footer{
 <header>
   <div class="container">
     <div class="top-bar">
-
       <div class="nav">
 
         <img src="Novyra-Logo.png" class="logo">
@@ -377,7 +329,6 @@ footer{
         </div>
 
       </div>
-
     </div>
   </div>
 </header>
@@ -396,35 +347,42 @@ footer{
 
   <div class="about-grid">
 
-    <div class="about-card" style="grid-column:span 12; padding:45px 70px;">
+    <!-- INTRO -->
+    <div class="about-card intro-card" style="grid-column:span 12; padding:45px 70px;">
       <h2 class="about-title">Designing Modern Marketing Systems</h2>
       <p class="about-subtext">
         Novyra is a marketing agency that helps brands build, structure, and scale their marketing across digital platforms with clarity and purpose.
       </p>
     </div>
 
-    <div class="about-card" style="grid-column:span 4; padding:44px;">
-      <h3>Who We Are</h3>
-      <p style="opacity:0.85; line-height:1.75; font-size:15px;">
-        A modern marketing agency focused on strategy, creative direction, and digital execution across all platforms.
-      </p>
+    <!-- SWIPE SECTION -->
+    <div class="about-swipe">
+
+      <div class="about-card swipe-card" style="padding:44px;">
+        <h3>Who We Are</h3>
+        <p style="opacity:0.85; line-height:1.75; font-size:15px;">
+          A modern marketing agency focused on strategy, creative direction, and execution.
+        </p>
+      </div>
+
+      <div class="about-card swipe-card" style="padding:44px;">
+        <h3>What We Do</h3>
+        <p style="opacity:0.85; line-height:1.75; font-size:15px;">
+          We build branding, campaigns, websites, and content systems that drive growth.
+        </p>
+      </div>
+
+      <div class="about-card swipe-card" style="padding:44px;">
+        <h3>Our Approach</h3>
+        <p style="opacity:0.85; line-height:1.75; font-size:15px;">
+          We combine strategy, data, and design for scalable marketing systems.
+        </p>
+      </div>
+
     </div>
 
-    <div class="about-card" style="grid-column:span 4; padding:44px;">
-      <h3>What We Do</h3>
-      <p style="opacity:0.85; line-height:1.75; font-size:15px;">
-        We build marketing systems including branding, campaigns, websites, and content strategies that drive growth.
-      </p>
-    </div>
-
-    <div class="about-card" style="grid-column:span 4; padding:44px;">
-      <h3>Our Approach</h3>
-      <p style="opacity:0.85; line-height:1.75; font-size:15px;">
-        We combine strategy, data, and design to create scalable marketing systems built for long-term performance.
-      </p>
-    </div>
-
-    <div class="about-card" style="grid-column:span 12; padding:45px 70px;">
+    <!-- CTA -->
+    <div class="about-card cta-card" style="grid-column:span 12; padding:45px 70px;">
       <h3 style="font-size:32px; margin-bottom:12px;">
         Want to understand Novyra in full?
       </h3>
@@ -466,23 +424,16 @@ document.querySelectorAll(".mobile a").forEach(a => {
   });
 });
 
-/* =========================
-   SCROLL REVEAL
-========================= */
-
+/* scroll reveal */
 const cards = document.querySelectorAll(".about-card");
 
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, index) => {
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      setTimeout(() => {
-        entry.target.classList.add("reveal");
-      }, index * 120);
+      entry.target.classList.add("reveal");
     }
   });
-}, {
-  threshold: 0.15
-});
+}, { threshold: 0.15 });
 
 cards.forEach(card => observer.observe(card));
 
