@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <title>Novyra - New Era of Creation</title>
 
@@ -10,53 +10,71 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-    body {
-      font-family: sans-serif;
-      background: rgba(17, 17, 16, 1);
-      color: white;
+    body{
+      font-family:sans-serif;
+      background:rgba(17,17,16,1);
+      color:white;
     }
 
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: rgba(17, 17, 16, 1); }
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(to bottom, rgba(147,197,253,1), rgba(59,130,246,1));
-      border-radius: 10px;
+    /* Thin scrollbar */
+    ::-webkit-scrollbar{
+      width:6px;
     }
 
-    .dropdown {
-      max-height: 0;
-      opacity: 0;
-      overflow: hidden;
-      transform: translateY(-10px);
-      transition: all 0.3s ease;
+    ::-webkit-scrollbar-track{
+      background:rgba(17,17,16,1);
     }
 
-    .dropdown.open {
-      max-height: 240px;
-      opacity: 1;
-      transform: translateY(0);
+    ::-webkit-scrollbar-thumb{
+      background:linear-gradient(
+      to bottom,
+      rgba(147,197,253,1),
+      rgba(59,130,246,1)
+      );
+      border-radius:10px;
     }
 
-    .hamburger span {
-      display: block;
-      height: 2px;
-      width: 18px;
-      background: rgba(229,231,235,1);
-      border-radius: 2px;
-      transition: all 0.25s ease;
+    /* Mobile dropdown */
+    .dropdown{
+      max-height:0;
+      opacity:0;
+      overflow:hidden;
+      transform:translateY(-10px);
+      transition:all .3s ease;
     }
 
-    .hamburger span:nth-child(2) { margin: 4px 0; }
-
-    .hamburger.open span:nth-child(1) {
-      transform: translateY(6px) rotate(45deg);
+    .dropdown.open{
+      max-height:240px;
+      opacity:1;
+      transform:translateY(0);
     }
 
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-
-    .hamburger.open span:nth-child(3) {
-      transform: translateY(-6px) rotate(-45deg);
+    /* Hamburger icon */
+    .hamburger span{
+      display:block;
+      width:18px;
+      height:2px;
+      border-radius:10px;
+      background:rgba(229,231,235,1);
+      transition:.25s ease;
     }
+
+    .hamburger span:nth-child(2){
+      margin:4px 0;
+    }
+
+    .hamburger.open span:nth-child(1){
+      transform:translateY(6px) rotate(45deg);
+    }
+
+    .hamburger.open span:nth-child(2){
+      opacity:0;
+    }
+
+    .hamburger.open span:nth-child(3){
+      transform:translateY(-6px) rotate(-45deg);
+    }
+
   </style>
 </head>
 
@@ -75,40 +93,54 @@
       bg-white/5
       backdrop-blur-2xl
       border border-white/10
-      shadow-[0_8px_30px_rgba(0,0,0,0.35)]
+      shadow-[0_8px_30px_rgba(0,0,0,.35)]
     ">
 
-      <div class="absolute inset-0 rounded-2xl pointer-events-none
-                  bg-gradient-to-r from-blue-500/10 via-transparent to-blue-500/10">
+      <div class="
+        absolute inset-0
+        rounded-2xl
+        pointer-events-none
+        bg-gradient-to-r
+        from-blue-500/10
+        via-transparent
+        to-blue-500/10
+      ">
       </div>
 
       <!-- LOGO -->
       <div class="relative flex items-center">
         <img
           src="Novyra Identity Logo (Dark Theme).png"
-          class="h-12 md:h-14 w-auto object-contain"
           alt="Novyra Logo"
-        />
+          class="h-12 md:h-14 w-auto object-contain"
+        >
       </div>
 
       <!-- DESKTOP NAV -->
       <div class="hidden md:flex items-center gap-8 text-sm text-gray-300">
 
-        <a href="#home" class="hover:text-white transition">
+        <a
+          href="#home"
+          class="hover:text-white transition"
+        >
           Home
         </a>
 
-        <a href="https://www.novyra.co.za/contact-us/"
-           target="_blank"
-           class="px-5 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:scale-[1.02] transition">
+        <a
+          href="https://www.novyra.co.za/contact-us/"
+          target="_blank"
+          class="px-5 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:scale-[1.02] transition"
+        >
           Contact Us
         </a>
 
       </div>
 
       <!-- HAMBURGER -->
-      <button id="menuBtn"
-              class="hamburger md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl hover:bg-white/10 transition">
+      <button
+      id="menuBtn"
+      class="hamburger md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl hover:bg-white/10 transition"
+      >
         <span></span>
         <span></span>
         <span></span>
@@ -117,17 +149,26 @@
     </div>
 
     <!-- MOBILE MENU -->
-    <div id="mobileMenu"
-         class="dropdown md:hidden mt-3 px-6 py-4 rounded-2xl bg-white/5 backdrop-blur-2xl border border-white/10">
+    <div
+    id="mobileMenu"
+    class="dropdown md:hidden mt-3 px-6 py-4 rounded-2xl bg-white/5 backdrop-blur-2xl border border-white/10"
+    >
 
       <div class="flex flex-col gap-4 text-gray-300 text-sm">
 
-        <a href="#home" class="hover:text-white transition">Home</a>
+        <a
+        href="#home"
+        class="hover:text-white transition"
+        >
+        Home
+        </a>
 
-        <a href="https://www.novyra.co.za/contact-us/"
-           target="_blank"
-           class="hover:text-white transition">
-          Contact Us
+        <a
+        href="https://www.novyra.co.za/contact-us/"
+        target="_blank"
+        class="hover:text-white transition"
+        >
+        Contact Us
         </a>
 
       </div>
@@ -135,73 +176,91 @@
     </div>
 
   </nav>
+
 </header>
 
-<!-- HOME (TOP PADDING INCREASED) -->
-<section id="home" class="min-h-screen flex items-center px-6 pt-32 pb-12">
+<!-- HOME -->
+<section
+id="home"
+class="min-h-screen flex items-center px-6 pt-32 pb-12"
+>
 
-  <div class="max-w-7xl mx-auto w-full px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-stretch">
+<div class="max-w-7xl mx-auto w-full px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-stretch">
 
-    <!-- LEFT SIDE -->
-    <div class="flex flex-col justify-center">
+<!-- LEFT SIDE -->
+<div class="flex flex-col justify-center">
 
-      <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
-        Welcome to Novyra
-      </h1>
+<h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
+Welcome to Novyra
+</h1>
 
-      <p class="text-gray-400 text-lg md:text-xl leading-relaxed mb-6">
-        A modern digital presence built for clarity, performance, and intentional creative direction.
-        Novyra represents a new era of creation where ideas are shaped with purpose, refined through design,
-        and brought to life through thoughtful digital execution.
-      </p>
+<p class="text-gray-400 text-lg md:text-xl leading-relaxed mb-6">
+A modern digital presence built for clarity,
+performance, and intentional creative direction.
 
-      <p class="text-gray-500 text-base md:text-lg leading-relaxed mb-10">
-        It is a space focused on building meaningful, forward-thinking work that feels clean, modern, and impactful.
-      </p>
+Novyra represents a new era of creation where ideas
+are shaped with purpose, refined through design,
+and brought to life through thoughtful digital execution.
+</p>
 
-      <a href="https://www.novyra.co.za/contact-us/"
-         target="_blank"
-         class="inline-block px-6 py-3 rounded-xl font-medium bg-blue-500 hover:bg-blue-600 transition hover:scale-[1.02] w-fit">
-        Get Started
-      </a>
+<p class="text-gray-500 text-base md:text-lg leading-relaxed mb-10">
+It is a space focused on building meaningful,
+forward-thinking work that feels clean,
+modern, and impactful.
+</p>
 
-    </div>
+<a
+href="https://www.novyra.co.za/contact-us/"
+target="_blank"
+class="inline-block px-6 py-3 rounded-xl font-medium bg-blue-500 hover:bg-blue-600 transition hover:scale-[1.02] w-fit"
+>
+Get Started
+</a>
 
-    <!-- RIGHT SIDE -->
-    <div class="flex h-full">
+</div>
 
-      <div class="w-full rounded-2xl overflow-hidden border border-white/10 bg-black flex-1">
+<!-- VIDEO (HIDDEN ON MOBILE) -->
+<div class="hidden md:flex h-full">
 
-        <video
-          class="w-full h-full object-cover"
-          autoplay
-          muted
-          playsinline
-        >
-          <source src="Novyra Logo Reveal Landscape (Dark Theme).mp4" type="video/mp4">
-        </video>
+<div class="w-full rounded-2xl overflow-hidden border border-white/10 bg-black flex-1">
 
-      </div>
+<video
+class="w-full h-full object-cover"
+autoplay
+muted
+playsinline
+>
+<source
+src="Novyra Logo Reveal Landscape (Dark Theme).mp4"
+type="video/mp4"
+>
+</video>
 
-    </div>
+</div>
 
-  </div>
+</div>
+
+</div>
 
 </section>
 
 <!-- FOOTER -->
 <footer class="border-t border-white/10 text-center py-6 text-gray-500 text-sm">
-  © 2026 Novyra. All rights reserved.
+© 2026 Novyra. All rights reserved.
 </footer>
 
 <script>
-  const btn = document.getElementById("menuBtn");
-  const menu = document.getElementById("mobileMenu");
 
-  btn.addEventListener("click", () => {
-    menu.classList.toggle("open");
-    btn.classList.toggle("open");
-  });
+const btn=document.getElementById("menuBtn");
+const menu=document.getElementById("mobileMenu");
+
+btn.addEventListener("click",()=>{
+
+menu.classList.toggle("open");
+btn.classList.toggle("open");
+
+});
+
 </script>
 
 </body>
