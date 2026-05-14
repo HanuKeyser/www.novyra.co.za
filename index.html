@@ -16,7 +16,6 @@
       color: white;
     }
 
-    /* Scrollbar */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: rgba(17, 17, 16, 1); }
     ::-webkit-scrollbar-thumb {
@@ -24,7 +23,6 @@
       border-radius: 10px;
     }
 
-    /* Dropdown animation */
     .dropdown {
       max-height: 0;
       opacity: 0;
@@ -39,7 +37,6 @@
       transform: translateY(0);
     }
 
-    /* Hamburger */
     .hamburger span {
       display: block;
       height: 2px;
@@ -69,15 +66,15 @@
 
 <body>
 
-<!-- NAVBAR (SMALLER / REFINED) -->
+<!-- NAVBAR -->
 <header class="fixed top-4 left-0 w-full z-50">
 
-  <nav class="max-w-6xl mx-auto px-4">
+  <nav class="max-w-7xl mx-auto px-6">
 
     <div class="
       relative
       flex items-center justify-between
-      px-5 py-2.5
+      px-6 py-2.5
       rounded-2xl
       bg-white/5
       backdrop-blur-2xl
@@ -85,7 +82,6 @@
       shadow-[0_8px_30px_rgba(0,0,0,0.35)]
     ">
 
-      <!-- subtle glow line -->
       <div class="absolute inset-0 rounded-2xl pointer-events-none
                   bg-gradient-to-r from-blue-500/10 via-transparent to-blue-500/10">
       </div>
@@ -100,7 +96,7 @@
       </div>
 
       <!-- DESKTOP NAV -->
-      <div class="hidden md:flex items-center gap-7 text-sm text-gray-300 relative">
+      <div class="hidden md:flex items-center gap-8 text-sm text-gray-300 relative">
 
         <a href="#home"
            class="hover:text-white transition relative after:absolute after:left-0 after:-bottom-1 after:h-[1px] after:w-0 after:bg-blue-400 hover:after:w-full after:transition-all">
@@ -109,12 +105,7 @@
 
         <a href="https://www.novyra.co.za/contact-us/"
            target="_blank"
-           class="
-             px-4 py-1.5 rounded-xl
-             bg-white/5 border border-white/10
-             hover:bg-white/10 hover:text-white
-             transition
-           ">
+           class="px-4 py-1.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:text-white transition">
           Contact Us
         </a>
 
@@ -122,8 +113,7 @@
 
       <!-- HAMBURGER -->
       <button id="menuBtn"
-              class="hamburger md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl
-                     hover:bg-white/10 transition">
+              class="hamburger md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl hover:bg-white/10 transition">
         <span></span>
         <span></span>
         <span></span>
@@ -131,11 +121,9 @@
 
     </div>
 
-    <!-- MOBILE DROPDOWN -->
+    <!-- MOBILE MENU -->
     <div id="mobileMenu"
-         class="dropdown md:hidden mt-3 px-6 py-4
-                rounded-2xl bg-white/5 backdrop-blur-2xl
-                border border-white/10">
+         class="dropdown md:hidden mt-3 px-6 py-4 rounded-2xl bg-white/5 backdrop-blur-2xl border border-white/10">
 
       <div class="flex flex-col gap-4 text-gray-300 text-sm">
 
@@ -154,24 +142,40 @@
   </nav>
 </header>
 
-<!-- HOME -->
-<section id="home" class="min-h-screen flex items-center justify-center px-6 pt-28">
+<!-- HOME (NOW PERFECTLY MATCHED WIDTH SYSTEM) -->
+<section id="home" class="min-h-screen flex items-center px-6 pt-28">
 
-  <div class="text-center max-w-3xl">
+  <div class="max-w-7xl mx-auto w-full px-6 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
 
-    <h1 class="text-4xl md:text-6xl font-bold mb-6">
-      Welcome to Novyra
-    </h1>
+    <!-- LEFT SIDE -->
+    <div class="text-left">
 
-    <p class="text-gray-400 text-lg md:text-xl mb-8 leading-relaxed">
-      A modern digital presence built for clarity, performance, and creative direction.
-      Novyra represents the new era of creation.
-    </p>
+      <h1 class="text-4xl md:text-6xl font-bold mb-6">
+        Welcome to Novyra
+      </h1>
 
-    <button class="px-6 py-3 rounded-xl font-medium"
-            style="background: rgba(59,130,246,1);">
-      Get Started
-    </button>
+      <p class="text-gray-400 text-lg md:text-xl mb-8 leading-relaxed">
+        A modern digital presence built for clarity, performance, and intentional creative direction.
+        Novyra represents a new era of creation where ideas are shaped with purpose, refined through design,
+        and brought to life through thoughtful digital execution.
+      </p>
+
+      <p class="text-gray-500 text-base md:text-lg mb-10 leading-relaxed">
+        It is a space focused on building meaningful, forward-thinking work that feels clean, modern, and impactful.
+      </p>
+
+      <a href="https://www.novyra.co.za/contact-us/"
+         target="_blank"
+         class="inline-block px-6 py-3 rounded-xl font-medium"
+         style="background: rgba(59,130,246,1);">
+        Get Started
+      </a>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="hidden md:block w-full h-[420px] rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl">
+    </div>
 
   </div>
 
@@ -182,7 +186,6 @@
   © 2026 Novyra. All rights reserved.
 </footer>
 
-<!-- SCRIPT -->
 <script>
   const btn = document.getElementById("menuBtn");
   const menu = document.getElementById("mobileMenu");
