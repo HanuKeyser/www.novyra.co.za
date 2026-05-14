@@ -16,9 +16,15 @@
       color: white;
     }
 
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 10px; }
-    ::-webkit-scrollbar-track { background: rgba(17, 17, 16, 1); }
+    /* Scrollbar (thinner) */
+    ::-webkit-scrollbar { 
+      width: 6px; 
+    }
+
+    ::-webkit-scrollbar-track { 
+      background: rgba(17, 17, 16, 1); 
+    }
+
     ::-webkit-scrollbar-thumb {
       background: linear-gradient(to bottom, rgba(147,197,253,1), rgba(59,130,246,1));
       border-radius: 10px;
@@ -77,13 +83,13 @@
 
     <div class="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl shadow-lg">
 
-      <div class="flex items-center justify-between px-6 py-4">
+      <div class="flex items-center justify-between px-6 py-3">
 
         <!-- LOGO -->
         <div>
           <img
             src="Novyra Complete Logo (Dark Theme).png"
-            class="h-9 md:h-10 w-auto object-contain"
+            class="h-14 md:h-16 w-auto object-contain"
             alt="Novyra Logo"
           />
         </div>
@@ -101,7 +107,7 @@
 
         </div>
 
-        <!-- HAMBURGER (IMPROVED + CLOSE ANIMATION) -->
+        <!-- HAMBURGER -->
         <button id="menuBtn"
                 class="hamburger md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl hover:bg-white/5 transition">
 
