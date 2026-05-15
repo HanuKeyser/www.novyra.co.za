@@ -6,70 +6,63 @@
 
   <title>Novyra - New Era of Creation</title>
 
-  <link rel="icon" type="image/png" href="Novyra Emblem Logo (Light Theme).png">
+  <link rel="icon" type="image/png" href="Novyra Tab Icon (Light Theme).png">
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
 
     :root{
-      --bg: rgba(147, 197, 253, 0.08);
+      --bg: #f3f4f6;
       --text: rgb(15 23 42);
-      --muted: rgb(71 85 105);
+      --footer-text: #000000;
 
-      --glass: rgba(255,255,255,.65);
-      --glass-hover: rgba(255,255,255,.90);
-      --border: rgba(15,23,42,.08);
-
-      --shadow: 0 12px 40px rgba(0,0,0,.10);
+      --scroll-thumb: rgba(59,130,246,0.85);
+      --scroll-track: transparent;
     }
 
-    body.dark-mode{
+    html.dark-mode{
       --bg: rgb(38 38 40);
       --text: white;
-      --muted: rgb(156 163 175);
+      --footer-text: #ffffff;
 
-      --glass: rgba(255,255,255,.06);
-      --glass-hover: rgba(255,255,255,.14);
-      --border: rgba(255,255,255,.10);
-
-      --shadow: 0 12px 40px rgba(0,0,0,.45);
+      --scroll-thumb: rgba(147,197,253,0.9);
+      --scroll-track: transparent;
     }
 
-    body{
-      font-family: sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      transition: background .35s ease, color .35s ease;
-      line-height: 1.6;
+    html, body{
+      margin:0;
+      font-family:sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      transition:.3s ease;
       overflow-x:hidden;
+
+      scrollbar-width: thin;
+      scrollbar-color: var(--scroll-thumb) var(--scroll-track);
     }
 
-    html{ scroll-behavior:smooth; }
-
-    ::-webkit-scrollbar{ width:6px; }
-
-    ::-webkit-scrollbar-track{ background:var(--bg); }
-
+    ::-webkit-scrollbar{ width:8px; }
+    ::-webkit-scrollbar-track{ background: var(--scroll-track); }
     ::-webkit-scrollbar-thumb{
-      background:linear-gradient(to bottom, rgba(147,197,253,1), rgba(59,130,246,1));
+      background: var(--scroll-thumb);
       border-radius:10px;
+      border:2px solid transparent;
+      background-clip:padding-box;
     }
 
-    .glass{
-      background: var(--glass);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(28px);
-      -webkit-backdrop-filter: blur(28px);
-      transition: all .3s ease;
+    .glass-card{
+      background: rgba(255,255,255,0.4);
+      backdrop-filter: blur(5px);
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,0.3);
+      box-shadow:0 8px 32px rgba(0,0,0,0.1);
+      transition:.3s ease;
     }
 
-    .glass:hover{ background: var(--glass-hover); }
-
-    .no-glow:hover{ background: var(--glass) !important; }
-
-    .card-hover:hover{
-      transform: translateY(-4px) scale(1.01);
+    html.dark-mode .glass-card{
+      background: rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.1);
+      box-shadow:0 12px 40px rgba(0,0,0,0.45);
     }
 
     .nav-link{
@@ -82,49 +75,33 @@
 
     .nav-link.active{
       color:#3b82f6;
-      background:rgba(59,130,246,.10);
+      background:rgba(59,130,246,0.1);
     }
 
-    .hamburger span{
-      display:block;
-      width:18px;
-      height:2px;
-      margin:4px 0;
-      background:var(--text);
-      border-radius:10px;
-      transition:.3s ease;
-    }
-
-    .hamburger.open span:nth-child(1){
-      transform:translateY(6px) rotate(45deg);
-    }
-
-    .hamburger.open span:nth-child(2){
-      opacity:0;
-    }
-
-    .hamburger.open span:nth-child(3){
-      transform:translateY(-6px) rotate(-45deg);
-    }
+    /* =========================
+       FIXED MOBILE MENU
+    ========================= */
 
     .dropdown{
       max-height:0;
       opacity:0;
       overflow:hidden;
-      transform:translateY(-10px);
-      transition:all .3s ease;
+      pointer-events:none;
+      transform: translateY(-5px);
+      transition: all .3s ease;
     }
 
     .dropdown.open{
-      max-height:400px;
+      max-height:300px;
       opacity:1;
-      transform:translateY(0);
+      pointer-events:auto;
+      transform: translateY(0);
     }
 
     #backdrop{
       position:fixed;
       inset:0;
-      background:rgba(0,0,0,.25);
+      background:rgba(0,0,0,0.25);
       opacity:0;
       pointer-events:none;
       transition:.3s ease;
@@ -136,26 +113,11 @@
       pointer-events:auto;
     }
 
-    .reveal{
-      opacity:0;
-      transform:translateY(40px);
-      transition:all .8s ease;
-    }
-
-    .reveal.in-view{
-      opacity:1;
-      transform:translateY(0);
-    }
-
-    .hero-title span{
-      display:inline-block;
-      opacity:0;
-      transform:translateY(20px);
-      animation:fadeUp .8s forwards;
-    }
-
-    @keyframes fadeUp{
-      to{ opacity:1; transform:translateY(0); }
+    .icon{
+      position:absolute;
+      width:20px;
+      height:20px;
+      transition:.3s ease;
     }
 
   </style>
@@ -165,63 +127,60 @@
 
 <div id="backdrop"></div>
 
-<header class="fixed top-4 left-0 w-full z-50" id="navbar">
+<header class="fixed top-4 w-full z-50">
 
-  <div class="max-w-screen-xl mx-auto w-full px-6 flex items-stretch gap-4">
+  <div class="max-w-screen-xl mx-auto px-6 flex items-stretch gap-4">
 
     <nav class="flex-1">
 
-      <div class="w-full flex items-center justify-between h-16 px-6 rounded-2xl glass no-glow">
+      <div class="h-16 px-6 glass-card flex items-center justify-between">
 
-        <img id="navLogo"
-             src="Novyra Identity Logo (Light Theme).png"
-             class="h-10 md:h-12 w-auto">
+        <img
+          id="navLogo"
+          src="Novyra Navigation Bar (Dark Theme).png"
+          class="h-10 md:h-12 w-auto"
+        >
 
         <div class="hidden md:flex items-center gap-6 text-sm">
-
-          <a href="#home" class="nav-link">Home</a>
-          <a href="#about" class="nav-link">About</a>
+          <a href="#home" class="nav-link active">Home</a>
 
           <a href="https://www.novyra.co.za/contact-us/"
-             class="px-5 py-2 rounded-2xl bg-blue-500 text-white hover:bg-blue-600 transition active:scale-95">
+             class="px-5 py-2 rounded-2xl bg-blue-500 text-white">
             Contact Us
           </a>
-
         </div>
 
-        <button id="menuBtn" class="md:hidden hamburger">
-          <span></span><span></span><span></span>
-        </button>
+        <button id="menuBtn" class="md:hidden text-xl">☰</button>
 
       </div>
 
     </nav>
 
     <button id="themeToggle"
-      class="h-16 px-5 rounded-2xl glass no-glow flex items-center justify-center active:scale-95">
+      class="h-16 w-16 glass-card flex items-center justify-center relative overflow-hidden">
 
-      <svg id="sunIcon" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="4"/>
+      <svg id="sunIcon" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <circle cx="12" cy="12" r="4"></circle>
         <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
       </svg>
 
-      <svg id="moonIcon" class="w-5 h-5 hidden" viewBox="0 0 24 24">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3A7 7 0 0 0 21 12.79Z"/>
+      <svg id="moonIcon" class="icon opacity-0 scale-75" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M21 12.6A8.5 8.5 0 1 1 11.4 3a6.8 6.8 0 0 0 9.6 9.6Z"/>
       </svg>
 
     </button>
 
   </div>
 
+  <!-- MOBILE MENU -->
   <div id="mobileMenu" class="dropdown md:hidden mt-3">
     <div class="max-w-screen-xl mx-auto px-6">
-      <div class="glass rounded-2xl p-6 flex flex-col gap-2 text-sm">
+      <div class="glass-card p-6 flex flex-col gap-3 text-sm">
 
         <a href="#home" class="nav-link">Home</a>
-        <a href="#about" class="nav-link">About</a>
 
         <a href="https://www.novyra.co.za/contact-us/"
-           class="rounded-xl bg-blue-500 text-white px-4 py-2 text-center">
+           class="px-4 py-2 rounded-xl bg-blue-500 text-white text-center">
           Contact Us
         </a>
 
@@ -232,36 +191,51 @@
 </header>
 
 <!-- HOME -->
-<section id="home" class="min-h-screen flex items-center pt-12">
+<section id="home"
+  class="min-h-screen flex items-start px-6 md:px-10 pt-28">
 
-  <div class="max-w-screen-xl mx-auto w-full px-6 grid md:grid-cols-2 gap-12">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 w-full items-start">
 
-    <div class="hero-title">
+    <!-- LEFT -->
+    <div class="text-left">
 
-      <h1 class="text-4xl md:text-6xl font-bold mb-6">
-        <span style="animation-delay:0s">Welcome</span>
-        <span style="animation-delay:.08s">to</span>
-        <span style="animation-delay:.16s">Novyra</span>
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight text-left">
+        <span>Welcome</span>
+        <span>to</span>
+        <span class="text-blue-500 font-semibold">Novyra</span>
       </h1>
 
-      <p class="text-slate-500 text-lg md:text-xl mb-6 reveal">
+      <p class="mb-5 leading-relaxed text-[color:var(--text)]/70 text-lg md:text-xl">
         A modern digital presence built for clarity, performance, and intentional creative direction.
+        Novyra represents a new era of creation shaped by design, strategy, and execution.
       </p>
 
-      <p class="text-slate-400 mb-10 reveal">
-        Novyra represents structured, meaningful design built with purpose.
+      <p class="mb-5 leading-relaxed text-[color:var(--text)]/60">
+        We build structured, high-performance digital experiences that merge branding and development into one system.
       </p>
 
-      <a href="https://www.novyra.co.za/contact-us/"
-         class="px-6 py-3 rounded-2xl bg-blue-500 text-white hover:bg-blue-600 active:scale-95 transition">
-        Get Started
-      </a>
+      <p class="mb-8 leading-relaxed text-[color:var(--text)]/50">
+        From websites to full digital identities, Novyra is designed for modern creators and businesses.
+      </p>
+
+      <div class="flex gap-4">
+        <a href="https://www.novyra.co.za/contact-us/"
+           class="px-6 py-3 rounded-2xl bg-blue-500 text-white hover:bg-blue-600 transition">
+          Get Started
+        </a>
+
+        <a href="#"
+           class="px-6 py-3 rounded-2xl glass-card hover:opacity-80 transition">
+          View Work
+        </a>
+      </div>
 
     </div>
 
-    <div class="hidden md:flex reveal">
+    <!-- RIGHT -->
+    <div class="hidden md:flex justify-center items-start">
 
-      <div class="w-full rounded-2xl overflow-hidden glass">
+      <div class="w-full h-[420px] rounded-2xl overflow-hidden glass-card shadow-xl">
 
         <video autoplay muted loop playsinline class="w-full h-full object-cover">
           <source src="Novyra Logo Reveal Landscape (Light Theme).mp4" type="video/mp4">
@@ -275,147 +249,71 @@
 
 </section>
 
-<!-- ABOUT -->
-<section id="about" class="pt-20 pb-14">
-
-  <div class="max-w-screen-xl mx-auto w-full px-6">
-
-    <div class="glass card-hover rounded-2xl p-6 mb-10 reveal">
-
-      <h3 class="text-lg font-semibold mb-3">About Novyra</h3>
-
-      <p class="text-slate-500 mb-4">
-        Novyra is a creative studio focused on structured, intentional digital experiences.
-      </p>
-
-      <p class="text-slate-500">
-        We combine design and logic into unified systems.
-      </p>
-
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-6 mb-10">
-
-      <div class="glass card-hover rounded-2xl p-6 reveal">
-        <h3 class="text-lg font-semibold mb-3">Who We Are</h3>
-        <p class="text-slate-500">
-          Designers and builders focused on structured creative systems.
-        </p>
-      </div>
-
-      <div class="glass card-hover rounded-2xl p-6 reveal">
-        <h3 class="text-lg font-semibold mb-3">Why Choose Us</h3>
-        <p class="text-slate-500">
-          No templates. Every project is original and purpose-built.
-        </p>
-      </div>
-
-      <div class="glass card-hover rounded-2xl p-6 reveal">
-        <h3 class="text-lg font-semibold mb-3">Our Philosophy</h3>
-        <p class="text-slate-500">
-          Design is direction, not decoration.
-        </p>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<footer class="text-center py-3 text-sm text-slate-400">
+<footer class="text-center py-6 text-sm" style="color: var(--footer-text);">
   © 2026 Novyra. All rights reserved.
 </footer>
 
 <script>
 
+const root = document.documentElement;
+
 const menuBtn = document.getElementById("menuBtn");
 const mobileMenu = document.getElementById("mobileMenu");
 const backdrop = document.getElementById("backdrop");
 
-menuBtn.onclick = () => {
-  menuBtn.classList.toggle("open");
-  mobileMenu.classList.toggle("open");
-  backdrop.classList.toggle("show");
-};
-
-backdrop.onclick = () => {
-  menuBtn.classList.remove("open");
-  mobileMenu.classList.remove("open");
-  backdrop.classList.remove("show");
-};
-
-const body = document.body;
 const themeToggle = document.getElementById("themeToggle");
+const navLogo = document.getElementById("navLogo");
 const sunIcon = document.getElementById("sunIcon");
 const moonIcon = document.getElementById("moonIcon");
-const navLogo = document.getElementById("navLogo");
 
-function updateTheme(){
-  const isDark = body.classList.contains("dark-mode");
-
-  sunIcon.classList.toggle("hidden", isDark);
-  moonIcon.classList.toggle("hidden", !isDark);
-
-  navLogo.src = isDark
-    ? "Novyra Identity Logo (Dark Theme).png"
-    : "Novyra Identity Logo (Light Theme).png";
+/* MENU FIX */
+function openMenu(){
+  mobileMenu.classList.add("open");
+  backdrop.classList.add("show");
 }
 
-themeToggle.onclick = () => {
-  body.classList.toggle("dark-mode");
+function closeMenu(){
+  mobileMenu.classList.remove("open");
+  backdrop.classList.remove("show");
+}
 
-  localStorage.setItem("novyra-theme",
-    body.classList.contains("dark-mode") ? "dark" : "light"
+menuBtn.onclick = () => {
+  mobileMenu.classList.contains("open") ? closeMenu() : openMenu();
+};
+
+backdrop.onclick = closeMenu;
+
+/* THEME */
+function updateTheme(){
+
+  const isDark = root.classList.contains("dark-mode");
+
+  navLogo.src = isDark
+    ? "Novyra Navigation Bar (Dark Theme).png"
+    : "Novyra Navigation Bar (Light Theme).png";
+
+  sunIcon.style.opacity = isDark ? "0" : "1";
+  moonIcon.style.opacity = isDark ? "1" : "0";
+}
+
+/* TOGGLE */
+themeToggle.onclick = () => {
+  root.classList.toggle("dark-mode");
+
+  localStorage.setItem(
+    "novyra-theme",
+    root.classList.contains("dark-mode") ? "dark" : "light"
   );
 
   updateTheme();
 };
 
-if(localStorage.getItem("novyra-theme")==="dark"){
-  body.classList.add("dark-mode");
+/* LOAD */
+if(localStorage.getItem("novyra-theme") === "dark"){
+  root.classList.add("dark-mode");
 }
 
 updateTheme();
-
-const links = document.querySelectorAll(".nav-link");
-
-window.addEventListener("scroll", ()=>{
-
-  const fromTop = window.scrollY;
-
-  links.forEach(link=>{
-
-    const sec = document.querySelector(link.getAttribute("href"));
-
-    if(!sec) return;
-
-    if(
-      sec.offsetTop <= fromTop + 120 &&
-      sec.offsetTop + sec.offsetHeight > fromTop + 120
-    ){
-      link.classList.add("active");
-    } else {
-      link.classList.remove("active");
-    }
-
-  });
-
-});
-
-const reveals = document.querySelectorAll(".reveal");
-
-const observer = new IntersectionObserver((entries)=>{
-
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add("in-view");
-    }
-  });
-
-},{threshold:0.12});
-
-reveals.forEach(r=>observer.observe(r));
 
 </script>
 
