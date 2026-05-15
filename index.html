@@ -6,8 +6,8 @@
 
   <title>Novyra - New Era of Creation</title>
 
-  <!-- ✅ UPDATED FAVICON -->
-  <link rel="icon" type="image/png" href="Novyra Tab Icon (Light Theme).png">
+  <!-- FAVICON (LIGHT THEME AS DEFAULT) -->
+  <link id="favicon" rel="icon" type="image/png" href="Novyra Tab Icon (Light Theme).png">
 
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -36,101 +36,29 @@
 
     html{ scroll-behavior:smooth; }
 
-    /* =========================
-       GLASS SYSTEM
-    ========================= */
-
-    .glass-card {
-      background: rgba(255, 255, 255, 0.4);
+    /* GLASS */
+    .glass-card{
+      background: rgba(255,255,255,.4);
       backdrop-filter: blur(5px);
       -webkit-backdrop-filter: blur(5px);
       border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.5),
-        inset 0 -1px 0 rgba(255, 255, 255, 0.1),
-        inset 0 0 20px 10px rgba(255, 255, 255, 1);
+      border: 1px solid rgba(255,255,255,.3);
+      box-shadow: 0 8px 32px rgba(0,0,0,.1);
       position: relative;
-      overflow: hidden;
-      transition:.3s ease;
+      overflow:hidden;
     }
 
     body.dark-mode .glass-card{
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.10);
-      box-shadow:
-        0 12px 40px rgba(0,0,0,0.45),
-        inset 0 1px 0 rgba(255,255,255,0.05);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 12px 40px rgba(0,0,0,.45);
     }
-
-    .glass-card::before,
-    .glass-card::after{
-      content:'';
-      position:absolute;
-      pointer-events:none;
-    }
-
-    .glass-card::before{
-      top:0;
-      left:0;
-      right:0;
-      height:1px;
-      background:linear-gradient(90deg, transparent, rgba(255,255,255,.8), transparent);
-    }
-
-    .glass-card::after{
-      top:0;
-      left:0;
-      width:1px;
-      height:100%;
-      background:linear-gradient(180deg, rgba(255,255,255,.8), transparent, rgba(255,255,255,.3));
-    }
-
-    /* =========================
-       NAV
-    ========================= */
-
-    .nav-link{
-      padding:6px 10px;
-      border-radius:10px;
-      transition:.2s ease;
-    }
-
-    .nav-link:hover{
-      color:#3b82f6;
-    }
-
-    .nav-link.active{
-      color:#3b82f6;
-      background:rgba(59,130,246,.10);
-    }
-
-    /* =========================
-       ICONS
-    ========================= */
 
     .icon{
       position:absolute;
       width:20px;
       height:20px;
-      transition:all .3s ease;
-    }
-
-    /* =========================
-       MOBILE
-    ========================= */
-
-    .dropdown{
-      max-height:0;
-      opacity:0;
-      overflow:hidden;
       transition:.3s ease;
-    }
-
-    .dropdown.open{
-      max-height:300px;
-      opacity:1;
     }
 
     #backdrop{
@@ -140,12 +68,21 @@
       opacity:0;
       pointer-events:none;
       transition:.3s ease;
-      z-index:40;
     }
 
     #backdrop.show{
       opacity:1;
       pointer-events:auto;
+    }
+
+    .dropdown{
+      max-height:0;
+      overflow:hidden;
+      transition:.3s ease;
+    }
+
+    .dropdown.open{
+      max-height:300px;
     }
 
   </style>
@@ -163,7 +100,7 @@
 
       <div class="h-16 px-6 glass-card flex items-center justify-between">
 
-        <!-- NAV LOGO (UPDATED) -->
+        <!-- NAVBAR LOGO (UPDATED RULES) -->
         <img
           id="navLogo"
           src="Novyra Navigation Bar Logo (Dark Theme).png"
@@ -172,7 +109,7 @@
 
         <div class="hidden md:flex items-center gap-6 text-sm">
 
-          <a href="#home" class="nav-link active">Home</a>
+          <a href="#home">Home</a>
 
           <a href="https://www.novyra.co.za/contact-us/"
              class="px-5 py-2 rounded-2xl bg-blue-500 text-white">
@@ -181,22 +118,21 @@
 
         </div>
 
-        <button id="menuBtn" class="md:hidden text-xl">☰</button>
+        <button id="menuBtn">☰</button>
 
       </div>
 
     </nav>
 
-    <!-- THEME -->
+    <!-- THEME BUTTON -->
     <button id="themeToggle"
       class="h-16 w-16 glass-card flex items-center justify-center relative overflow-hidden">
 
       <svg id="sunIcon" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
         <circle cx="12" cy="12" r="4"></circle>
-        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
       </svg>
 
-      <svg id="moonIcon" class="icon opacity-0 scale-75" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <svg id="moonIcon" class="icon opacity-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
         <path d="M21 12.6A8.5 8.5 0 1 1 11.4 3a6.8 6.8 0 0 0 9.6 9.6Z"/>
       </svg>
 
@@ -206,10 +142,8 @@
 
 </header>
 
-<!-- HOME -->
 <section id="home" class="min-h-screen pt-24"></section>
 
-<!-- FOOTER -->
 <footer class="text-center py-6 text-sm" style="color: var(--footer-text);">
   © 2026 Novyra. All rights reserved.
 </footer>
@@ -218,21 +152,27 @@
 
 const body = document.body;
 
+const navLogo = document.getElementById("navLogo");
+const favicon = document.getElementById("favicon");
+
 const themeToggle = document.getElementById("themeToggle");
 const sunIcon = document.getElementById("sunIcon");
 const moonIcon = document.getElementById("moonIcon");
-const navLogo = document.getElementById("navLogo");
 
-/* THEME SWITCH */
+/* THEME */
 function updateTheme(){
 
   const isDark = body.classList.contains("dark-mode");
 
-  // ✅ UPDATED LOGO RULES
+  /* NAV LOGO RULES */
   navLogo.src = isDark
     ? "Novyra Navigation Bar Logo (Light Theme).png"
     : "Novyra Navigation Bar Logo (Dark Theme).png";
 
+  /* FAVICON (only one provided so stays same unless you add dark version) */
+  favicon.href = "Novyra Tab Icon (Light Theme).png";
+
+  /* ICONS */
   sunIcon.style.opacity = isDark ? "0" : "1";
   moonIcon.style.opacity = isDark ? "1" : "0";
 }
@@ -249,7 +189,7 @@ themeToggle.onclick = () => {
   updateTheme();
 };
 
-/* LOAD SAVED THEME */
+/* LOAD THEME */
 if(localStorage.getItem("novyra-theme")==="dark"){
   body.classList.add("dark-mode");
 }
