@@ -95,9 +95,17 @@
       transition:.3s ease;
     }
 
-    .hamburger.open span:nth-child(1){ transform:translateY(6px) rotate(45deg); }
-    .hamburger.open span:nth-child(2){ opacity:0; }
-    .hamburger.open span:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
+    .hamburger.open span:nth-child(1){
+      transform:translateY(6px) rotate(45deg);
+    }
+
+    .hamburger.open span:nth-child(2){
+      opacity:0;
+    }
+
+    .hamburger.open span:nth-child(3){
+      transform:translateY(-6px) rotate(-45deg);
+    }
 
     .dropdown{
       max-height:0;
@@ -147,7 +155,10 @@
     }
 
     @keyframes fadeUp{
-      to{ opacity:1; transform:translateY(0); }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
     }
 
   </style>
@@ -157,13 +168,13 @@
 
 <div id="backdrop"></div>
 
-<!-- ✅ FIXED HEADER ONLY -->
-<header class="fixed top-4 left-0 w-full z-50" id="navbar">
+<!-- FIXED NAVBAR -->
+<header class="fixed top-4 left-0 w-full z-50">
 
   <div class="max-w-7xl mx-auto px-6 flex items-stretch gap-4">
 
-    <!-- NAV BAR -->
-    <nav class="flex-1">
+    <!-- NAV -->
+    <div class="flex-1">
       <div class="glass no-glow h-16 rounded-2xl px-6 flex items-center justify-between">
 
         <img src="Novyra Transparent Logo.png" class="h-10 md:h-12 w-auto">
@@ -174,31 +185,31 @@
           <a href="#about" class="nav-link">About</a>
 
           <a href="https://www.novyra.co.za/contact-us/"
-             class="px-5 py-2 rounded-2xl bg-blue-500 text-white hover:bg-blue-600 transition active:scale-95">
+             class="px-5 py-2 rounded-2xl bg-blue-500 text-white hover:bg-blue-600 transition">
             Contact Us
           </a>
 
         </div>
 
-        <button id="menuBtn" class="md:hidden hamburger">
+        <button id="menuBtn" class="md:hidden hamburger no-glow">
           <span></span>
           <span></span>
           <span></span>
         </button>
 
       </div>
-    </nav>
+    </div>
 
-    <!-- THEME TOGGLE (SEPARATE - FIXED) -->
+    <!-- THEME (SEPARATE) -->
     <button id="themeToggle"
-      class="h-16 px-5 rounded-2xl glass no-glow flex items-center justify-center active:scale-95">
+      class="h-16 px-5 rounded-2xl glass no-glow flex items-center justify-center">
 
       <svg id="sunIcon" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <circle cx="12" cy="12" r="4"/>
         <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
       </svg>
 
-      <svg id="moonIcon" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <svg id="moonIcon" class="w-5 h-5 hidden" viewBox="0 0 24 24">
         <path d="M21 12.79A9 9 0 1 1 11.21 3A7 7 0 0 0 21 12.79Z"/>
       </svg>
 
@@ -206,16 +217,16 @@
 
   </div>
 
-  <!-- MOBILE MENU (UNCHANGED) -->
+  <!-- MOBILE -->
   <div id="mobileMenu" class="dropdown md:hidden mt-3 px-6">
 
     <div class="glass rounded-2xl p-6 flex flex-col gap-2 text-sm">
 
-      <a href="#home" class="nav-link rounded-xl px-3 py-2">Home</a>
-      <a href="#about" class="nav-link rounded-xl px-3 py-2">About</a>
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#about" class="nav-link">About</a>
 
       <a href="https://www.novyra.co.za/contact-us/"
-         class="rounded-xl bg-blue-500 text-white px-4 py-2 hover:bg-blue-600 transition text-center">
+         class="rounded-xl bg-blue-500 text-white px-4 py-2 text-center">
         Contact Us
       </a>
 
@@ -225,7 +236,6 @@
 
 </header>
 
-<!-- EVERYTHING BELOW IS 100% YOUR ORIGINAL CODE (UNCHANGED) -->
 <!-- HOME -->
 <section id="home" class="min-h-screen flex items-center px-6 pt-24">
 
@@ -257,11 +267,24 @@
 
     </div>
 
+    <!-- VIDEO FIXED -->
+    <div class="hidden md:flex reveal">
+
+      <div class="w-full aspect-video rounded-2xl overflow-hidden glass">
+
+        <video autoplay muted loop playsinline class="w-full h-full object-cover">
+          <source src="Novyra Logo Reveal Landscape (Light Theme).mp4" type="video/mp4">
+        </video>
+
+      </div>
+
+    </div>
+
   </div>
 
 </section>
 
-<!-- ABOUT -->
+<!-- ABOUT (UNCHANGED) -->
 <section id="about" class="px-6 py-20">
 
   <div class="max-w-7xl mx-auto w-full">
@@ -373,8 +396,7 @@ function updateTheme(){
 themeToggle.onclick = () => {
   body.classList.toggle("dark-mode");
 
-  localStorage.setItem(
-    "novyra-theme",
+  localStorage.setItem("novyra-theme",
     body.classList.contains("dark-mode") ? "dark" : "light"
   );
 
