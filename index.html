@@ -12,7 +12,6 @@
   <style>
 
     :root{
-      /* 🔆 Light mode (soft blue tint #93c5fd) */
       --bg: rgba(147, 197, 253, 0.08);
       --text: rgb(15 23 42);
       --muted: rgb(71 85 105);
@@ -24,8 +23,7 @@
     }
 
     body.dark-mode{
-      /* 🌙 Dark mode (dark gray instead of black) */
-      --bg: rgb(28 28 30);
+      --bg: rgb(38 38 40);
       --text: white;
       --muted: rgb(156 163 175);
       --muted-2: rgb(107 114 128);
@@ -103,48 +101,39 @@
 <!-- HEADER -->
 <header class="fixed top-4 left-0 w-full z-50">
 
-  <div class="max-w-7xl mx-auto px-6 flex items-stretch gap-4">
+  <!-- SAME WIDTH SYSTEM APPLIED -->
+  <div class="max-w-7xl mx-auto px-6 w-full flex items-stretch gap-4">
 
-    <!-- NAVBAR -->
     <nav class="flex-1">
 
       <div class="relative flex items-center justify-between h-16 px-6 rounded-2xl glass">
 
         <div class="absolute inset-0 rounded-2xl pointer-events-none bg-gradient-to-r from-blue-500/10 via-transparent to-blue-500/10"></div>
 
-        <!-- LOGO -->
         <img id="navLogo"
           src="Novyra Identity Logo (Light Theme).png"
           class="h-10 md:h-12 w-auto object-contain">
 
-        <!-- DESKTOP NAV -->
         <div class="hidden md:flex items-center gap-4 text-sm">
-
           <a href="#home" class="hover:text-blue-500 transition">Home</a>
-
           <a href="https://www.novyra.co.za/contact-us/"
              target="_blank"
              class="px-5 py-2 rounded-2xl glass glass-hover transition">
             Contact Us
           </a>
-
         </div>
 
-        <!-- MOBILE -->
         <div class="md:hidden flex items-center gap-2">
-
           <button id="menuBtn"
             class="hamburger flex flex-col justify-center items-center w-10 h-10 rounded-2xl hover:bg-black/5 transition">
             <span></span><span></span><span></span>
           </button>
-
         </div>
 
       </div>
 
     </nav>
 
-    <!-- THEME TOGGLE -->
     <button id="themeToggle"
       class="h-16 px-5 rounded-2xl glass glass-hover flex items-center justify-center transition">
 
@@ -154,10 +143,8 @@
         fill="none"
         stroke="currentColor"
         stroke-width="2">
-
         <circle cx="12" cy="12" r="4"/>
         <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
-
       </svg>
 
       <svg id="moonIcon"
@@ -166,9 +153,7 @@
         fill="none"
         stroke="currentColor"
         stroke-width="2">
-
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-
       </svg>
 
     </button>
@@ -177,20 +162,12 @@
 
   <!-- MOBILE MENU -->
   <div id="mobileMenu" class="dropdown md:hidden mt-3 px-6">
-
     <div class="max-w-7xl mx-auto">
-
       <div class="glass rounded-2xl px-6 py-6 flex flex-col gap-5 text-sm">
-
         <a href="#home">Home</a>
-        <a href="https://www.novyra.co.za/contact-us/" target="_blank">
-          Contact Us
-        </a>
-
+        <a href="https://www.novyra.co.za/contact-us/" target="_blank">Contact Us</a>
       </div>
-
     </div>
-
   </div>
 
 </header>
@@ -198,53 +175,54 @@
 <!-- HOME -->
 <section id="home" class="min-h-screen flex items-center px-6 pt-16 md:pt-10 pb-3 md:pb-8">
 
-<div class="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12">
+  <!-- SAME WIDTH SYSTEM APPLIED -->
+  <div class="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 md:grid-cols-2 gap-12">
 
-<!-- LEFT -->
-<div class="flex flex-col justify-center">
+    <!-- LEFT -->
+    <div class="flex flex-col justify-center">
 
-<h1 class="text-4xl md:text-6xl font-bold mb-6">
-Welcome to Novyra
-</h1>
+      <h1 class="text-4xl md:text-6xl font-bold mb-6">
+        Welcome to Novyra
+      </h1>
 
-<p class="text-slate-500 text-lg md:text-xl mb-6">
-A modern digital presence built for clarity, performance, and intentional creative direction.
-Novyra represents a new era of creation where ideas are shaped with purpose, refined through design, and brought to life through thoughtful digital execution.
-</p>
+      <p class="text-slate-500 text-lg md:text-xl mb-6">
+        A modern digital presence built for clarity, performance, and intentional creative direction.
+        Novyra represents a new era of creation where ideas are shaped with purpose, refined through design, and brought to life through thoughtful digital execution.
+      </p>
 
-<p class="text-slate-400 mb-10">
-It is a space focused on building meaningful, forward-thinking work that feels clean, modern, and impactful.
-</p>
+      <p class="text-slate-400 mb-10">
+        It is a space focused on building meaningful, forward-thinking work that feels clean, modern, and impactful.
+      </p>
 
-<a href="https://www.novyra.co.za/contact-us/"
-   target="_blank"
-   class="inline-block px-6 py-3 rounded-2xl bg-blue-500 text-white hover:bg-blue-600 transition w-fit">
-Get Started
-</a>
+      <a href="https://www.novyra.co.za/contact-us/"
+         target="_blank"
+         class="inline-block px-6 py-3 rounded-2xl bg-blue-500 text-white hover:bg-blue-600 transition w-fit">
+        Get Started
+      </a>
 
-</div>
+    </div>
 
-<!-- VIDEO -->
-<div class="hidden md:flex">
+    <!-- VIDEO -->
+    <div class="hidden md:flex">
 
-<div class="w-full rounded-2xl overflow-hidden glass shadow-2xl">
+      <div class="w-full rounded-2xl overflow-hidden glass shadow-2xl">
 
-<video id="heroVideo" autoplay muted loop playsinline class="w-full h-full object-cover">
-  <source id="heroVideoSource"
-    src="Novyra Logo Reveal Landscape (Light Theme).mp4"
-    type="video/mp4">
-</video>
+        <video id="heroVideo" autoplay muted loop playsinline class="w-full h-full object-cover">
+          <source id="heroVideoSource"
+            src="Novyra Logo Reveal Landscape (Light Theme).mp4"
+            type="video/mp4">
+        </video>
 
-</div>
+      </div>
 
-</div>
+    </div>
 
-</div>
+  </div>
 
 </section>
 
 <footer class="border-t text-center py-6 text-sm text-slate-400">
-© 2026 Novyra. All rights reserved.
+  © 2026 Novyra. All rights reserved.
 </footer>
 
 <script>
@@ -252,7 +230,6 @@ Get Started
 const body = document.body;
 
 const navLogo = document.getElementById("navLogo");
-const heroVideo = document.getElementById("heroVideo");
 const heroVideoSource = document.getElementById("heroVideoSource");
 
 const themeToggle = document.getElementById("themeToggle");
@@ -282,12 +259,9 @@ function updateTheme(){
   heroVideoSource.src = isDark
     ? "Novyra Logo Reveal Landscape (Dark Theme).mp4"
     : "Novyra Logo Reveal Landscape (Light Theme).mp4";
-
-  heroVideo.load();
 }
 
 function toggleTheme(){
-
   body.classList.toggle("dark-mode");
 
   localStorage.setItem(
