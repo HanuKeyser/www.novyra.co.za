@@ -108,9 +108,9 @@
 
         <div class="absolute inset-0 rounded-2xl pointer-events-none bg-gradient-to-r from-blue-500/10 via-transparent to-blue-500/10"></div>
 
-        <!-- UPDATED LOGO -->
+        <!-- NEW LOGO -->
         <img id="navLogo"
-          src="Novyra Complete Logo (Light Theme).png"
+          src="Novyra Transparent Logo.png"
           class="h-10 md:h-12 w-auto object-contain">
 
         <div class="hidden md:flex items-center gap-4 text-sm">
@@ -182,11 +182,10 @@
 
       <p class="text-slate-500 text-lg md:text-xl mb-6">
         A modern digital presence built for clarity, performance, and intentional creative direction.
-        Novyra represents a new era of creation where ideas are shaped with purpose, refined through design, and brought to life through thoughtful digital execution.
       </p>
 
       <p class="text-slate-400 mb-10">
-        It is a space focused on building meaningful, forward-thinking work that feels clean, modern, and impactful.
+        It is a space focused on building meaningful, forward-thinking work.
       </p>
 
       <a href="https://www.novyra.co.za/contact-us/"
@@ -195,18 +194,6 @@
         Get Started
       </a>
 
-    </div>
-
-    <div class="hidden md:flex">
-      <div class="w-full rounded-2xl overflow-hidden glass shadow-2xl">
-
-        <video id="heroVideo" autoplay muted loop playsinline class="w-full h-full object-cover">
-          <source id="heroVideoSource"
-            src="Novyra Logo Reveal Landscape (Light Theme).mp4"
-            type="video/mp4">
-        </video>
-
-      </div>
     </div>
 
   </div>
@@ -226,10 +213,8 @@
 const body = document.body;
 
 const navLogo = document.getElementById("navLogo");
-const heroVideoSource = document.getElementById("heroVideoSource");
 
 const themeToggle = document.getElementById("themeToggle");
-
 const sunIcon = document.getElementById("sunIcon");
 const moonIcon = document.getElementById("moonIcon");
 
@@ -248,16 +233,11 @@ function updateTheme(){
   sunIcon.classList.toggle("hidden", isDark);
   moonIcon.classList.toggle("hidden", !isDark);
 
-  navLogo.src = isDark
-    ? "Novyra Identity Logo (Dark Theme).png"
-    : "Novyra Complete Logo (Light Theme).png";
-
-  heroVideoSource.src = isDark
-    ? "Novyra Logo Reveal Landscape (Dark Theme).mp4"
-    : "Novyra Logo Reveal Landscape (Light Theme).mp4";
+  navLogo.src = "Novyra Transparent Logo.png";
 }
 
 function toggleTheme(){
+
   body.classList.toggle("dark-mode");
 
   localStorage.setItem(
