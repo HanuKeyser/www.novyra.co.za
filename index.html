@@ -165,27 +165,22 @@
 
 <div id="backdrop"></div>
 
-<header class="fixed top-4 left-0 w-full z-50" id="navbar">
+<header class="fixed top-3 left-0 w-full z-50" id="navbar">
 
-  <!-- ✅ MATCHED WIDTH CONTAINER (same as sections) -->
-  <div class="max-w-screen-xl mx-auto w-full px-6 flex items-stretch gap-4">
+  <div class="max-w-screen-xl mx-auto w-full px-4 sm:px-6 lg:px-8 flex items-stretch gap-3 sm:gap-4">
 
     <nav class="flex-1">
 
-      <div class="w-full flex items-center justify-between h-16 px-6 rounded-2xl glass no-glow">
+      <div class="w-full flex items-center justify-between h-16 px-4 sm:px-6 rounded-2xl glass no-glow">
 
         <img id="navLogo"
              src="Novyra Identity Logo (Light Theme).png"
              class="h-10 md:h-12 w-auto">
 
-        <div class="hidden md:flex items-center gap-6 text-sm">
+        <div class="hidden md:flex items-center gap-4 lg:gap-6 text-sm">
 
           <a href="#home" class="nav-link">
             Home
-          </a>
-
-          <a href="#about" class="nav-link">
-            About
           </a>
 
           <a href="https://www.novyra.co.za/contact-us/"
@@ -205,9 +200,8 @@
 
     </nav>
 
-    <!-- THEME (kept separate) -->
     <button id="themeToggle"
-      class="h-16 px-5 rounded-2xl glass no-glow flex items-center justify-center active:scale-95">
+      class="h-16 px-4 sm:px-5 rounded-2xl glass no-glow flex items-center justify-center active:scale-95">
 
       <svg id="sunIcon" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <circle cx="12" cy="12" r="4"/>
@@ -222,18 +216,14 @@
 
   </div>
 
-  <!-- MOBILE (now aligned width too) -->
   <div id="mobileMenu" class="dropdown md:hidden mt-3">
 
-    <div class="max-w-screen-xl mx-auto px-6">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+
       <div class="glass rounded-2xl p-6 flex flex-col gap-2 text-sm">
 
         <a href="#home" class="nav-link">
           Home
-        </a>
-
-        <a href="#about" class="nav-link">
-          About
         </a>
 
         <a href="https://www.novyra.co.za/contact-us/"
@@ -242,6 +232,7 @@
         </a>
 
       </div>
+
     </div>
 
   </div>
@@ -249,13 +240,13 @@
 </header>
 
 <!-- HOME -->
-<section id="home" class="min-h-screen flex items-center pt-12">
+<section id="home" class="min-h-screen flex items-center pt-24 pb-14 sm:pb-20">
 
-  <div class="max-w-screen-xl mx-auto w-full px-6 grid md:grid-cols-2 gap-12">
+  <div class="max-w-screen-xl mx-auto w-full px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-10 lg:gap-14 items-center">
 
     <div class="hero-title">
 
-      <h1 class="text-4xl md:text-6xl font-bold mb-6">
+      <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-5 sm:mb-6">
 
         <span style="animation-delay:0s">Welcome</span>
         <span style="animation-delay:.08s">to</span>
@@ -263,23 +254,23 @@
 
       </h1>
 
-      <p class="text-slate-500 text-lg md:text-xl mb-6 reveal">
+      <p class="text-slate-500 text-lg md:text-xl leading-relaxed mb-5 sm:mb-6 reveal">
         A modern digital presence built for clarity, performance, and intentional creative direction.
         Novyra represents a new era of creation where ideas are shaped with purpose, refined through design, and brought to life through thoughtful digital execution.
       </p>
 
-      <p class="text-slate-400 mb-10 reveal">
+      <p class="text-slate-400 leading-relaxed mb-8 sm:mb-10 reveal">
         It is a space focused on building meaningful, forward-thinking work that feels clean, modern, and impactful.
       </p>
 
       <a href="https://www.novyra.co.za/contact-us/"
-         class="px-6 py-3 rounded-2xl bg-blue-500 text-white hover:bg-blue-600 active:scale-95 transition">
+         class="inline-flex items-center justify-center px-6 py-3 rounded-2xl bg-blue-500 text-white hover:bg-blue-600 active:scale-95 transition">
         Get Started
       </a>
 
     </div>
 
-    <div class="hidden md:flex reveal">
+    <div class="hidden md:flex reveal md:pl-2 lg:pl-4">
 
       <div class="w-full rounded-2xl overflow-hidden glass">
 
@@ -295,87 +286,11 @@
 
 </section>
 
-<!-- ABOUT -->
-<section id="about" class="pt-20 pb-14">
-
-  <div class="max-w-screen-xl mx-auto w-full px-6 pt-4">
-
-    <div class="glass card-hover rounded-2xl p-6 mt-2 mb-10 reveal">
-
-      <h3 class="text-lg font-semibold mb-3">
-        About Novyra
-      </h3>
-
-      <p class="text-slate-500 mb-4">
-        Novyra is a creative studio focused on shaping digital experiences that are structured, refined, and built with purpose. We explore how brands communicate across visual and digital spaces, turning ideas into cohesive systems that connect design, structure, and function in a unified way.
-      </p>
-
-      <p class="text-slate-500">
-        Our work is rooted in the relationship between design and logic. Rather than treating visuals and functionality as separate elements, we develop them together to create outcomes that feel considered, balanced, and purposeful in execution.
-      </p>
-
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-6 mb-10">
-
-      <div class="glass card-hover rounded-2xl p-6 reveal">
-
-        <h3 class="text-lg font-semibold mb-3">
-          Who We Are
-        </h3>
-
-        <p class="text-slate-500">
-          We are designers and builders who approach every project as something to be constructed with care rather than decorated for appearance. Each brand is treated as its own entity, with a distinct voice that is uncovered, shaped, and expressed through design. Our work is grounded in structure, problem-solving, and attention to detail, focusing on creating outcomes that feel deliberate, balanced, and built to last beyond trends.
-        </p>
-
-      </div>
-
-      <div class="glass card-hover rounded-2xl p-6 reveal">
-
-        <h3 class="text-lg font-semibold mb-3">
-          Why Choose Us
-        </h3>
-
-        <p class="text-slate-500">
-          Choosing Novyra means working with a studio that avoids generic outcomes and instead builds solutions shaped around each brand’s identity and direction. Nothing is reused or templated, and every project begins with understanding what makes it unique. We focus on creating work that is original, structured, and carefully executed, with strong attention to clarity, depth, and conceptual meaning.
-        </p>
-
-      </div>
-
-      <div class="glass card-hover rounded-2xl p-6 reveal">
-
-        <h3 class="text-lg font-semibold mb-3">
-          Our Philosophy
-        </h3>
-
-        <p class="text-slate-500">
-          Novyra is built on the belief that design is not decoration, but direction. Digital experiences should be created with intention, not repetition, where ideas are shaped into something original rather than adapted from what already exists. We focus on clarity, structure, and meaning, understanding that simplicity is the result of careful thinking and deliberate refinement. Our philosophy is centered on creating with purpose, building with intention, and designing for the future rather than the past.
-        </p>
-
-      </div>
-
-    </div>
-
-    <div class="text-center reveal">
-
-      <a href="https://www.novyra.co.za/about-us/"
-         class="inline-block px-8 py-3 rounded-2xl bg-blue-500 text-white hover:bg-blue-600 active:scale-95 transition">
-        View Full About Novyra
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
-
-<footer class="text-center py-3 text-sm text-slate-400">
+<footer class="text-center py-6 text-sm text-slate-400 px-4">
   © 2026 Novyra. All rights reserved.
 </footer>
 
 <script>
-
-// unchanged JS
 
 const menuBtn = document.getElementById("menuBtn");
 const mobileMenu = document.getElementById("mobileMenu");
@@ -434,7 +349,11 @@ window.addEventListener("scroll", ()=>{
 
   links.forEach(link=>{
 
-    const sec = document.querySelector(link.getAttribute("href"));
+    const target = link.getAttribute("href");
+
+    if(!target.startsWith("#")) return;
+
+    const sec = document.querySelector(target);
 
     if(!sec) return;
 
