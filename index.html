@@ -78,10 +78,6 @@
       background:rgba(59,130,246,0.1);
     }
 
-    /* =========================
-       FIXED MOBILE MENU
-    ========================= */
-
     .dropdown{
       max-height:0;
       opacity:0;
@@ -196,7 +192,7 @@
 
   <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 w-full items-start">
 
-    <!-- LEFT -->
+    <!-- LEFT (UNCHANGED FULL TEXT) -->
     <div class="text-left">
 
       <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight text-left">
@@ -232,13 +228,13 @@
 
     </div>
 
-    <!-- RIGHT -->
-    <div class="hidden md:flex justify-center items-start">
+    <!-- RIGHT (FIXED: MOBILE + VIDEO SWITCH + LOOP CONTROL) -->
+    <div class="flex justify-center items-start">
 
       <div class="w-full h-[420px] rounded-2xl overflow-hidden glass-card shadow-xl">
 
-        <video autoplay muted loop playsinline class="w-full h-full object-cover">
-          <source src="Novyra Logo Reveal Landscape (Light Theme).mp4" type="video/mp4">
+        <video id="heroVideo" autoplay muted playsinline class="w-full h-full object-cover">
+          <source id="videoSource" src="Novyra Logo Reveal Landscape (Light Theme).mp4" type="video/mp4">
         </video>
 
       </div>
@@ -266,24 +262,32 @@ const navLogo = document.getElementById("navLogo");
 const sunIcon = document.getElementById("sunIcon");
 const moonIcon = document.getElementById("moonIcon");
 
-/* MENU FIX */
-function openMenu(){
-  mobileMenu.classList.add("open");
-  backdrop.classList.add("show");
-}
+const video = document.getElementById("heroVideo");
+const videoSource = document.getElementById("videoSource");
 
-function closeMenu(){
-  mobileMenu.classList.remove("open");
-  backdrop.classList.remove("show");
-}
+let playCount = 0;
 
+/* MENU */
 menuBtn.onclick = () => {
-  mobileMenu.classList.contains("open") ? closeMenu() : openMenu();
+  mobileMenu.classList.toggle("open");
+  backdrop.classList.toggle("show");
 };
 
-backdrop.onclick = closeMenu;
+backdrop.onclick = () => {
+  mobileMenu.classList.remove("open");
+  backdrop.classList.remove("show");
+};
 
-/* THEME */
+/* LIMIT VIDEO TO 2 LOOPS */
+video.addEventListener("ended", () => {
+  playCount++;
+  if (playCount < 2) {
+    video.currentTime = 0;
+    video.play();
+  }
+});
+
+/* THEME SWITCH + VIDEO SWAP */
 function updateTheme(){
 
   const isDark = root.classList.contains("dark-mode");
@@ -292,11 +296,20 @@ function updateTheme(){
     ? "Novyra Navigation Bar (Dark Theme).png"
     : "Novyra Navigation Bar (Light Theme).png";
 
+  videoSource.src = isDark
+    ? "Novyra Logo Reveal Landscape (Dark Theme).mp4"
+    : "Novyra Logo Reveal Landscape (Light Theme).mp4";
+
+  video.load();
+  video.play();
+
+  playCount = 0;
+
   sunIcon.style.opacity = isDark ? "0" : "1";
   moonIcon.style.opacity = isDark ? "1" : "0";
 }
 
-/* TOGGLE */
+/* TOGGLE THEME */
 themeToggle.onclick = () => {
   root.classList.toggle("dark-mode");
 
@@ -308,8 +321,8 @@ themeToggle.onclick = () => {
   updateTheme();
 };
 
-/* LOAD */
-if(localStorage.getItem("novyra-theme") === "dark"){
+/* LOAD SAVED THEME */
+if (localStorage.getItem("novyra-theme") === "dark") {
   root.classList.add("dark-mode");
 }
 
