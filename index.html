@@ -6,71 +6,90 @@
 
   <title>Novyra - New Era of Creation</title>
 
-  <link rel="icon" type="image/png" href="Novyra Emblem Logo (Light Theme).png">
+  <!-- ✅ UPDATED FAVICON -->
+  <link rel="icon" type="image/png" href="Novyra Tab Icon (Light Theme).png">
+
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
 
     :root{
-      --bg: rgba(147, 197, 253, 0.08);
+      --bg: #f3f4f6;
       --text: rgb(15 23 42);
-      --muted: rgb(71 85 105);
-
-      --glass: rgba(255,255,255,.65);
-      --glass-hover: rgba(255,255,255,.90);
-      --border: rgba(15,23,42,.08);
-
-      --shadow: 0 12px 40px rgba(0,0,0,.10);
+      --footer-text: #000000;
     }
 
     body.dark-mode{
       --bg: rgb(38 38 40);
       --text: white;
-      --muted: rgb(156 163 175);
-
-      --glass: rgba(255,255,255,.06);
-      --glass-hover: rgba(255,255,255,.14);
-      --border: rgba(255,255,255,.10);
-
-      --shadow: 0 12px 40px rgba(0,0,0,.45);
+      --footer-text: #ffffff;
     }
 
     body{
-      font-family: sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      transition: background .35s ease, color .35s ease;
-      line-height: 1.6;
+      margin:0;
+      font-family:sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      transition:.3s ease;
       overflow-x:hidden;
     }
 
     html{ scroll-behavior:smooth; }
 
-    ::-webkit-scrollbar{ width:6px; }
+    /* =========================
+       GLASS SYSTEM
+    ========================= */
 
-    ::-webkit-scrollbar-track{ background:var(--bg); }
-
-    ::-webkit-scrollbar-thumb{
-      background:linear-gradient(to bottom, rgba(147,197,253,1), rgba(59,130,246,1));
-      border-radius:10px;
+    .glass-card {
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 0 20px 10px rgba(255, 255, 255, 1);
+      position: relative;
+      overflow: hidden;
+      transition:.3s ease;
     }
 
-    .glass{
-      background: var(--glass);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(28px);
-      -webkit-backdrop-filter: blur(28px);
-      transition: all .3s ease;
+    body.dark-mode .glass-card{
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      box-shadow:
+        0 12px 40px rgba(0,0,0,0.45),
+        inset 0 1px 0 rgba(255,255,255,0.05);
     }
 
-    .glass:hover{ background: var(--glass-hover); }
-
-    .no-glow:hover{ background: var(--glass) !important; }
-
-    .card-hover:hover{
-      transform: translateY(-4px) scale(1.01);
+    .glass-card::before,
+    .glass-card::after{
+      content:'';
+      position:absolute;
+      pointer-events:none;
     }
+
+    .glass-card::before{
+      top:0;
+      left:0;
+      right:0;
+      height:1px;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.8), transparent);
+    }
+
+    .glass-card::after{
+      top:0;
+      left:0;
+      width:1px;
+      height:100%;
+      background:linear-gradient(180deg, rgba(255,255,255,.8), transparent, rgba(255,255,255,.3));
+    }
+
+    /* =========================
+       NAV
+    ========================= */
 
     .nav-link{
       padding:6px 10px;
@@ -78,47 +97,40 @@
       transition:.2s ease;
     }
 
-    .nav-link:hover{ color:#3b82f6; }
+    .nav-link:hover{
+      color:#3b82f6;
+    }
 
     .nav-link.active{
       color:#3b82f6;
       background:rgba(59,130,246,.10);
     }
 
-    .hamburger span{
-      display:block;
-      width:18px;
-      height:2px;
-      margin:4px 0;
-      background:var(--text);
-      border-radius:10px;
-      transition:.3s ease;
+    /* =========================
+       ICONS
+    ========================= */
+
+    .icon{
+      position:absolute;
+      width:20px;
+      height:20px;
+      transition:all .3s ease;
     }
 
-    .hamburger.open span:nth-child(1){
-      transform:translateY(6px) rotate(45deg);
-    }
-
-    .hamburger.open span:nth-child(2){
-      opacity:0;
-    }
-
-    .hamburger.open span:nth-child(3){
-      transform:translateY(-6px) rotate(-45deg);
-    }
+    /* =========================
+       MOBILE
+    ========================= */
 
     .dropdown{
       max-height:0;
       opacity:0;
       overflow:hidden;
-      transform:translateY(-10px);
-      transition:all .3s ease;
+      transition:.3s ease;
     }
 
     .dropdown.open{
-      max-height:400px;
+      max-height:300px;
       opacity:1;
-      transform:translateY(0);
     }
 
     #backdrop{
@@ -136,28 +148,6 @@
       pointer-events:auto;
     }
 
-    .reveal{
-      opacity:0;
-      transform:translateY(40px);
-      transition:all .8s ease;
-    }
-
-    .reveal.in-view{
-      opacity:1;
-      transform:translateY(0);
-    }
-
-    .hero-title span{
-      display:inline-block;
-      opacity:0;
-      transform:translateY(20px);
-      animation:fadeUp .8s forwards;
-    }
-
-    @keyframes fadeUp{
-      to{ opacity:1; transform:translateY(0); }
-    }
-
   </style>
 </head>
 
@@ -165,226 +155,106 @@
 
 <div id="backdrop"></div>
 
-<header class="fixed top-3 left-0 w-full z-50" id="navbar">
+<header class="fixed top-4 w-full z-50">
 
-  <div class="max-w-screen-xl mx-auto w-full px-4 sm:px-6 lg:px-8 flex items-stretch gap-3 sm:gap-4">
+  <div class="max-w-screen-xl mx-auto px-6 flex items-stretch gap-4">
 
     <nav class="flex-1">
 
-      <div class="w-full flex items-center justify-between h-16 px-4 sm:px-6 rounded-2xl glass no-glow">
+      <div class="h-16 px-6 glass-card flex items-center justify-between">
 
-        <img id="navLogo"
-             src="Novyra Identity Logo (Light Theme).png"
-             class="h-10 md:h-12 w-auto">
+        <!-- NAV LOGO (UPDATED) -->
+        <img
+          id="navLogo"
+          src="Novyra Navigation Bar Logo (Dark Theme).png"
+          class="h-10 md:h-12 w-auto"
+        >
 
-        <div class="hidden md:flex items-center gap-4 lg:gap-6 text-sm">
+        <div class="hidden md:flex items-center gap-6 text-sm">
 
-          <a href="#home" class="nav-link">
-            Home
-          </a>
+          <a href="#home" class="nav-link active">Home</a>
 
           <a href="https://www.novyra.co.za/contact-us/"
-             class="px-5 py-2 rounded-2xl bg-blue-500 text-white hover:bg-blue-600 transition active:scale-95">
+             class="px-5 py-2 rounded-2xl bg-blue-500 text-white">
             Contact Us
           </a>
 
         </div>
 
-        <button id="menuBtn" class="md:hidden hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        <button id="menuBtn" class="md:hidden text-xl">☰</button>
 
       </div>
 
     </nav>
 
+    <!-- THEME -->
     <button id="themeToggle"
-      class="h-16 px-4 sm:px-5 rounded-2xl glass no-glow flex items-center justify-center active:scale-95">
+      class="h-16 w-16 glass-card flex items-center justify-center relative overflow-hidden">
 
-      <svg id="sunIcon" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="4"/>
+      <svg id="sunIcon" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <circle cx="12" cy="12" r="4"></circle>
         <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
       </svg>
 
-      <svg id="moonIcon" class="w-5 h-5 hidden" viewBox="0 0 24 24">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3A7 7 0 0 0 21 12.79Z"/>
+      <svg id="moonIcon" class="icon opacity-0 scale-75" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M21 12.6A8.5 8.5 0 1 1 11.4 3a6.8 6.8 0 0 0 9.6 9.6Z"/>
       </svg>
 
     </button>
 
   </div>
 
-  <div id="mobileMenu" class="dropdown md:hidden mt-3">
-
-    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-
-      <div class="glass rounded-2xl p-6 flex flex-col gap-2 text-sm">
-
-        <a href="#home" class="nav-link">
-          Home
-        </a>
-
-        <a href="https://www.novyra.co.za/contact-us/"
-           class="rounded-xl bg-blue-500 text-white px-4 py-2 active:scale-95 transition text-center">
-          Contact Us
-        </a>
-
-      </div>
-
-    </div>
-
-  </div>
-
 </header>
 
 <!-- HOME -->
-<section id="home" class="min-h-screen flex items-center pt-24 pb-14 sm:pb-20">
+<section id="home" class="min-h-screen pt-24"></section>
 
-  <div class="max-w-screen-xl mx-auto w-full px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-10 lg:gap-14 items-center">
-
-    <div class="hero-title">
-
-      <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-5 sm:mb-6">
-
-        <span style="animation-delay:0s">Welcome</span>
-        <span style="animation-delay:.08s">to</span>
-        <span style="animation-delay:.16s">Novyra</span>
-
-      </h1>
-
-      <p class="text-slate-500 text-lg md:text-xl leading-relaxed mb-5 sm:mb-6 reveal">
-        A modern digital presence built for clarity, performance, and intentional creative direction.
-        Novyra represents a new era of creation where ideas are shaped with purpose, refined through design, and brought to life through thoughtful digital execution.
-      </p>
-
-      <p class="text-slate-400 leading-relaxed mb-8 sm:mb-10 reveal">
-        It is a space focused on building meaningful, forward-thinking work that feels clean, modern, and impactful.
-      </p>
-
-      <a href="https://www.novyra.co.za/contact-us/"
-         class="inline-flex items-center justify-center px-6 py-3 rounded-2xl bg-blue-500 text-white hover:bg-blue-600 active:scale-95 transition">
-        Get Started
-      </a>
-
-    </div>
-
-    <div class="hidden md:flex reveal md:pl-2 lg:pl-4">
-
-      <div class="w-full rounded-2xl overflow-hidden glass">
-
-        <video id="heroVideo" autoplay muted loop playsinline class="w-full h-full object-cover">
-          <source src="Novyra Logo Reveal Landscape (Light Theme).mp4" type="video/mp4">
-        </video>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<footer class="text-center py-6 text-sm text-slate-400 px-4">
+<!-- FOOTER -->
+<footer class="text-center py-6 text-sm" style="color: var(--footer-text);">
   © 2026 Novyra. All rights reserved.
 </footer>
 
 <script>
 
-const menuBtn = document.getElementById("menuBtn");
-const mobileMenu = document.getElementById("mobileMenu");
-const backdrop = document.getElementById("backdrop");
-
-menuBtn.onclick = () => {
-  menuBtn.classList.toggle("open");
-  mobileMenu.classList.toggle("open");
-  backdrop.classList.toggle("show");
-};
-
-backdrop.onclick = () => {
-  menuBtn.classList.remove("open");
-  mobileMenu.classList.remove("open");
-  backdrop.classList.remove("show");
-};
-
 const body = document.body;
+
 const themeToggle = document.getElementById("themeToggle");
 const sunIcon = document.getElementById("sunIcon");
 const moonIcon = document.getElementById("moonIcon");
 const navLogo = document.getElementById("navLogo");
 
+/* THEME SWITCH */
 function updateTheme(){
+
   const isDark = body.classList.contains("dark-mode");
 
-  sunIcon.classList.toggle("hidden", isDark);
-  moonIcon.classList.toggle("hidden", !isDark);
-
+  // ✅ UPDATED LOGO RULES
   navLogo.src = isDark
-    ? "Novyra Identity Logo (Dark Theme).png"
-    : "Novyra Identity Logo (Light Theme).png";
+    ? "Novyra Navigation Bar Logo (Light Theme).png"
+    : "Novyra Navigation Bar Logo (Dark Theme).png";
+
+  sunIcon.style.opacity = isDark ? "0" : "1";
+  moonIcon.style.opacity = isDark ? "1" : "0";
 }
 
+/* TOGGLE */
 themeToggle.onclick = () => {
   body.classList.toggle("dark-mode");
 
-  localStorage.setItem("novyra-theme",
+  localStorage.setItem(
+    "novyra-theme",
     body.classList.contains("dark-mode") ? "dark" : "light"
   );
 
   updateTheme();
 };
 
+/* LOAD SAVED THEME */
 if(localStorage.getItem("novyra-theme")==="dark"){
   body.classList.add("dark-mode");
 }
 
 updateTheme();
-
-const links = document.querySelectorAll(".nav-link");
-
-window.addEventListener("scroll", ()=>{
-
-  const fromTop = window.scrollY;
-
-  links.forEach(link=>{
-
-    const target = link.getAttribute("href");
-
-    if(!target.startsWith("#")) return;
-
-    const sec = document.querySelector(target);
-
-    if(!sec) return;
-
-    if(
-      sec.offsetTop <= fromTop + 120 &&
-      sec.offsetTop + sec.offsetHeight > fromTop + 120
-    ){
-      link.classList.add("active");
-    } else {
-      link.classList.remove("active");
-    }
-
-  });
-
-});
-
-const reveals = document.querySelectorAll(".reveal");
-
-const observer = new IntersectionObserver((entries)=>{
-
-  entries.forEach(e=>{
-
-    if(e.isIntersecting){
-      e.target.classList.add("in-view");
-    }
-
-  });
-
-},{threshold:0.12});
-
-reveals.forEach(r=>observer.observe(r));
 
 </script>
 
