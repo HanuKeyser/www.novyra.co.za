@@ -15,22 +15,24 @@
       --bg: rgba(147, 197, 253, 0.08);
       --text: rgb(15 23 42);
       --muted: rgb(71 85 105);
-      --muted-2: rgb(100 116 139);
-      --glass: rgba(255,255,255,.72);
-      --glass-hover: rgba(255,255,255,.92);
+
+      --glass: rgba(255,255,255,.65);
+      --glass-hover: rgba(255,255,255,.90);
       --border: rgba(15,23,42,.08);
-      --shadow: 0 10px 35px rgba(0,0,0,.08);
+
+      --shadow: 0 12px 40px rgba(0,0,0,.10);
     }
 
     body.dark-mode{
       --bg: rgb(38 38 40);
       --text: white;
       --muted: rgb(156 163 175);
-      --muted-2: rgb(107 114 128);
-      --glass: rgba(255,255,255,.05);
-      --glass-hover: rgba(255,255,255,.10);
+
+      --glass: rgba(255,255,255,.06);
+      --glass-hover: rgba(255,255,255,.14);
       --border: rgba(255,255,255,.10);
-      --shadow: 0 8px 30px rgba(0,0,0,.35);
+
+      --shadow: 0 12px 40px rgba(0,0,0,.45);
     }
 
     body{
@@ -38,18 +40,75 @@
       background: var(--bg);
       color: var(--text);
       transition: background .35s ease, color .35s ease;
+      line-height: 1.6;
+      overflow-x:hidden;
     }
 
     html { scroll-behavior: smooth; }
 
+    /* SCROLLBAR */
     ::-webkit-scrollbar{ width:6px; }
     ::-webkit-scrollbar-track{ background:var(--bg); }
-
     ::-webkit-scrollbar-thumb{
       background:linear-gradient(to bottom, rgba(147,197,253,1), rgba(59,130,246,1));
       border-radius:10px;
     }
 
+    /* PROGRESS */
+    #progressBar{
+      position:fixed;
+      top:0;
+      left:0;
+      height:3px;
+      width:0%;
+      background:linear-gradient(to right,#60a5fa,#3b82f6);
+      z-index:9999;
+    }
+
+    /* GLASS */
+    .glass{
+      background: var(--glass);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      transition: all .3s ease;
+    }
+
+    .glass:hover{
+      transform: translateY(-4px) scale(1.01);
+      background: var(--glass-hover);
+    }
+
+    /* NAV ACTIVE */
+    .nav-link{
+      padding:6px 10px;
+      border-radius:10px;
+      transition:.2s ease;
+    }
+
+    .nav-link:hover{ color:#3b82f6; }
+    .nav-link.active{
+      color:#3b82f6;
+      background:rgba(59,130,246,.10);
+    }
+
+    /* HAMBURGER */
+    .hamburger span{
+      display:block;
+      width:18px;
+      height:2px;
+      margin:4px 0;
+      background:var(--text);
+      border-radius:10px;
+      transition:.3s ease;
+    }
+
+    .hamburger.open span:nth-child(1){ transform:translateY(6px) rotate(45deg); }
+    .hamburger.open span:nth-child(2){ opacity:0; }
+    .hamburger.open span:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
+
+    /* MOBILE MENU */
     .dropdown{
       max-height:0;
       opacity:0;
@@ -64,47 +123,43 @@
       transform:translateY(0);
     }
 
-    .hamburger span{
-      display:block;
-      width:18px;
-      height:2px;
-      border-radius:10px;
-      background:var(--text);
-      transition:.25s ease;
+    #backdrop{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.25);
+      opacity:0;
+      pointer-events:none;
+      transition:.3s ease;
+      z-index:40;
     }
 
-    .hamburger span:nth-child(2){ margin:4px 0; }
-
-    .hamburger.open span:nth-child(1){
-      transform:translateY(6px) rotate(45deg);
+    #backdrop.show{
+      opacity:1;
+      pointer-events:auto;
     }
 
-    .hamburger.open span:nth-child(2){ opacity:0; }
-
-    .hamburger.open span:nth-child(3){
-      transform:translateY(-6px) rotate(-45deg);
+    /* SECTION REVEAL */
+    .reveal{
+      opacity:0;
+      transform:translateY(40px);
+      transition:all .8s ease;
     }
 
-    .glass{
-      background:var(--glass);
-      border:1px solid var(--border);
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(24px);
-      -webkit-backdrop-filter:blur(24px);
+    .reveal.in-view{
+      opacity:1;
+      transform:translateY(0);
     }
 
-    .glass-hover:hover{ background:var(--glass-hover); }
-
-    #about .glass {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s ease;
-      will-change: opacity, transform;
+    /* HERO ANIMATION */
+    .hero-title span{
+      display:inline-block;
+      opacity:0;
+      transform:translateY(20px);
+      animation:fadeUp .8s forwards;
     }
 
-    #about .glass.in-view {
-      opacity: 1;
-      transform: translateY(0);
+    @keyframes fadeUp{
+      to{opacity:1; transform:translateY(0);}
     }
 
   </style>
@@ -112,117 +167,99 @@
 
 <body>
 
-<header class="fixed top-4 left-0 w-full z-50">
+<div id="progressBar"></div>
+<div id="backdrop"></div>
 
-  <div class="max-w-7xl mx-auto px-6 w-full flex items-stretch gap-4">
+<header class="fixed top-4 left-0 w-full z-50" id="navbar">
+
+  <div class="max-w-7xl mx-auto px-6 flex items-stretch gap-4">
 
     <nav class="flex-1">
 
-      <div class="relative flex items-center justify-between h-16 px-6 rounded-2xl glass">
+      <div class="flex items-center justify-between h-16 px-6 rounded-2xl glass">
 
-        <div class="absolute inset-0 rounded-2xl pointer-events-none bg-gradient-to-r from-blue-500/10 via-transparent to-blue-500/10"></div>
+        <img src="Novyra Transparent Logo.png" class="h-10 md:h-12 w-auto">
 
-        <img id="navLogo"
-          src="Novyra Transparent Logo.png"
-          class="h-10 md:h-12 w-auto object-contain">
+        <div class="hidden md:flex items-center gap-6 text-sm">
 
-        <div class="hidden md:flex items-center gap-4 text-sm">
-          <a href="#home" class="hover:text-blue-500 transition">Home</a>
-          <a href="#about" class="hover:text-blue-500 transition">About</a>
+          <a href="#home" class="nav-link">Home</a>
+          <a href="#about" class="nav-link">About</a>
 
           <a href="https://www.novyra.co.za/contact-us/"
-             target="_blank"
-             class="px-5 py-2 rounded-2xl glass glass-hover transition">
+             class="px-5 py-2 rounded-2xl bg-blue-500 text-white hover:bg-blue-600 transition active:scale-95">
             Contact Us
           </a>
+
         </div>
 
-        <div class="md:hidden flex items-center gap-2">
-          <button id="menuBtn"
-            class="hamburger flex flex-col justify-center items-center w-10 h-10 rounded-2xl hover:bg-black/5 transition">
-            <span></span><span></span><span></span>
-          </button>
-        </div>
+        <button id="menuBtn" class="md:hidden hamburger">
+          <span></span><span></span><span></span>
+        </button>
 
       </div>
 
     </nav>
 
+    <!-- THEME -->
     <button id="themeToggle"
-      class="h-16 px-5 rounded-2xl glass glass-hover flex items-center justify-center transition">
+      class="h-16 px-5 rounded-2xl glass flex items-center justify-center active:scale-95">
 
-      <svg id="sunIcon"
-        class="w-5 h-5 text-slate-700 transition"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2">
+      <svg id="sunIcon" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <circle cx="12" cy="12" r="4"/>
         <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
       </svg>
 
-      <svg id="moonIcon"
-        class="w-5 h-5 hidden text-slate-200 transition"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      <svg id="moonIcon" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3A7 7 0 0 0 21 12.79Z"/>
       </svg>
 
     </button>
 
   </div>
 
+  <!-- MOBILE -->
   <div id="mobileMenu" class="dropdown md:hidden mt-3 px-6">
-    <div class="max-w-7xl mx-auto">
-      <div class="glass rounded-2xl px-6 py-6 flex flex-col gap-5 text-sm">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="https://www.novyra.co.za/contact-us/" target="_blank">Contact Us</a>
-      </div>
+    <div class="glass rounded-2xl p-6 flex flex-col gap-4 text-sm">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="https://www.novyra.co.za/contact-us/">Contact Us</a>
     </div>
   </div>
 
 </header>
 
 <!-- HOME -->
-<section id="home" class="min-h-screen flex items-center px-6 pt-16 md:pt-8 pb-3 md:pb-6">
+<section id="home" class="min-h-screen flex items-center px-6 pt-24">
 
-  <div class="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 md:grid-cols-2 gap-12">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 w-full">
 
-    <div class="flex flex-col justify-center">
-
+    <div class="hero-title">
       <h1 class="text-4xl md:text-6xl font-bold mb-6">
-        Welcome to Novyra
+        <span style="animation-delay:0s">Welcome</span>
+        <span style="animation-delay:.08s">to</span>
+        <span style="animation-delay:.16s">Novyra</span>
       </h1>
 
-      <p class="text-slate-500 text-lg md:text-xl mb-6">
+      <p class="text-slate-500 text-lg md:text-xl mb-6 reveal">
         A modern digital presence built for clarity, performance, and intentional creative direction.
         Novyra represents a new era of creation where ideas are shaped with purpose, refined through design, and brought to life through thoughtful digital execution.
       </p>
 
-      <p class="text-slate-400 mb-10">
+      <p class="text-slate-400 mb-10 reveal">
         It is a space focused on building meaningful, forward-thinking work that feels clean, modern, and impactful.
       </p>
 
       <a href="https://www.novyra.co.za/contact-us/"
-         target="_blank"
-         class="inline-block px-6 py-3 rounded-2xl bg-blue-500 text-white hover:bg-blue-600 transition w-fit">
+         class="px-6 py-3 rounded-2xl bg-blue-500 text-white hover:bg-blue-600 active:scale-95 transition">
         Get Started
       </a>
-
     </div>
 
-    <div class="hidden md:flex">
-      <div class="w-full rounded-2xl overflow-hidden glass shadow-2xl">
-
-        <video id="heroVideo" autoplay muted loop playsinline class="w-full h-full object-cover">
-          <source id="heroVideoSource"
-            src="Novyra Logo Reveal Landscape (Light Theme).mp4"
-            type="video/mp4">
+    <div class="hidden md:flex reveal">
+      <div class="w-full rounded-2xl overflow-hidden glass">
+        <video autoplay muted loop playsinline class="w-full h-full object-cover">
+          <source src="Novyra Logo Reveal Landscape (Light Theme).mp4" type="video/mp4">
         </video>
-
       </div>
     </div>
 
@@ -231,62 +268,51 @@
 </section>
 
 <!-- ABOUT -->
-<section id="about" class="min-h-screen flex items-center px-6 py-20">
+<section id="about" class="px-6 py-20">
 
-  <div class="max-w-7xl mx-auto px-6 w-full">
+  <div class="max-w-7xl mx-auto">
 
-    <div class="glass rounded-2xl p-6 glass-hover transition mb-6">
-
+    <div class="glass rounded-2xl p-6 mb-10 reveal">
       <h3 class="text-lg font-semibold mb-3">About Novyra</h3>
 
-      <p class="text-sm text-slate-500 mb-4">
+      <p class="text-slate-500 mb-4">
         Novyra is a creative studio focused on shaping digital experiences that are structured, refined, and built with purpose. We explore how brands communicate across visual and digital spaces, turning ideas into cohesive systems that connect design, structure, and function in a unified way.
       </p>
 
-      <p class="text-sm text-slate-500">
+      <p class="text-slate-500">
         Our work is rooted in the relationship between design and logic. Rather than treating visuals and functionality as separate elements, we develop them together to create outcomes that feel considered, balanced, and purposeful in execution.
       </p>
-
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+    <!-- CARDS -->
+    <div class="grid md:grid-cols-3 gap-6 mb-16">
 
-      <div class="glass rounded-2xl p-6 glass-hover transition">
-
+      <div class="glass rounded-2xl p-6 reveal">
         <h3 class="text-lg font-semibold mb-3">Who We Are</h3>
-
-        <p class="text-sm text-slate-500 mb-4">
+        <p class="text-slate-500">
           We are designers and builders who approach every project as something to be constructed with care rather than decorated for appearance. Each brand is treated as its own entity, with a distinct voice that is uncovered, shaped, and expressed through design. Our work is grounded in structure, problem-solving, and attention to detail, focusing on creating outcomes that feel deliberate, balanced, and built to last beyond trends.
         </p>
-
       </div>
 
-      <div class="glass rounded-2xl p-6 glass-hover transition">
-
+      <div class="glass rounded-2xl p-6 reveal">
         <h3 class="text-lg font-semibold mb-3">Why Choose Us</h3>
-
-        <p class="text-sm text-slate-500 mb-4">
+        <p class="text-slate-500">
           Choosing Novyra means working with a studio that avoids generic outcomes and instead builds solutions shaped around each brand’s identity and direction. Nothing is reused or templated, and every project begins with understanding what makes it unique. We focus on creating work that is original, structured, and carefully executed, with strong attention to clarity, depth, and conceptual meaning.
         </p>
-
       </div>
 
-      <div class="glass rounded-2xl p-6 glass-hover transition">
-
+      <div class="glass rounded-2xl p-6 reveal">
         <h3 class="text-lg font-semibold mb-3">Our Philosophy</h3>
-
-        <p class="text-sm text-slate-500 mb-4">
+        <p class="text-slate-500">
           Novyra is built on the belief that design is not decoration, but direction. Digital experiences should be created with intention, not repetition, where ideas are shaped into something original rather than adapted from what already exists. We focus on clarity, structure, and meaning, understanding that simplicity is the result of careful thinking and deliberate refinement. Our philosophy is centered on creating with purpose, building with intention, and designing for the future rather than the past.
         </p>
-
       </div>
 
     </div>
 
-    <div class="text-center">
+    <div class="text-center reveal">
       <a href="https://www.novyra.co.za/about-us/"
-         target="_blank"
-         class="inline-block px-8 py-3 rounded-2xl bg-blue-500 text-white hover:bg-blue-600 transition shadow-lg">
+         class="inline-block px-8 py-3 rounded-2xl bg-blue-500 text-white hover:bg-blue-600 active:scale-95 transition">
         View Full About Novyra
       </a>
     </div>
@@ -301,73 +327,82 @@
 
 <script>
 
+/* scroll progress */
+window.addEventListener("scroll", ()=>{
+  const bar = document.getElementById("progressBar");
+  const h = document.documentElement;
+  bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100 + "%";
+});
+
+/* mobile */
+const menuBtn = document.getElementById("menuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+const backdrop = document.getElementById("backdrop");
+
+menuBtn.onclick = () => {
+  menuBtn.classList.toggle("open");
+  mobileMenu.classList.toggle("open");
+  backdrop.classList.toggle("show");
+};
+
+backdrop.onclick = () => {
+  menuBtn.classList.remove("open");
+  mobileMenu.classList.remove("open");
+  backdrop.classList.remove("show");
+};
+
+/* theme */
 const body = document.body;
-
-const navLogo = document.getElementById("navLogo");
-const heroVideoSource = document.getElementById("heroVideoSource");
-
 const themeToggle = document.getElementById("themeToggle");
 const sunIcon = document.getElementById("sunIcon");
 const moonIcon = document.getElementById("moonIcon");
 
-const menuBtn = document.getElementById("menuBtn");
-const mobileMenu = document.getElementById("mobileMenu");
-
-menuBtn.addEventListener("click", () => {
-  mobileMenu.classList.toggle("open");
-  menuBtn.classList.toggle("open");
-});
-
 function updateTheme(){
-
   const isDark = body.classList.contains("dark-mode");
-
   sunIcon.classList.toggle("hidden", isDark);
   moonIcon.classList.toggle("hidden", !isDark);
-
-  navLogo.src = "Novyra Transparent Logo.png";
-
-  heroVideoSource.src = isDark
-    ? "Novyra Logo Reveal Landscape (Dark Theme).mp4"
-    : "Novyra Logo Reveal Landscape (Light Theme).mp4";
-
-  document.getElementById("heroVideo").load();
 }
 
-function toggleTheme(){
-
+themeToggle.onclick = () => {
   body.classList.toggle("dark-mode");
-
-  localStorage.setItem(
-    "novyra-theme",
-    body.classList.contains("dark-mode") ? "dark" : "light"
-  );
-
+  localStorage.setItem("novyra-theme", body.classList.contains("dark-mode") ? "dark":"light");
   updateTheme();
-}
+};
 
-themeToggle.addEventListener("click", toggleTheme);
-
-const savedTheme = localStorage.getItem("novyra-theme");
-
-if(savedTheme === "dark"){
-  body.classList.add("dark-mode");
-}
-
+if(localStorage.getItem("novyra-theme")==="dark") body.classList.add("dark-mode");
 updateTheme();
 
-/* Scroll animation */
-const aboutCards = document.querySelectorAll("#about .glass");
+/* nav active */
+const links = document.querySelectorAll(".nav-link");
 
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("in-view");
+window.addEventListener("scroll", ()=>{
+  const fromTop = window.scrollY;
+
+  links.forEach(link=>{
+    const sec = document.querySelector(link.getAttribute("href"));
+    if(!sec) return;
+
+    if(sec.offsetTop <= fromTop+120 &&
+       sec.offsetTop + sec.offsetHeight > fromTop+120){
+      link.classList.add("active");
+    } else {
+      link.classList.remove("active");
     }
   });
-}, { threshold: 0.15 });
+});
 
-aboutCards.forEach(card => revealObserver.observe(card));
+/* reveal animations */
+const reveals = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add("in-view");
+    }
+  });
+},{threshold:0.12});
+
+reveals.forEach(r=>observer.observe(r));
 
 </script>
 
