@@ -1,442 +1,471 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Novyra - Contact</title>
-
-<link rel="icon" type="image/png" href="Novyra-Logo.png">
-
-<style>
-
-/* =========================
-   DESIGN SYSTEM
-========================= */
-
-:root{
-  --glass-bg: rgba(255,255,255,0.28);
-  --glass-border: rgba(255,255,255,0.6);
-  --blur: blur(50px);
-  --page-bg: #f3f4f6;
-}
-
-/* BASE */
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:system-ui,-apple-system,sans-serif;
-}
-
-body{
-  background:var(--page-bg);
-  overflow-x:hidden;
-}
-
-/* =========================
-   CONTAINER SYSTEM
-========================= */
-
-.container{
-  max-width:1120px;
-  margin:0 auto;
-padding:0;
-  width:100%;
-}
-
-/* =========================
-   NAV
-========================= */
-
-header{
-  position:fixed;
-  top:0;
-  width:100%;
-  z-index:1000;
-}
-
-.top-bar{
-  width:100%;
-  display:flex;
-  justify-content:center;
-  margin:18px 0;
-}
-
-.nav{
-  width:100%;
-  max-width:1120px;
-  height:64px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-padding:0;
-
-  background:var(--glass-bg);
-  backdrop-filter:var(--blur);
-  border:1px solid var(--glass-border);
-  border-radius:18px;
-}
-
-.logo{ height:32px; }
-
-nav ul{
-  display:flex;
-  gap:10px;
-  list-style:none;
-}
-
-nav a{
-  text-decoration:none;
-  color:#000;
-  font-size:14px;
-  padding:7px 10px;
-  border-radius:10px;
-}
-
-/* =========================
-   HAMBURGER
-========================= */
-
-.menu-toggle{
-  width:42px;
-  height:42px;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  border-radius:12px;
-  background:var(--glass-bg);
-  border:1px solid var(--glass-border);
-  cursor:pointer;
-  position:relative;
-  z-index:1002;
-}
-
-.menu-toggle span{
-  position:absolute;
-  width:18px;
-  height:2px;
-  background:#000;
-  transition:0.3s ease;
-}
-
-.menu-toggle span:nth-child(1){ transform:translateY(-6px); }
-.menu-toggle span:nth-child(2){ transform:translateY(0); }
-.menu-toggle span:nth-child(3){ transform:translateY(6px); }
-
-.menu-open .menu-toggle span:nth-child(1){ transform:rotate(45deg); }
-.menu-open .menu-toggle span:nth-child(2){ opacity:0; }
-.menu-open .menu-toggle span:nth-child(3){ transform:rotate(-45deg); }
-
-/* =========================
-   MOBILE MENU
-========================= */
-
-.mobile{
-  position:fixed;
-  top:90px;
-  left:50%;
-  transform:translateX(-50%) scale(1.04);
-
-  width:92%;
-  max-width:420px;
-
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-  padding:22px;
-
-  background:var(--glass-bg);
-  backdrop-filter:var(--blur);
-  border:1px solid var(--glass-border);
-  border-radius:22px;
-
-  opacity:0;
-  pointer-events:none;
-  transition:0.35s ease;
-
-  z-index:1001;
-}
-
-.mobile.active{
-  opacity:1;
-  pointer-events:auto;
-  transform:translateX(-50%) scale(1);
-}
-
-.mobile a{
-  text-decoration:none;
-  color:#000;
-  padding:12px;
-  border-radius:10px;
-}
-
-/* =========================
-   CONTENT
-========================= */
-
-.content{
-  padding:140px 20px 60px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-
-.contact-intro{
-  max-width:1120px;
-  width:100%;
-  text-align:center;
-  margin-bottom:20px;
-}
-
-.contact-intro h1{
-  font-size:30px;
-  margin-bottom:8px;
-}
-
-.contact-intro p{
-  font-size:14px;
-  opacity:0.7;
-  line-height:1.6;
-}
-
-/* WRAPPER */
-
-.contact-wrapper{
-  width:100%;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
-}
-
-/* CARD */
-
-.card{
-  padding:28px;
-  border-radius:26px;
-
-  background:var(--glass-bg);
-  backdrop-filter:var(--blur);
-  border:1px solid var(--glass-border);
-
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-}
-
-/* DEPARTMENTS */
-
-.dept{
-  padding:14px;
-  border-radius:16px;
-  background:rgba(255,255,255,0.35);
-  border:1px solid rgba(255,255,255,0.5);
-}
-
-.dept h3{
-  font-size:15px;
-  margin-bottom:6px;
-}
-
-.dept p{
-  font-size:13px;
-  opacity:0.75;
-}
-
-/* =========================
-   SOCIAL BUTTONS (UPDATED)
-========================= */
-
-.socials{
-  margin-top:8px;
-  display:flex;
-  gap:10px;
-}
-
-.socials a{
-  flex:1;
-  text-align:center;
-  text-decoration:none;
-  font-size:13px;
-  padding:10px;
-  border-radius:999px;
-  color:#fff;
-  font-weight:500;
-  transition:0.2s ease;
-}
-
-/* Instagram */
-.socials a.instagram{
-  background:linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
-}
-
-/* LinkedIn */
-.socials a.linkedin{
-  background:#0A66C2;
-}
-
-.socials a:hover{
-  transform:translateY(-2px);
-  filter:brightness(1.05);
-}
-
-/* =========================
-   FORM
-========================= */
-
-.form{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-
-.form input,
-.form textarea{
-  width:100%;
-  padding:12px 14px;
-
-  border-radius:14px;
-  border:1px solid rgba(0,0,0,0.08);
-
-  background:rgba(255,255,255,0.65);
-  font-size:14px;
-
-  outline:none;
-}
-
-.form textarea{
-  min-height:140px;
-  resize:none;
-}
-
-.form button{
-  padding:12px;
-  border:none;
-  border-radius:14px;
-  background:#000;
-  color:#fff;
-  cursor:pointer;
-  transition:0.2s ease;
-}
-
-.form button:hover{
-  transform:translateY(-2px);
-}
-
-/* RESPONSIVE */
-
-@media(max-width:768px){
-  nav ul{ display:none; }
-  .menu-toggle{ display:flex; }
-
-  .contact-wrapper{
-    grid-template-columns:1fr;
-  }
-}
-
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Novyra - New Era of Creation</title>
+
+  <link rel="icon" type="image/png" href="Novyra Emblem Logo (Light Theme).png">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+
+    :root{
+      --bg: rgba(147, 197, 253, 0.08);
+      --text: rgb(15 23 42);
+      --muted: rgb(71 85 105);
+
+      --glass: rgba(255,255,255,.65);
+      --glass-hover: rgba(255,255,255,.90);
+      --border: rgba(15,23,42,.08);
+
+      --shadow: 0 12px 40px rgba(0,0,0,.10);
+    }
+
+    body.dark-mode{
+      --bg: rgb(38 38 40);
+      --text: white;
+      --muted: rgb(156 163 175);
+
+      --glass: rgba(255,255,255,.06);
+      --glass-hover: rgba(255,255,255,.14);
+      --border: rgba(255,255,255,.10);
+
+      --shadow: 0 12px 40px rgba(0,0,0,.45);
+    }
+
+    body{
+      font-family: sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background .35s ease, color .35s ease;
+      line-height: 1.6;
+      overflow-x:hidden;
+    }
+
+    html{ scroll-behavior:smooth; }
+
+    ::-webkit-scrollbar{ width:6px; }
+
+    ::-webkit-scrollbar-track{ background:var(--bg); }
+
+    ::-webkit-scrollbar-thumb{
+      background:linear-gradient(to bottom, rgba(147,197,253,1), rgba(59,130,246,1));
+      border-radius:10px;
+    }
+
+    .glass{
+      background: var(--glass);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      transition: all .3s ease;
+    }
+
+    .glass:hover{ background: var(--glass-hover); }
+
+    .no-glow:hover{ background: var(--glass) !important; }
+
+    .card-hover:hover{
+      transform: translateY(-4px) scale(1.01);
+    }
+
+    .nav-link{
+      padding:6px 10px;
+      border-radius:10px;
+      transition:.2s ease;
+    }
+
+    .nav-link:hover{ color:#3b82f6; }
+
+    .nav-link.active{
+      color:#3b82f6;
+      background:rgba(59,130,246,.10);
+    }
+
+    .hamburger span{
+      display:block;
+      width:18px;
+      height:2px;
+      margin:4px 0;
+      background:var(--text);
+      border-radius:10px;
+      transition:.3s ease;
+    }
+
+    .hamburger.open span:nth-child(1){
+      transform:translateY(6px) rotate(45deg);
+    }
+
+    .hamburger.open span:nth-child(2){
+      opacity:0;
+    }
+
+    .hamburger.open span:nth-child(3){
+      transform:translateY(-6px) rotate(-45deg);
+    }
+
+    .dropdown{
+      max-height:0;
+      opacity:0;
+      overflow:hidden;
+      transform:translateY(-10px);
+      transition:all .3s ease;
+    }
+
+    .dropdown.open{
+      max-height:400px;
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    #backdrop{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.25);
+      opacity:0;
+      pointer-events:none;
+      transition:.3s ease;
+      z-index:40;
+    }
+
+    #backdrop.show{
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(40px);
+      transition:all .8s ease;
+    }
+
+    .reveal.in-view{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .hero-title span{
+      display:inline-block;
+      opacity:0;
+      transform:translateY(20px);
+      animation:fadeUp .8s forwards;
+    }
+
+    @keyframes fadeUp{
+      to{ opacity:1; transform:translateY(0); }
+    }
+
+  </style>
 </head>
 
 <body>
 
-<header>
-  <div class="top-bar container">
-    <div class="nav">
+<div id="backdrop"></div>
 
-      <img src="Novyra-Logo.png" class="logo">
+<header class="fixed top-4 left-0 w-full z-50" id="navbar">
 
-      <nav>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About Novyra</a></li>
-          <li><a href="#">Transformed Visions</a></li>
-          <li><a href="#">Creative Services</a></li>
-          <li><a href="#">Contact Us</a></li>
-        </ul>
-      </nav>
+  <!-- ✅ MATCHED WIDTH CONTAINER (same as sections) -->
+  <div class="max-w-screen-xl mx-auto w-full px-6 flex items-stretch gap-4">
 
-      <div class="menu-toggle" onclick="toggleMenu()">
-        <span></span><span></span><span></span>
+    <nav class="flex-1">
+
+      <div class="w-full flex items-center justify-between h-16 px-6 rounded-2xl glass no-glow">
+
+        <img id="navLogo"
+             src="Novyra Identity Logo (Light Theme).png"
+             class="h-10 md:h-12 w-auto">
+
+        <div class="hidden md:flex items-center gap-6 text-sm">
+
+          <a href="#home" class="nav-link">
+            Home
+          </a>
+
+          <a href="#about" class="nav-link">
+            About
+          </a>
+
+          <a href="https://www.novyra.co.za/contact-us/"
+             class="px-5 py-2 rounded-2xl bg-blue-500 text-white hover:bg-blue-600 transition active:scale-95">
+            Contact Us
+          </a>
+
+        </div>
+
+        <button id="menuBtn" class="md:hidden hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+      </div>
+
+    </nav>
+
+    <!-- THEME (kept separate) -->
+    <button id="themeToggle"
+      class="h-16 px-5 rounded-2xl glass no-glow flex items-center justify-center active:scale-95">
+
+      <svg id="sunIcon" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="4"/>
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+      </svg>
+
+      <svg id="moonIcon" class="w-5 h-5 hidden" viewBox="0 0 24 24">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3A7 7 0 0 0 21 12.79Z"/>
+      </svg>
+
+    </button>
+
+  </div>
+
+  <!-- MOBILE (now aligned width too) -->
+  <div id="mobileMenu" class="dropdown md:hidden mt-3">
+
+    <div class="max-w-screen-xl mx-auto px-6">
+      <div class="glass rounded-2xl p-6 flex flex-col gap-2 text-sm">
+
+        <a href="#home" class="nav-link">
+          Home
+        </a>
+
+        <a href="#about" class="nav-link">
+          About
+        </a>
+
+        <a href="https://www.novyra.co.za/contact-us/"
+           class="rounded-xl bg-blue-500 text-white px-4 py-2 active:scale-95 transition text-center">
+          Contact Us
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+
+</header>
+
+<!-- HOME -->
+<section id="home" class="min-h-screen flex items-center pt-12">
+
+  <div class="max-w-screen-xl mx-auto w-full px-6 grid md:grid-cols-2 gap-12">
+
+    <div class="hero-title">
+
+      <h1 class="text-4xl md:text-6xl font-bold mb-6">
+
+        <span style="animation-delay:0s">Welcome</span>
+        <span style="animation-delay:.08s">to</span>
+        <span style="animation-delay:.16s">Novyra</span>
+
+      </h1>
+
+      <p class="text-slate-500 text-lg md:text-xl mb-6 reveal">
+        A modern digital presence built for clarity, performance, and intentional creative direction.
+        Novyra represents a new era of creation where ideas are shaped with purpose, refined through design, and brought to life through thoughtful digital execution.
+      </p>
+
+      <p class="text-slate-400 mb-10 reveal">
+        It is a space focused on building meaningful, forward-thinking work that feels clean, modern, and impactful.
+      </p>
+
+      <a href="https://www.novyra.co.za/contact-us/"
+         class="px-6 py-3 rounded-2xl bg-blue-500 text-white hover:bg-blue-600 active:scale-95 transition">
+        Get Started
+      </a>
+
+    </div>
+
+    <div class="hidden md:flex reveal">
+
+      <div class="w-full rounded-2xl overflow-hidden glass">
+
+        <video id="heroVideo" autoplay muted loop playsinline class="w-full h-full object-cover">
+          <source src="Novyra Logo Reveal Landscape (Light Theme).mp4" type="video/mp4">
+        </video>
+
       </div>
 
     </div>
+
   </div>
-</header>
 
-<!-- MOBILE -->
-<div class="mobile" id="mobile">
-  <a href="#">Home</a>
-  <a href="#">About Novyra</a>
-  <a href="#">Transformed Vision</a>
-  <a href="#">Creative Services</a>
-  <a href="#">Contact Us</a>
-</div>
+</section>
 
-<main class="content">
+<!-- ABOUT -->
+<section id="about" class="pt-20 pb-14">
 
-<div class="contact-intro">
-  <h1>Get In Touch</h1>
-  <p>Contact the correct department below so we can assist you faster, or send us an email if you’re unsure where your query belongs.</p>
-</div>
+  <div class="max-w-screen-xl mx-auto w-full px-6 pt-4">
 
-<div class="contact-wrapper container">
+    <div class="glass card-hover rounded-2xl p-6 mt-2 mb-10 reveal">
 
-  <!-- LEFT -->
-  <div class="card">
+      <h3 class="text-lg font-semibold mb-3">
+        About Novyra
+      </h3>
 
-    <h2>Contact Departments</h2>
+      <p class="text-slate-500 mb-4">
+        Novyra is a creative studio focused on shaping digital experiences that are structured, refined, and built with purpose. We explore how brands communicate across visual and digital spaces, turning ideas into cohesive systems that connect design, structure, and function in a unified way.
+      </p>
 
-    <div class="dept">
-      <h3>General Enquiries | info@novyra.co.za</h3>
-      <p>General questions and company information.</p>
+      <p class="text-slate-500">
+        Our work is rooted in the relationship between design and logic. Rather than treating visuals and functionality as separate elements, we develop them together to create outcomes that feel considered, balanced, and purposeful in execution.
+      </p>
+
     </div>
 
-    <div class="dept">
-      <h3>Sales | sales@novyra.co.za</h3>
-      <p>Quotes, pricing and new business opportunities.</p>
+    <div class="grid md:grid-cols-3 gap-6 mb-10">
+
+      <div class="glass card-hover rounded-2xl p-6 reveal">
+
+        <h3 class="text-lg font-semibold mb-3">
+          Who We Are
+        </h3>
+
+        <p class="text-slate-500">
+          We are designers and builders who approach every project as something to be constructed with care rather than decorated for appearance. Each brand is treated as its own entity, with a distinct voice that is uncovered, shaped, and expressed through design. Our work is grounded in structure, problem-solving, and attention to detail, focusing on creating outcomes that feel deliberate, balanced, and built to last beyond trends.
+        </p>
+
+      </div>
+
+      <div class="glass card-hover rounded-2xl p-6 reveal">
+
+        <h3 class="text-lg font-semibold mb-3">
+          Why Choose Us
+        </h3>
+
+        <p class="text-slate-500">
+          Choosing Novyra means working with a studio that avoids generic outcomes and instead builds solutions shaped around each brand’s identity and direction. Nothing is reused or templated, and every project begins with understanding what makes it unique. We focus on creating work that is original, structured, and carefully executed, with strong attention to clarity, depth, and conceptual meaning.
+        </p>
+
+      </div>
+
+      <div class="glass card-hover rounded-2xl p-6 reveal">
+
+        <h3 class="text-lg font-semibold mb-3">
+          Our Philosophy
+        </h3>
+
+        <p class="text-slate-500">
+          Novyra is built on the belief that design is not decoration, but direction. Digital experiences should be created with intention, not repetition, where ideas are shaped into something original rather than adapted from what already exists. We focus on clarity, structure, and meaning, understanding that simplicity is the result of careful thinking and deliberate refinement. Our philosophy is centered on creating with purpose, building with intention, and designing for the future rather than the past.
+        </p>
+
+      </div>
+
     </div>
 
-    <div class="dept">
-      <h3>Finance | finance@novyra.co.za</h3>
-      <p>Invoices, billing and payments.</p>
-    </div>
+    <div class="text-center reveal">
 
-    <div class="socials">
-      <a class="instagram" href="https://www.instagram.com/novyra.co.za/" target="_blank">
-        Instagram
+      <a href="https://www.novyra.co.za/about-us/"
+         class="inline-block px-8 py-3 rounded-2xl bg-blue-500 text-white hover:bg-blue-600 active:scale-95 transition">
+        View Full About Novyra
       </a>
 
-      <a class="linkedin" href="https://www.linkedin.com/company/novyramarketing/" target="_blank">
-        LinkedIn
-      </a>
     </div>
 
   </div>
 
-  <!-- RIGHT -->
-  <div class="card">
+</section>
 
-    <h2>Send Message</h2>
-
-    <form class="form">
-      <input type="text" placeholder="Name" required>
-      <input type="email" placeholder="Email" required>
-      <textarea placeholder="Message"></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-
-  </div>
-
-</div>
-
-</main>
+<footer class="text-center py-3 text-sm text-slate-400">
+  © 2026 Novyra. All rights reserved.
+</footer>
 
 <script>
 
-function toggleMenu(){
-  document.body.classList.toggle("menu-open");
-  document.getElementById("mobile").classList.toggle("active");
+// unchanged JS
+
+const menuBtn = document.getElementById("menuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+const backdrop = document.getElementById("backdrop");
+
+menuBtn.onclick = () => {
+  menuBtn.classList.toggle("open");
+  mobileMenu.classList.toggle("open");
+  backdrop.classList.toggle("show");
+};
+
+backdrop.onclick = () => {
+  menuBtn.classList.remove("open");
+  mobileMenu.classList.remove("open");
+  backdrop.classList.remove("show");
+};
+
+const body = document.body;
+const themeToggle = document.getElementById("themeToggle");
+const sunIcon = document.getElementById("sunIcon");
+const moonIcon = document.getElementById("moonIcon");
+const navLogo = document.getElementById("navLogo");
+
+function updateTheme(){
+  const isDark = body.classList.contains("dark-mode");
+
+  sunIcon.classList.toggle("hidden", isDark);
+  moonIcon.classList.toggle("hidden", !isDark);
+
+  navLogo.src = isDark
+    ? "Novyra Identity Logo (Dark Theme).png"
+    : "Novyra Identity Logo (Light Theme).png";
 }
+
+themeToggle.onclick = () => {
+  body.classList.toggle("dark-mode");
+
+  localStorage.setItem("novyra-theme",
+    body.classList.contains("dark-mode") ? "dark" : "light"
+  );
+
+  updateTheme();
+};
+
+if(localStorage.getItem("novyra-theme")==="dark"){
+  body.classList.add("dark-mode");
+}
+
+updateTheme();
+
+const links = document.querySelectorAll(".nav-link");
+
+window.addEventListener("scroll", ()=>{
+
+  const fromTop = window.scrollY;
+
+  links.forEach(link=>{
+
+    const sec = document.querySelector(link.getAttribute("href"));
+
+    if(!sec) return;
+
+    if(
+      sec.offsetTop <= fromTop + 120 &&
+      sec.offsetTop + sec.offsetHeight > fromTop + 120
+    ){
+      link.classList.add("active");
+    } else {
+      link.classList.remove("active");
+    }
+
+  });
+
+});
+
+const reveals = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver((entries)=>{
+
+  entries.forEach(e=>{
+
+    if(e.isIntersecting){
+      e.target.classList.add("in-view");
+    }
+
+  });
+
+},{threshold:0.12});
+
+reveals.forEach(r=>observer.observe(r));
 
 </script>
 
