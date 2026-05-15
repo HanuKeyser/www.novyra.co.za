@@ -6,23 +6,33 @@
 
   <title>Novyra - New Era of Creation</title>
 
-  <!-- FAVICON (LIGHT THEME AS DEFAULT) -->
-  <link id="favicon" rel="icon" type="image/png" href="Novyra Tab Icon (Light Theme).png">
-
+  <link rel="icon" type="image/png" href="Novyra Tab Icon (Light Theme).png">
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
+
+    /* =========================
+       THEME VARIABLES
+    ========================= */
 
     :root{
       --bg: #f3f4f6;
       --text: rgb(15 23 42);
       --footer-text: #000000;
+
+      /* scrollbar (light) */
+      --scroll-thumb: rgba(59,130,246,0.85);
+      --scroll-track: transparent;
     }
 
     body.dark-mode{
       --bg: rgb(38 38 40);
       --text: white;
       --footer-text: #ffffff;
+
+      /* scrollbar (dark) */
+      --scroll-thumb: rgba(147,197,253,0.9);
+      --scroll-track: transparent;
     }
 
     body{
@@ -34,40 +44,98 @@
       overflow-x:hidden;
     }
 
-    html{ scroll-behavior:smooth; }
+    html{
+      scroll-behavior:smooth;
 
-    /* GLASS */
+      scrollbar-width: thin;
+      scrollbar-color: var(--scroll-thumb) var(--scroll-track);
+    }
+
+    /* =========================
+       CUSTOM SCROLLBAR (THEME AWARE)
+    ========================= */
+
+    ::-webkit-scrollbar{
+      width:8px;
+    }
+
+    ::-webkit-scrollbar-track{
+      background: var(--scroll-track);
+    }
+
+    ::-webkit-scrollbar-thumb{
+      background: var(--scroll-thumb);
+      border-radius:10px;
+      border:2px solid transparent;
+      background-clip:padding-box;
+    }
+
+    ::-webkit-scrollbar-thumb:hover{
+      opacity:0.9;
+    }
+
+    /* =========================
+       GLASS
+    ========================= */
+
     .glass-card{
-      background: rgba(255,255,255,.4);
+      background: rgba(255,255,255,0.4);
       backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,.3);
-      box-shadow: 0 8px 32px rgba(0,0,0,.1);
-      position: relative;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,0.3);
+      box-shadow:0 8px 32px rgba(0,0,0,0.1);
+      position:relative;
       overflow:hidden;
+      transition:.3s ease;
     }
 
     body.dark-mode .glass-card{
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.10);
-      box-shadow: 0 12px 40px rgba(0,0,0,.45);
+      background: rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.1);
+      box-shadow:0 12px 40px rgba(0,0,0,0.45);
     }
 
-    .icon{
-      position:absolute;
-      width:20px;
-      height:20px;
+    /* =========================
+       NAV
+    ========================= */
+
+    .nav-link{
+      padding:6px 10px;
+      border-radius:10px;
+      transition:.2s ease;
+    }
+
+    .nav-link:hover{ color:#3b82f6; }
+
+    .nav-link.active{
+      color:#3b82f6;
+      background:rgba(59,130,246,0.1);
+    }
+
+    /* =========================
+       MOBILE MENU FIX
+    ========================= */
+
+    .dropdown{
+      max-height:0;
+      opacity:0;
+      overflow:hidden;
       transition:.3s ease;
+    }
+
+    .dropdown.open{
+      max-height:300px;
+      opacity:1;
     }
 
     #backdrop{
       position:fixed;
       inset:0;
-      background:rgba(0,0,0,.25);
+      background:rgba(0,0,0,0.25);
       opacity:0;
       pointer-events:none;
       transition:.3s ease;
+      z-index:40;
     }
 
     #backdrop.show{
@@ -75,14 +143,11 @@
       pointer-events:auto;
     }
 
-    .dropdown{
-      max-height:0;
-      overflow:hidden;
+    .icon{
+      position:absolute;
+      width:20px;
+      height:20px;
       transition:.3s ease;
-    }
-
-    .dropdown.open{
-      max-height:300px;
     }
 
   </style>
@@ -100,16 +165,16 @@
 
       <div class="h-16 px-6 glass-card flex items-center justify-between">
 
-        <!-- NAVBAR LOGO (UPDATED RULES) -->
         <img
           id="navLogo"
           src="Novyra Navigation Bar Logo (Dark Theme).png"
           class="h-10 md:h-12 w-auto"
         >
 
+        <!-- DESKTOP NAV -->
         <div class="hidden md:flex items-center gap-6 text-sm">
 
-          <a href="#home">Home</a>
+          <a href="#home" class="nav-link active">Home</a>
 
           <a href="https://www.novyra.co.za/contact-us/"
              class="px-5 py-2 rounded-2xl bg-blue-500 text-white">
@@ -118,21 +183,23 @@
 
         </div>
 
-        <button id="menuBtn">☰</button>
+        <!-- HAMBURGER -->
+        <button id="menuBtn" class="md:hidden text-xl">☰</button>
 
       </div>
 
     </nav>
 
-    <!-- THEME BUTTON -->
+    <!-- THEME -->
     <button id="themeToggle"
       class="h-16 w-16 glass-card flex items-center justify-center relative overflow-hidden">
 
       <svg id="sunIcon" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
         <circle cx="12" cy="12" r="4"></circle>
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
       </svg>
 
-      <svg id="moonIcon" class="icon opacity-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <svg id="moonIcon" class="icon opacity-0 scale-75" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
         <path d="M21 12.6A8.5 8.5 0 1 1 11.4 3a6.8 6.8 0 0 0 9.6 9.6Z"/>
       </svg>
 
@@ -140,8 +207,25 @@
 
   </div>
 
+  <!-- MOBILE MENU (FIXED STRUCTURE) -->
+  <div id="mobileMenu" class="dropdown md:hidden mt-3">
+    <div class="max-w-screen-xl mx-auto px-6">
+      <div class="glass-card p-6 flex flex-col gap-3 text-sm">
+
+        <a href="#home" class="nav-link">Home</a>
+
+        <a href="https://www.novyra.co.za/contact-us/"
+           class="px-4 py-2 rounded-xl bg-blue-500 text-white text-center">
+          Contact Us
+        </a>
+
+      </div>
+    </div>
+  </div>
+
 </header>
 
+<!-- HOME -->
 <section id="home" class="min-h-screen pt-24"></section>
 
 <footer class="text-center py-6 text-sm" style="color: var(--footer-text);">
@@ -152,32 +236,39 @@
 
 const body = document.body;
 
-const navLogo = document.getElementById("navLogo");
-const favicon = document.getElementById("favicon");
+const menuBtn = document.getElementById("menuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+const backdrop = document.getElementById("backdrop");
 
 const themeToggle = document.getElementById("themeToggle");
 const sunIcon = document.getElementById("sunIcon");
 const moonIcon = document.getElementById("moonIcon");
+const navLogo = document.getElementById("navLogo");
+
+/* MOBILE MENU FIX */
+menuBtn.onclick = () => {
+  mobileMenu.classList.toggle("open");
+  backdrop.classList.toggle("show");
+};
+
+backdrop.onclick = () => {
+  mobileMenu.classList.remove("open");
+  backdrop.classList.remove("show");
+};
 
 /* THEME */
 function updateTheme(){
 
   const isDark = body.classList.contains("dark-mode");
 
-  /* NAV LOGO RULES */
   navLogo.src = isDark
     ? "Novyra Navigation Bar Logo (Light Theme).png"
     : "Novyra Navigation Bar Logo (Dark Theme).png";
 
-  /* FAVICON (only one provided so stays same unless you add dark version) */
-  favicon.href = "Novyra Tab Icon (Light Theme).png";
-
-  /* ICONS */
   sunIcon.style.opacity = isDark ? "0" : "1";
   moonIcon.style.opacity = isDark ? "1" : "0";
 }
 
-/* TOGGLE */
 themeToggle.onclick = () => {
   body.classList.toggle("dark-mode");
 
@@ -189,7 +280,6 @@ themeToggle.onclick = () => {
   updateTheme();
 };
 
-/* LOAD THEME */
 if(localStorage.getItem("novyra-theme")==="dark"){
   body.classList.add("dark-mode");
 }
