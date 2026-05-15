@@ -192,7 +192,7 @@
 
   <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 w-full items-start">
 
-    <!-- LEFT (UNCHANGED FULL TEXT) -->
+    <!-- LEFT -->
     <div class="text-left">
 
       <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight text-left">
@@ -201,17 +201,17 @@
         <span class="text-blue-500 font-semibold">Novyra</span>
       </h1>
 
-      <p class="mb-5 leading-relaxed text-[color:var(--text)]/70 text-lg md:text-xl">
-        A modern digital presence built for clarity, performance, and intentional creative direction.
-        Novyra represents a new era of creation shaped by design, strategy, and execution.
+      <!-- UPDATED PARAGRAPHS (UNIFORM SIZE + MARKETING FOCUS) -->
+      <p class="mb-5 text-base md:text-lg leading-relaxed opacity-70">
+        Novyra is a full-service marketing and digital agency focused on building brands through strategy, design, and performance-driven execution.
       </p>
 
-      <p class="mb-5 leading-relaxed text-[color:var(--text)]/60">
-        We build structured, high-performance digital experiences that merge branding and development into one system.
+      <p class="mb-5 text-base md:text-lg leading-relaxed opacity-70">
+        We provide all types of marketing solutions including branding, web design, content creation, digital campaigns, and business growth systems.
       </p>
 
-      <p class="mb-8 leading-relaxed text-[color:var(--text)]/50">
-        From websites to full digital identities, Novyra is designed for modern creators and businesses.
+      <p class="mb-8 text-base md:text-lg leading-relaxed opacity-70">
+        Our approach is structured and results-focused, helping businesses establish a strong and consistent presence across all digital platforms.
       </p>
 
       <div class="flex gap-4">
@@ -228,7 +228,7 @@
 
     </div>
 
-    <!-- RIGHT (FIXED: MOBILE + VIDEO SWITCH + LOOP CONTROL) -->
+    <!-- RIGHT -->
     <div class="flex justify-center items-start">
 
       <div class="w-full h-[420px] rounded-2xl overflow-hidden glass-card shadow-xl">
@@ -278,7 +278,7 @@ backdrop.onclick = () => {
   backdrop.classList.remove("show");
 };
 
-/* LIMIT VIDEO TO 2 LOOPS */
+/* VIDEO LOOP LIMIT (2 TIMES) */
 video.addEventListener("ended", () => {
   playCount++;
   if (playCount < 2) {
@@ -321,7 +321,7 @@ themeToggle.onclick = () => {
   updateTheme();
 };
 
-/* LOAD SAVED THEME */
+/* LOAD THEME */
 if (localStorage.getItem("novyra-theme") === "dark") {
   root.classList.add("dark-mode");
 }
