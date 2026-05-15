@@ -11,7 +11,7 @@
 
   <style>
 
-    :root{F
+    :root{
       --bg: rgba(147, 197, 253, 0.08);
       --text: rgb(15 23 42);
       --muted: rgb(71 85 105);
@@ -408,15 +408,6 @@ function updateTheme(){
   navLogo.src = isDark
     ? "Novyra Identity Logo (Dark Theme).png"
     : "Novyra Identity Logo (Light Theme).png";
-
-  const heroVideo = document.getElementById("heroVideo");
-
-if(heroVideo){
-  heroVideo.querySelector("source").src = isDark
-    ? "Novyra Logo Reveal Landscape (Dark Theme).mp4"
-    : "Novyra Logo Reveal Landscape (Light Theme).mp4";
-
-  heroVideo.load();
 }
 
 themeToggle.onclick = () => {
