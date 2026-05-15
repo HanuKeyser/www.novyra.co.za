@@ -95,6 +95,18 @@
 
     .glass-hover:hover{ background:var(--glass-hover); }
 
+    #about .glass {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+      will-change: opacity, transform;
+    }
+
+    #about .glass.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
   </style>
 </head>
 
@@ -244,11 +256,7 @@
         <h3 class="text-lg font-semibold mb-3">Who We Are</h3>
 
         <p class="text-sm text-slate-500 mb-4">
-          We are designers and builders who approach every project as something to be constructed with care rather than decorated for appearance. Each brand is treated as its own entity, with a distinct voice that needs to be uncovered, shaped, and expressed through design.
-        </p>
-
-        <p class="text-sm text-slate-500">
-          Our approach is grounded in structure, problem-solving, and attention to detail. We focus on creating work that feels deliberate, well-composed, and capable of lasting beyond trends or surface-level aesthetics.
+          We are designers and builders who approach every project as something to be constructed with care rather than decorated for appearance. Each brand is treated as its own entity, with a distinct voice that is uncovered, shaped, and expressed through design. Our work is grounded in structure, problem-solving, and attention to detail, focusing on creating outcomes that feel deliberate, balanced, and built to last beyond trends.
         </p>
 
       </div>
@@ -258,11 +266,7 @@
         <h3 class="text-lg font-semibold mb-3">Why Choose Us</h3>
 
         <p class="text-sm text-slate-500 mb-4">
-          Choosing Novyra means working with a studio that avoids generic outcomes and instead develops solutions shaped specifically around each brand’s identity and direction. Nothing is reused or templated, and every project begins with understanding what makes it unique.
-        </p>
-
-        <p class="text-sm text-slate-500">
-          We focus on building work that is original, structured, and thoughtfully executed, with an emphasis on depth, clarity, and strong conceptual grounding. The result is not just a visual output, but a fully considered digital expression of the brand itself.
+          Choosing Novyra means working with a studio that avoids generic outcomes and instead builds solutions shaped around each brand’s identity and direction. Nothing is reused or templated, and every project begins with understanding what makes it unique. We focus on creating work that is original, structured, and carefully executed, with strong attention to clarity, depth, and conceptual meaning.
         </p>
 
       </div>
@@ -272,15 +276,7 @@
         <h3 class="text-lg font-semibold mb-3">Our Philosophy</h3>
 
         <p class="text-sm text-slate-500 mb-4">
-          Novyra is built on the belief that design is not decoration, but direction. We believe digital experiences should be created with intention, not repetition, where every idea is shaped into something original rather than adapted from what already exists.
-        </p>
-
-        <p class="text-sm text-slate-500 mb-4">
-          We focus on clarity, structure, and meaning, understanding that simplicity is not the absence of effort, but the result of careful thinking and deliberate refinement.
-        </p>
-
-        <p class="text-sm text-slate-500">
-          Our philosophy is centered on creating with purpose, building with intention, and designing for the future rather than the past. Design should not replicate reality, but instead create new ones that are meaningful, structured, and enduring.
+          Novyra is built on the belief that design is not decoration, but direction. Digital experiences should be created with intention, not repetition, where ideas are shaped into something original rather than adapted from what already exists. We focus on clarity, structure, and meaning, understanding that simplicity is the result of careful thinking and deliberate refinement. Our philosophy is centered on creating with purpose, building with intention, and designing for the future rather than the past.
         </p>
 
       </div>
@@ -359,6 +355,19 @@ if(savedTheme === "dark"){
 }
 
 updateTheme();
+
+/* Scroll animation */
+const aboutCards = document.querySelectorAll("#about .glass");
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("in-view");
+    }
+  });
+}, { threshold: 0.15 });
+
+aboutCards.forEach(card => revealObserver.observe(card));
 
 </script>
 
