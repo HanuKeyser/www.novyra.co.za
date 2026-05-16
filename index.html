@@ -160,6 +160,11 @@ html.dark-mode .about-card{
       transition:.3s ease;
     }
 
+.modal.open{
+  opacity: 1;
+  pointer-events: auto;
+}
+    
   </style>
 </head>
 
@@ -429,28 +434,28 @@ html.dark-mode .marquee-content{
       <!-- RIGHT CARDS -->
       <div class="md:col-span-7 grid sm:grid-cols-2 gap-6">
 
-        <div class="about-card p-6">
+        <div class="about-card p-6 cursor-pointer" onclick="openModal('modal-who')">
           <h4 class="text-lg font-semibold mb-2">Who We Are</h4>
           <p class="text-sm opacity-70 leading-relaxed">
             A modern growth studio focused on building brands that perform, not just look good.
           </p>
         </div>
 
-        <div class="about-card p-6">
+        <div class="about-card p-6 cursor-pointer" onclick="openModal('modal-why')">
           <h4 class="text-lg font-semibold mb-2">Why Novyra</h4>
           <p class="text-sm opacity-70 leading-relaxed">
             We combine creative direction with data-backed systems that scale visibility and revenue.
           </p>
         </div>
 
-        <div class="about-card p-6">
+        <div class="about-card p-6 cursor-pointer" onclick="openModal('modal-strategy')">
           <h4 class="text-lg font-semibold mb-2">Strategy</h4>
           <p class="text-sm opacity-70 leading-relaxed">
             Every decision is guided by positioning, psychology, and market opportunity mapping.
           </p>
         </div>
 
-        <div class="about-card p-6 bg-black text-white dark:bg-white/10 dark:text-white">
+        <div class="about-card p-6 bg-black text-white dark:bg-white/10 dark:text-white cursor-pointer" onclick="openModal('modal-growth')">
           <h4 class="text-lg font-semibold mb-2">Growth Systems</h4>
           <p class="text-sm opacity-80 leading-relaxed">
             Automated funnels, lead systems, and conversion architecture designed for scale.
@@ -566,6 +571,60 @@ html.dark-mode .marquee-content{
   © 2026 Novyra. All rights reserved.
 </footer>
 
+
+<!-- MODAL BACKDROP -->
+<div id="modalBackdrop" class="fixed inset-0 bg-black/50 opacity-0 pointer-events-none transition duration-300 z-[60]"></div>
+
+<!-- MODALS -->
+
+<!-- Who We Are -->
+<div id="modal-who" class="modal fixed inset-0 flex items-center justify-center opacity-0 pointer-events-none transition duration-300 z-[70]">
+  <div class="glass-card max-w-xl w-full mx-6 p-8 relative">
+    <button class="absolute top-4 right-4 text-xl" onclick="closeModal()">✕</button>
+    <h2 class="text-2xl font-bold mb-4">Who We Are</h2>
+    <p class="opacity-70 leading-relaxed">
+      We are a modern growth studio focused on building brands that perform in the real world, not just visually.
+      Our approach blends strategy, psychology, and design to create meaningful market positioning and long-term growth systems.
+    </p>
+  </div>
+</div>
+
+<!-- Why Novyra -->
+<div id="modal-why" class="modal fixed inset-0 flex items-center justify-center opacity-0 pointer-events-none transition duration-300 z-[70]">
+  <div class="glass-card max-w-xl w-full mx-6 p-8 relative">
+    <button class="absolute top-4 right-4 text-xl" onclick="closeModal()">✕</button>
+    <h2 class="text-2xl font-bold mb-4">Why Novyra</h2>
+    <p class="opacity-70 leading-relaxed">
+      We combine creative direction with performance systems that scale visibility, leads, and revenue.
+      Every decision is intentional — built to move brands beyond aesthetics into measurable dominance.
+    </p>
+  </div>
+</div>
+
+<!-- Strategy -->
+<div id="modal-strategy" class="modal fixed inset-0 flex items-center justify-center opacity-0 pointer-events-none transition duration-300 z-[70]">
+  <div class="glass-card max-w-xl w-full mx-6 p-8 relative">
+    <button class="absolute top-4 right-4 text-xl" onclick="closeModal()">✕</button>
+    <h2 class="text-2xl font-bold mb-4">Strategy</h2>
+    <p class="opacity-70 leading-relaxed">
+      Our strategy focuses on positioning, market psychology, and conversion pathways.
+      We map how users think, how markets behave, and how brands win attention consistently.
+    </p>
+  </div>
+</div>
+
+<!-- Growth Systems -->
+<div id="modal-growth" class="modal fixed inset-0 flex items-center justify-center opacity-0 pointer-events-none transition duration-300 z-[70]">
+  <div class="glass-card max-w-xl w-full mx-6 p-8 relative">
+    <button class="absolute top-4 right-4 text-xl" onclick="closeModal()">✕</button>
+    <h2 class="text-2xl font-bold mb-4">Growth Systems</h2>
+    <p class="opacity-70 leading-relaxed">
+      We build automated systems including funnels, lead generation pipelines, and conversion architecture.
+      These systems are designed to scale without increasing manual workload.
+    </p>
+  </div>
+</div>
+  
 <script>
 
 const root = document.documentElement;
@@ -651,6 +710,34 @@ if (localStorage.getItem("novyra-theme") === "dark") {
 
 updateTheme();
 
+const modalBackdrop = document.getElementById("modalBackdrop");
+
+function openModal(id){
+  document.querySelectorAll(".modal").forEach(m => {
+    m.classList.remove("open");
+  });
+
+  const modal = document.getElementById(id);
+  modal.classList.add("open");
+  modalBackdrop.classList.add("open");
+}
+
+function closeModal(){
+  document.querySelectorAll(".modal").forEach(m => {
+    m.classList.remove("open");
+  });
+
+  modalBackdrop.classList.remove("open");
+}
+
+/* close when clicking outside */
+modalBackdrop.onclick = closeModal;
+
+/* ESC key support */
+document.addEventListener("keydown", (e) => {
+  if(e.key === "Escape") closeModal();
+});
+  
 </script>
 
 </body>
