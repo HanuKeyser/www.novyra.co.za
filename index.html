@@ -9,63 +9,67 @@
   <link rel="icon" type="image/png" href="Novyra Tab Icon (Light Theme).png">
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <style>
+<style>
 
-    :root{
-      --bg: #f3f4f6;
-      --text: rgb(15 23 42);
-      --footer-text: #000000;
+/* ================= ROOT THEME ================= */
+:root{
+  --bg: #f3f4f6;
+  --text: rgb(15 23 42);
+  --footer-text: #000000;
 
-      --scroll-thumb: rgba(59,130,246,0.85);
-      --scroll-track: transparent;
-    }
+  --scroll-thumb: rgba(59,130,246,0.85);
+  --scroll-track: transparent;
+}
 
-    html.dark-mode{
-      --bg: rgb(38 38 40);
-      --text: white;
-      --footer-text: #ffffff;
+html.dark-mode{
+  --bg: rgb(38 38 40);
+  --text: white;
+  --footer-text: #ffffff;
 
-      --scroll-thumb: rgba(147,197,253,0.9);
-      --scroll-track: transparent;
-    }
+  --scroll-thumb: rgba(147,197,253,0.9);
+  --scroll-track: transparent;
+}
 
-    html, body{
-      margin:0;
-      font-family:sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      transition:.3s ease;
-      overflow-x:hidden;
-      scroll-behavior: smooth;
+html, body{
+  margin:0;
+  font-family:sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  transition:.3s ease;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
 
-      scrollbar-width: thin;
-      scrollbar-color: var(--scroll-thumb) var(--scroll-track);
-    }
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-thumb) var(--scroll-track);
+}
 
-    ::-webkit-scrollbar{ width:8px; }
-    ::-webkit-scrollbar-track{ background: var(--scroll-track); }
-    ::-webkit-scrollbar-thumb{
-      background: var(--scroll-thumb);
-      border-radius:10px;
-      border:2px solid transparent;
-      background-clip:padding-box;
-    }
+/* ================= SCROLLBAR ================= */
+::-webkit-scrollbar{ width:8px; }
+::-webkit-scrollbar-track{ background: var(--scroll-track); }
+::-webkit-scrollbar-thumb{
+  background: var(--scroll-thumb);
+  border-radius:10px;
+  border:2px solid transparent;
+  background-clip:padding-box;
+}
 
-    .glass-card{
-      background: rgba(255,255,255,0.4);
-      backdrop-filter: blur(5px);
-      border-radius:20px;
-      border:1px solid rgba(255,255,255,0.3);
-      box-shadow:0 8px 32px rgba(0,0,0,0.1);
-      transition:.3s ease;
-    }
+/* ================= GLASS BASE ================= */
+.glass-card{
+  background: rgba(255,255,255,0.4);
+  backdrop-filter: blur(5px);
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,0.3);
+  box-shadow:0 8px 32px rgba(0,0,0,0.1);
+  transition:.3s ease;
+}
 
-    html.dark-mode .glass-card{
-      background: rgba(255,255,255,0.06);
-      border:1px solid rgba(255,255,255,0.1);
-      box-shadow:0 12px 40px rgba(0,0,0,0.45);
-    }
+html.dark-mode .glass-card{
+  background: rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  box-shadow:0 12px 40px rgba(0,0,0,0.45);
+}
 
+/* ================= ABOUT CARD ================= */
 .about-card{
   background: rgba(255,255,255,0.45);
   backdrop-filter: blur(6px);
@@ -73,6 +77,7 @@
   border: 1px solid rgba(255,255,255,0.25);
   box-shadow: 0 8px 25px rgba(0,0,0,0.08);
   transition: .3s ease;
+  cursor: pointer;
 }
 
 html.dark-mode .about-card{
@@ -81,110 +86,140 @@ html.dark-mode .about-card{
   box-shadow: 0 10px 30px rgba(0,0,0,0.35);
 }
 
-    /* ⭐ CREATIVE SERVICES CARDS (NEW) */
-    .service-card{
-      background: rgba(255,255,255,0.55);
-      border: 1px solid rgba(255,255,255,0.35);
-      border-radius: 22px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-      transition: all .3s ease;
-      min-height: 160px;
-    }
+/* ================= SERVICE CARDS ================= */
+.service-card{
+  background: rgba(255,255,255,0.55);
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 22px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  transition: all .3s ease;
+  min-height: 160px;
+}
 
-    .service-card:hover{
-      transform: translateY(-6px);
-      box-shadow: 0 18px 45px rgba(59,130,246,0.25);
-      border: 1px solid rgba(59,130,246,0.4);
-    }
+.service-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 18px 45px rgba(59,130,246,0.25);
+  border: 1px solid rgba(59,130,246,0.4);
+}
 
-    html.dark-mode .service-card{
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-    }
+html.dark-mode .service-card{
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
 
-    html.dark-mode .service-card:hover{
-      box-shadow: 0 18px 55px rgba(59,130,246,0.25);
-      border: 1px solid rgba(147,197,253,0.4);
-    }
+/* ================= NAV ================= */
+.nav-link{
+  padding:6px 10px;
+  border-radius:10px;
+  transition:.2s ease;
+}
 
-    .nav-link{
-      padding:6px 10px;
-      border-radius:10px;
-      transition:.2s ease;
-    }
+.nav-link:hover{
+  color:#3b82f6;
+}
 
-    .nav-link:hover{ color:#3b82f6; }
+.nav-link.active{
+  color:#3b82f6;
+  background:rgba(59,130,246,0.1);
+}
 
-    .nav-link.active{
-      color:#3b82f6;
-      background:rgba(59,130,246,0.1);
-    }
+/* ================= DROPDOWN ================= */
+.dropdown{
+  max-height:0;
+  opacity:0;
+  overflow:hidden;
+  pointer-events:none;
+  transform: translateY(-5px);
+  transition: all .3s ease;
+}
 
-    .dropdown{
-      max-height:0;
-      opacity:0;
-      overflow:hidden;
-      pointer-events:none;
-      transform: translateY(-5px);
-      transition: all .3s ease;
-    }
+.dropdown.open{
+  max-height:300px;
+  opacity:1;
+  pointer-events:auto;
+  transform: translateY(0);
+}
 
-    .dropdown.open{
-      max-height:300px;
-      opacity:1;
-      pointer-events:auto;
-      transform: translateY(0);
-    }
+/* ================= NAV BACKDROP ================= */
+#backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.25);
+  opacity:0;
+  pointer-events:none;
+  transition:.3s ease;
+  z-index:40;
+}
 
-    #backdrop{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,0.25);
-      opacity:0;
-      pointer-events:none;
-      transition:.3s ease;
-      z-index:40;
-    }
+#backdrop.show{
+  opacity:1;
+  pointer-events:auto;
+}
 
-    #backdrop.show{
-      opacity:1;
-      pointer-events:auto;
-    }
+/* ================= ICON ================= */
+.icon{
+  position:absolute;
+  width:20px;
+  height:20px;
+  transition:.3s ease;
+}
 
-    .icon{
-      position:absolute;
-      width:20px;
-      height:20px;
-      transition:.3s ease;
-    }
+/* ================= MODALS FIX (IMPORTANT) ================= */
 
+/* base modal hidden state */
+.modal{
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.97);
+
+  transition: all 0.25s ease;
+  z-index: 70;
+}
+
+/* modal visible */
 .modal.open{
   opacity: 1;
   pointer-events: auto;
+  transform: scale(1);
 }
 
-body.modal-active {
+/* BACKDROP FOR MODALS */
+#modalBackdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+  opacity:0;
+  pointer-events:none;
+  transition:.3s ease;
+  z-index:60;
+}
+
+#modalBackdrop.open{
+  opacity:1;
+  pointer-events:auto;
+}
+
+/* ================= BLUR EFFECT ================= */
+body.modal-active > *:not(.modal):not(#modalBackdrop){
+  filter: blur(6px);
+  pointer-events: none;
+  transition: filter .3s ease;
+}
+
+/* ================= BODY LOCK ================= */
+body.modal-active{
   overflow: hidden;
 }
 
-/* blur everything behind modal */
-body.modal-active main,
-body.modal-active header,
-body.modal-active section,
-body.modal-active footer {
-  filter: blur(6px);
-  transition: filter 0.3s ease;
-  pointer-events: none;
-}
-
-/* keep modal above blur */
-.modal {
-  backdrop-filter: blur(0px);
-}
-    
-  </style>
+</style>
 </head>
 
 <body>
@@ -693,21 +728,26 @@ html.dark-mode .marquee-content{
 
 const root = document.documentElement;
 
+/* ================= NAV ================= */
 const menuBtn = document.getElementById("menuBtn");
 const mobileMenu = document.getElementById("mobileMenu");
 const backdrop = document.getElementById("backdrop");
 
+/* ================= THEME ================= */
 const themeToggle = document.getElementById("themeToggle");
 const navLogo = document.getElementById("navLogo");
 const sunIcon = document.getElementById("sunIcon");
 const moonIcon = document.getElementById("moonIcon");
 
+/* ================= VIDEO ================= */
 const video = document.getElementById("heroVideo");
 const videoSource = document.getElementById("videoSource");
-
 let playCount = 0;
 
-/* MENU */
+/* ================= MODALS ================= */
+const modalBackdrop = document.getElementById("modalBackdrop");
+
+/* ================= MOBILE MENU ================= */
 menuBtn.onclick = () => {
   mobileMenu.classList.toggle("open");
   backdrop.classList.toggle("show");
@@ -718,7 +758,7 @@ backdrop.onclick = () => {
   backdrop.classList.remove("show");
 };
 
-/* SMOOTH SCROLL CLEANUP */
+/* close mobile menu on anchor click */
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener("click", () => {
     mobileMenu.classList.remove("open");
@@ -726,7 +766,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
   });
 });
 
-/* VIDEO LOOP LIMIT */
+/* ================= VIDEO CONTROL ================= */
 video.addEventListener("ended", () => {
   playCount++;
   if (playCount < 2) {
@@ -735,7 +775,7 @@ video.addEventListener("ended", () => {
   }
 });
 
-/* THEME SWITCH */
+/* ================= THEME SYSTEM ================= */
 function updateTheme(){
 
   const isDark = root.classList.contains("dark-mode");
@@ -768,48 +808,61 @@ themeToggle.onclick = () => {
   updateTheme();
 };
 
+/* load saved theme */
 if (localStorage.getItem("novyra-theme") === "dark") {
   root.classList.add("dark-mode");
 }
 
 updateTheme();
 
-const modalBackdrop = document.getElementById("modalBackdrop");
-
+/* ================= MODAL SYSTEM ================= */
 function openModal(id){
-  document.querySelectorAll(".modal").forEach(m => m.classList.remove("open"));
 
-  document.getElementById(id).classList.add("open");
+  // close all first
+  document.querySelectorAll(".modal").forEach(m => {
+    m.classList.remove("open");
+  });
+
+  const modal = document.getElementById(id);
+  if (!modal) return;
+
+  modal.classList.add("open");
   modalBackdrop.classList.add("open");
   document.body.classList.add("modal-active");
 }
 
 function closeModal(){
-  document.querySelectorAll(".modal").forEach(m => m.classList.remove("open"));
+
+  document.querySelectorAll(".modal").forEach(m => {
+    m.classList.remove("open");
+  });
 
   modalBackdrop.classList.remove("open");
   document.body.classList.remove("modal-active");
 }
 
-/* CLOSE WHEN CLICKING ANYWHERE OUTSIDE MODAL CONTENT */
+/* ================= CLOSE ON OUTSIDE CLICK ================= */
 document.addEventListener("click", (e) => {
-  const activeModal = document.querySelector(".modal.open");
 
+  const activeModal = document.querySelector(".modal.open");
   if (!activeModal) return;
 
   const modalBox = activeModal.querySelector(".glass-card");
 
-  // if click is NOT inside modal box → close
-  if (modalBox && !modalBox.contains(e.target)) {
-    closeModal();
-  }
+  // ignore clicks inside modal
+  if (modalBox && modalBox.contains(e.target)) return;
+
+  // ignore clicks on cards that open modals (prevents instant close on open)
+  if (e.target.closest("[onclick^='openModal']")) return;
+
+  closeModal();
 });
 
-/* ESC KEY SUPPORT */
+/* ================= ESC KEY ================= */
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeModal();
 });
-  
+
 </script>
 
 </body>
