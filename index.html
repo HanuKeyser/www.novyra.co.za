@@ -292,9 +292,10 @@
 </section>
 
 <!-- MARQUEE -->
-<div class="w-full overflow-hidden border-y border-white/10 py-6">
+<div class="w-full overflow-hidden glass-marquee">
 
   <div class="marquee-content">
+    <span>Novyra - New Era of Creation ✦</span>
     <span>Novyra - New Era of Creation ✦</span>
     <span>Novyra - New Era of Creation ✦</span>
     <span>Novyra - New Era of Creation ✦</span>
@@ -305,31 +306,53 @@
 
 <style>
 
+.glass-marquee{
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.25);
+
+  border-top: 1px solid rgba(255,255,255,0.12);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+/* DARK MODE */
+html.dark-mode .glass-marquee{
+  background: rgba(255,255,255,0.04);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+/* MARQUEE TEXT */
 .marquee-content{
-  display:flex;
-  gap:4rem;
-  white-space:nowrap;
-  animation:marquee 18s linear infinite;
-  font-size:clamp(70px,11vw,140px);
-  font-weight:900;
-  color:#000000;
-  opacity:0.06;
-  letter-spacing:0.08em;
-  line-height:1;
-  width:max-content;
+  display: flex;
+  gap: 4rem;
+  white-space: nowrap;
+  width: max-content;
+
+  /* 🔥 SLOWER ANIMATION */
+  animation: marquee 55s linear infinite;
+
+  font-size: clamp(70px, 11vw, 140px);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1;
+
+  color: var(--text);
+  opacity: 0.05;
 }
 
 html.dark-mode .marquee-content{
-  color:#ffffff;
+  color: #ffffff;
+  opacity: 0.06;
 }
 
+/* ANIMATION */
 @keyframes marquee{
   from{
-    transform:translateX(0%);
+    transform: translateX(0%);
   }
-
   to{
-    transform:translateX(-50%);
+    transform: translateX(-50%);
   }
 }
 
