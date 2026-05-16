@@ -306,22 +306,17 @@
 
 <style>
 
+/* MARQUEE WRAPPER */
 .glass-marquee{
   background: var(--bg);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-
   overflow: hidden;
 
-  /* FIX: prevents text clipping like "y" */
-  padding: 10px 0;
-}
+  /* no padding */
+  padding: 0;
 
-/* DARK MODE */
-html.dark-mode .glass-marquee{
-  background: var(--bg);
-  border-top: 1px solid rgba(255,255,255,0.06);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  /* vertical centering */
+  display: flex;
+  align-items: center;
 }
 
 /* MARQUEE TEXT */
@@ -337,14 +332,14 @@ html.dark-mode .glass-marquee{
   font-weight: 900;
   letter-spacing: 0.08em;
 
-  /* FIX: prevents descender cut-off */
-  line-height: 1.2;
+  /* prevents “y / g / p” clipping */
+  line-height: 1.25;
 
   color: #3b82f6;
   opacity: 0.15;
 }
 
-/* DARK MODE TEXT */
+/* DARK MODE */
 html.dark-mode .marquee-content{
   color: #3b82f6;
   opacity: 0.18;
