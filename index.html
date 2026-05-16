@@ -291,6 +291,50 @@
 
 </section>
 
+<!-- MARQUEE -->
+<div class="w-full overflow-hidden border-y border-white/10 py-6">
+
+  <div class="marquee-content">
+    <span>Novyra - New Era of Creation ✦</span>
+    <span>Novyra - New Era of Creation ✦</span>
+    <span>Novyra - New Era of Creation ✦</span>
+    <span>Novyra - New Era of Creation ✦</span>
+  </div>
+
+</div>
+
+<style>
+
+.marquee-content{
+  display:flex;
+  gap:4rem;
+  white-space:nowrap;
+  animation:marquee 18s linear infinite;
+  font-size:clamp(70px,11vw,140px);
+  font-weight:900;
+  color:#000000;
+  opacity:0.06;
+  letter-spacing:0.08em;
+  line-height:1;
+  width:max-content;
+}
+
+html.dark-mode .marquee-content{
+  color:#ffffff;
+}
+
+@keyframes marquee{
+  from{
+    transform:translateX(0%);
+  }
+
+  to{
+    transform:translateX(-50%);
+  }
+}
+
+</style>
+  
 <!-- ABOUT -->
 <section id="about" class="px-6 md:px-10 pt-20 pb-14">
 
