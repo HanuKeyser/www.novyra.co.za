@@ -307,17 +307,14 @@
 <style>
 
 .glass-marquee{
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  background: rgba(255,255,255,0.25);
-
-  border-top: 1px solid rgba(255,255,255,0.12);
-  border-bottom: 1px solid rgba(255,255,255,0.12);
+  background: var(--bg);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-/* DARK MODE */
+/* DARK MODE BORDER ADJUST */
 html.dark-mode .glass-marquee{
-  background: rgba(255,255,255,0.04);
+  background: var(--bg);
   border-top: 1px solid rgba(255,255,255,0.06);
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
@@ -329,7 +326,6 @@ html.dark-mode .glass-marquee{
   white-space: nowrap;
   width: max-content;
 
-  /* 🔥 SLOWER ANIMATION */
   animation: marquee 55s linear infinite;
 
   font-size: clamp(70px, 11vw, 140px);
@@ -337,23 +333,20 @@ html.dark-mode .glass-marquee{
   letter-spacing: 0.08em;
   line-height: 1;
 
-  color: var(--text);
-  opacity: 0.05;
+  color: #3b82f6;
+  opacity: 0.15;
 }
 
+/* DARK MODE TEXT ADJUST */
 html.dark-mode .marquee-content{
-  color: #ffffff;
-  opacity: 0.06;
+  color: #3b82f6;
+  opacity: 0.18;
 }
 
 /* ANIMATION */
 @keyframes marquee{
-  from{
-    transform: translateX(0%);
-  }
-  to{
-    transform: translateX(-50%);
-  }
+  from{ transform: translateX(0%); }
+  to{ transform: translateX(-50%); }
 }
 
 </style>
