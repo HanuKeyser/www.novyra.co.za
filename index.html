@@ -291,28 +291,19 @@
 
 </section>
 
-<!-- MARQUEE -->
-<div class="w-full overflow-hidden glass-marquee">
-
-  <div class="marquee-content">
-    <span>Novyra - New Era of Creation ✦</span>
-    <span>Novyra - New Era of Creation ✦</span>
-    <span>Novyra - New Era of Creation ✦</span>
-    <span>Novyra - New Era of Creation ✦</span>
-    <span>Novyra - New Era of Creation ✦</span>
-  </div>
-
-</div>
-
 <style>
 
 .glass-marquee{
   background: var(--bg);
   border-top: 1px solid rgba(255,255,255,0.08);
   border-bottom: 1px solid rgba(255,255,255,0.08);
+
+  /* FIX: prevents text clipping */
+  padding: 10px 0;
+  overflow: hidden;
 }
 
-/* DARK MODE BORDER ADJUST */
+/* DARK MODE */
 html.dark-mode .glass-marquee{
   background: var(--bg);
   border-top: 1px solid rgba(255,255,255,0.06);
@@ -331,13 +322,15 @@ html.dark-mode .glass-marquee{
   font-size: clamp(70px, 11vw, 140px);
   font-weight: 900;
   letter-spacing: 0.08em;
-  line-height: 1;
+
+  /* FIX: prevents “y/g/p” clipping */
+  line-height: 1.2;
 
   color: #3b82f6;
   opacity: 0.15;
 }
 
-/* DARK MODE TEXT ADJUST */
+/* DARK MODE TEXT */
 html.dark-mode .marquee-content{
   color: #3b82f6;
   opacity: 0.18;
