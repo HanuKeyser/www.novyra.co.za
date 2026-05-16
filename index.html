@@ -358,28 +358,52 @@ html.dark-mode .marquee-content{
 
   <div class="max-w-7xl mx-auto">
 
-    <!-- Header -->
-    <div class="max-w-3xl">
-      <h2 class="text-4xl md:text-6xl font-bold tracking-tight leading-tight">
-        We don’t just build brands.
-        <span class="block text-gray-400">We engineer market dominance.</span>
-      </h2>
+    <!-- TOP INTRO + VIDEO -->
+    <div class="grid md:grid-cols-2 gap-12 items-center">
 
-      <p class="mt-6 text-base md:text-lg text-gray-600 leading-relaxed">
-        Novyra is a performance-driven digital agency that blends strategy, design, and scalable systems
-        to turn ambitious companies into category leaders.
-      </p>
+      <!-- TEXT -->
+      <div class="max-w-3xl">
+        <h2 class="text-4xl md:text-6xl font-bold tracking-tight leading-tight">
+          We don’t just build brands.
+          <span class="block text-gray-400">We engineer market dominance.</span>
+        </h2>
+
+        <p class="mt-6 text-base md:text-lg text-gray-600 leading-relaxed">
+          Novyra is a performance-driven digital agency that blends strategy, design, and scalable systems
+          to turn ambitious companies into category leaders.
+        </p>
+      </div>
+
+      <!-- VIDEO -->
+      <div class="relative">
+        <div class="rounded-2xl overflow-hidden border border-gray-200 shadow-xl">
+          <video
+            class="w-full h-full object-cover"
+            autoplay
+            muted
+            loop
+            playsinline
+          >
+            <source src="your-video.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        <!-- subtle glow -->
+        <div class="absolute -inset-6 bg-black/5 blur-3xl rounded-3xl -z-10"></div>
+      </div>
+
     </div>
 
-    <!-- Divider -->
-    <div class="my-14 h-px bg-gray-200"></div>
+    <!-- DIVIDER -->
+    <div class="my-16 h-px bg-gray-200"></div>
 
-    <!-- Content Grid -->
+    <!-- LOWER CONTENT -->
     <div class="grid md:grid-cols-12 gap-10 items-start">
 
-      <!-- Left Big Statement -->
+      <!-- LEFT STICKY COLUMN -->
       <div class="md:col-span-5">
         <div class="sticky top-28">
+
           <h3 class="text-2xl md:text-3xl font-semibold leading-snug">
             Built for brands that refuse to blend in.
           </h3>
@@ -389,7 +413,7 @@ html.dark-mode .marquee-content{
             and performance marketing that compounds over time.
           </p>
 
-          <div class="mt-8 flex gap-8">
+          <div class="mt-8 flex gap-10">
             <div>
               <p class="text-3xl font-bold">3x+</p>
               <p class="text-sm text-gray-500">Average growth lift</p>
@@ -399,27 +423,28 @@ html.dark-mode .marquee-content{
               <p class="text-sm text-gray-500">Strategy-led execution</p>
             </div>
           </div>
+
         </div>
       </div>
 
-      <!-- Right Cards -->
+      <!-- RIGHT CARDS -->
       <div class="md:col-span-7 grid sm:grid-cols-2 gap-6">
 
-        <div class="p-6 rounded-2xl bg-white shadow-sm border border-gray-100 hover:shadow-md transition">
+        <div class="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition">
           <h4 class="text-lg font-semibold mb-2">Who We Are</h4>
           <p class="text-sm text-gray-600 leading-relaxed">
             A modern growth studio focused on building brands that perform, not just look good.
           </p>
         </div>
 
-        <div class="p-6 rounded-2xl bg-white shadow-sm border border-gray-100 hover:shadow-md transition">
+        <div class="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition">
           <h4 class="text-lg font-semibold mb-2">Why Novyra</h4>
           <p class="text-sm text-gray-600 leading-relaxed">
             We combine creative direction with data-backed systems that scale visibility and revenue.
           </p>
         </div>
 
-        <div class="p-6 rounded-2xl bg-white shadow-sm border border-gray-100 hover:shadow-md transition">
+        <div class="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition">
           <h4 class="text-lg font-semibold mb-2">Strategy</h4>
           <p class="text-sm text-gray-600 leading-relaxed">
             Every decision is guided by positioning, psychology, and market opportunity mapping.
@@ -436,9 +461,11 @@ html.dark-mode .marquee-content{
       </div>
 
     </div>
+
   </div>
 
 </section>
+  
 <!-- CREATIVE SERVICES -->
 <section id="creative-services" class="scroll-mt-28 px-6 md:px-10 py-20">
 
